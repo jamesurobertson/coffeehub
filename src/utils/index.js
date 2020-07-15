@@ -1,7 +1,8 @@
 export const client = (endpoint, { body, ...customConfig } = {}) => {
 	const token = localStorage.getItem("token");
-	const headers = { "Content-Type": "application/json" };
-    console.log(endpoint)
+    const headers = { "Content-Type": "application/json" };
+    console.log(token)
+    console.log(`body`, body)
 	if (token) {
 		headers.Authorization = `Bearer ${token}`;
 	}
@@ -18,9 +19,8 @@ export const client = (endpoint, { body, ...customConfig } = {}) => {
 	if (body) {
 		config.body = JSON.stringify(body);
     }
-    console.log(process.env)
-    console.log(`${process.env.BACKEND_URL}${endpoint}`)
-	return fetch(`${process.env.BACKEND_URL}${endpoint}`, config).then(
+    console.log(config)
+	return fetch(`${process.env.REACT_APP_BACKEND_URL}/api${endpoint}`, config).then(
 		async res => {
 			const data = await res.json();
 

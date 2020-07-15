@@ -5,6 +5,7 @@ export const lightTheme = {
     primaryColor: '#24292E',
     secondaryColor: '#586069',
     border: '#e1e4e8',
+    borderDarker: '#d9dadc',
     white: '#FFFFFF',
     blue: '#0366D6',
     green: '#2EA44F',

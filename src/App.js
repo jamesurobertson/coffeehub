@@ -6,6 +6,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import Landing from './pages/Landing'
 import {AuthRoute, ProtectedRoute} from './Routes'
 import Home from './pages/Home'
+import Roast from './pages/Roast'
 import NewRoast from './components/NewRoast'
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
           <ProtectedRoute
             path="/new"
             component={NewRoast}
+            currentUserId={user}
+          />
+          <ProtectedRoute
+            path="/roast/:roastName"
+            component={Roast}
             currentUserId={user}
           />
         </Switch>
