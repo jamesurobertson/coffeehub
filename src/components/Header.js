@@ -18,12 +18,12 @@ const HeaderWrapper = styled.div`
     border: none;
     border-radius: 5px;
     outline: 0;
-    color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme.bgDark};
   }
   .header__search::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.white};
     opacity: 0.7;
   }
 `;
@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <div style={{ display: "flex", alignItems: 'center' }}>
-        <Link to="/home">
+        <Link to="/">
           <TiCoffee color="white" size="3em" />
         </Link>
         <form>

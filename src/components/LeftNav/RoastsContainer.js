@@ -57,7 +57,7 @@ const RoastContainerHeader = styled.div`
     padding: 4px 12px;
     display: flex;
     align-items: center;
-    color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme.green};
     border-radius: 5px;
   }
