@@ -7,7 +7,7 @@ const GraphWrapper = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 1100px;
+  width: 800px;
   margin: 20px auto;
   padding: 20px 0 ;
   border: 1px solid ${(props) => props.theme.border};
@@ -86,10 +86,10 @@ const Graph = () => {
       };
   return (
     <GraphWrapper>
-      <LineChart width={1000} height={400} data={data}>
+      <LineChart width={750} height={300} data={data}>
         <Line dot={false} type="monotone" dataKey="temp" stroke="#0366D6" allowDecimals />
         <XAxis dataKey="time" />
-        <YAxis type='number' domain={[75, 425]} ticks={[73, 100, 150, 200, 250, 300, 350, 400, 450]}/>
+        <YAxis type='number' domain={[75, 425]} ticks={[100, 150, 200, 250, 300, 350, 400, 450]}/>
         <Tooltip content={<CustomTooltip />} />
       </LineChart>
     </GraphWrapper>

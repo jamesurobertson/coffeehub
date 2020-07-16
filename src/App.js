@@ -7,7 +7,7 @@ import Landing from './pages/Landing'
 import {AuthRoute, ProtectedRoute} from './Routes'
 import Home from './pages/Home'
 import Roast from './pages/Roast'
-import NewRoast from './components/NewRoast'
+import NewRoast from './components/Roast/NewRoast'
 
 function App() {
     const user = 'user'

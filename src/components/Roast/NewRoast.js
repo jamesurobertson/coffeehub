@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import useInput from "../hooks/useInput";
-import { client } from "../utils/index";
+import useInput from "../../hooks/useInput";
+import { client } from "../../utils/index";
 
 const NewRoastWrapper = styled.div`
   display: flex;

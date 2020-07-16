@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import QuickSetUp from '../components/Roast/QuickSetUp'
+import RoastSetUp from '../components/Roast/RoastSetUp'
 import RoastHeader from '../components/Roast/RoastHeader'
 
 
@@ -13,7 +13,7 @@ const Roast = () => {
     return (
         <RoastWrapper>
             <RoastHeader/>
-            <QuickSetUp/>
+            <RoastSetUp/>
         </RoastWrapper>
     )
 }
