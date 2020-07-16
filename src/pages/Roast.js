@@ -6,6 +6,7 @@ import RoastHeader from '../components/Roast/RoastHeader'
 import RoastMain from '../components/Roast/RoastMain'
 import {client} from '../utils/index'
 import {RoastContext} from '../context/RoastContext'
+import RoastSetUpForm from '../components/Roast/RoastSetUpForm'
 
 
 const RoastWrapper = styled.div`
@@ -31,8 +32,8 @@ const Roast = (props) => {
     return (
         <RoastWrapper>
             <RoastHeader/>
-            {roastData.load ? <RoastMain/> :
-            <GraphSetUp/>
+            {roastData.load ? <GraphSetUp/> :
+            <RoastSetUp/>
             }
         </RoastWrapper>
     )

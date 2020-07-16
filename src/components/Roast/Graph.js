@@ -5,12 +5,7 @@ import {RoastContext} from '../../context/RoastContext'
 
 const GraphWrapper = styled.div`
   display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-  margin: 20px auto;
-  padding: 20px 0 ;
+  padding: 20px;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 5px;
   background-color: ${(props) => props.theme.bgSecondary};
@@ -70,7 +65,7 @@ const Graph = () => {
         return null;
       };
 
-      if (!data) return null
+    if (!data) return null
       console.log(data)
   return (
     <GraphWrapper>

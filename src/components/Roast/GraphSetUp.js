@@ -7,7 +7,18 @@ import TimeStampTracker from './TimeStampTracker'
 
 const GraphSetUpWrapper = styled.div`
     display: flex;
+    justify-content: space-around;
+    align-items: space-around;
+    margin: 20px;
+    padding: 20px;
 
+    .comp {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+    }
 `
 
 
