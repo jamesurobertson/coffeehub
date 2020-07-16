@@ -1,40 +1,23 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import Header from "./components/Header";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Roast from "./pages/Roast";
+import NewRoast from "./components/Roast/NewRoast";
+import Header from "./components/Header"
+import Profile from './pages/Profile'
 
-export const ProtectedRoute = ({
-  component: Component,
-  path,
-  currentUserId,
-  exact,
-}) => {
+const Routes = () => {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <Route
-        path={path}
-        exact={exact}
-        render={(props) =>
-          currentUserId ? <Component {...props} /> : <Redirect to="/landing" />
-        }
-      />
-    </>
+      <Switch>
+        <Route path="/new" component={NewRoast} />
+        <Route path="/u/:username/:roastName" component={Roast} />
+        <Route exact path="/u/:username" component={Profile}/>
+        <Route path="/" component={Home} />
+      </Switch>
+    </BrowserRouter>
   );
 };
 
-export const AuthRoute = ({
-  component: Component,
-  path,
-  currentUserId,
-  exact,
-}) => {
-  return (
-    <Route
-      path={path}
-      exact={exact}
-      render={(props) =>
-        currentUserId ? <Redirect to="/home" /> : <Component {...props} />
-      }
-    />
-  );
-};
+export default Routes;

@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState, useContext, useEffect} from "react";
 import styled from "styled-components";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
+import {RoastContext} from '../../context/RoastContext'
 
 const GraphWrapper = styled.div`
   display: flex;
@@ -28,33 +29,17 @@ const GraphWrapper = styled.div`
 
 const Graph = () => {
 
-    const data = [
-      { time: "0", temp: 210 },
-      { time: ".5", temp: 130 },
-      { time: "1", temp: 135 },
-      { time: "1.5", temp: 145 },
-      { time: "2", temp: 155 },
-      { time: "2.5", temp: 175 },
-      { time: "3", temp: 200 },
-      { time: "3.5", temp: 225 },
-      { time: "4", temp: 250 },
-      { time: "4.5", temp: 262 },
-      { time: "5", temp: 275 },
-      { time: "5.5", temp: 287 },
-      { time: "6", temp: 290 },
-      { time: "6.5", temp: 300 },
-      { time: "7", temp: 310 },
-      { time: "7.5", temp: 325 },
-      { time: "8", temp: 330 },
-      { time: "8.5", temp: 340 },
-      { time: "9", temp: 350 },
-      { time: "9.5", temp: 360 },
-      { time: "10", temp: 380 },
-      { time: "10.5", temp: 390 },
-      { time: "11", temp: 400 },
-      { time: "11.5", temp: 405 },
-      { time: "12", temp: 410 },
-    ];
+    const {roastData} = useContext(RoastContext)
+    const {timestamps} = roastData
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        const newData = []
+        timestamps.forEach(stamp => {
+            newData.push({time: stamp.timestamp, temp: stamp.roastTemp})
+        })
+        setData(newData)
+    }, [roastData])
 
     const getIntroOfPage = (label) => {
         if (label === 'Page A') {
@@ -84,11 +69,14 @@ const Graph = () => {
 
         return null;
       };
+
+      if (!data) return null
+      console.log(data)
   return (
     <GraphWrapper>
       <LineChart width={750} height={300} data={data}>
         <Line dot={false} type="monotone" dataKey="temp" stroke="#0366D6" allowDecimals />
-        <XAxis dataKey="time" />
+        <XAxis dataKey="time" ticks={[0,1,2,3]}/>
         <YAxis type='number' domain={[75, 425]} ticks={[100, 150, 200, 250, 300, 350, 400, 450]}/>
         <Tooltip content={<CustomTooltip />} />
       </LineChart>

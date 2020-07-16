@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import ActionButton from "../ActionButton";
+import {UserContext} from '../../context/UserContext'
+import {RoastContext} from '../../context/RoastContext'
 
 const RoastHeaderWrapper = styled.div`
   display: flex;
@@ -47,19 +49,24 @@ const RoastHeaderWrapper = styled.div`
 `;
 
 const RoastHeader = () => {
+    const {user} = useContext(UserContext)
+    const {roastData} = useContext(RoastContext)
+
+    if (!roastData) return null
+    console.log(roastData)
   return (
     <RoastHeaderWrapper>
       <div className="roastheader__header">
         <div className="roastheader__links">
           <Link
             className="roastheader__link-name"
-            to="/profile/jamesurobertson"
+            to={`/u/${roastData.user.username}`}
           >
-            jamesurobertson
+            {roastData.user.username}
           </Link>
           /
-          <Link className="roastheader__link-roast" to="/roast/never">
-            never
+          <Link className="roastheader__link-roast" to={`/u/${user.username}/${roastData.name}`}>
+          {roastData.name}
           </Link>
         </div>
         <div className="roastheader__actions">

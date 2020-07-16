@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 import useInput from "../../hooks/useInput";
 import { client } from "../../utils/index";
 import Select from "react-select";
+import {RoastContext} from '../../context/RoastContext'
 
 const RoastFormWrapper = styled.div`
   display: flex;
@@ -82,6 +83,7 @@ const RoastSetUpForm = () => {
   const load = useInput("");
   const bean = useInput("");
   const [origin, setOrigin] = useState("");
+  const {setRoastData, roastData} = useContext(RoastContext)
 
   const startRoast = async (e) => {
     console.log(e.target);
@@ -96,15 +98,16 @@ const RoastSetUpForm = () => {
 
     console.log(body)
 
-    const roast = await client("/roasts/1", { body, method: "PUT" });
+    const roast = await client(`/roasts/${roastData.id}`, { body, method: "PUT" });
     console.log(roast)
+    setRoastData({...roastData, ...body})
   };
 
   const selectChangeHandler = (selectedOption) => {
       setOrigin(selectedOption.value)
   }
   return (
-    <RoastFormWrapper>
+      <RoastFormWrapper>
       <h1> Coffee Details </h1>
       <form onSubmit={startRoast}>
         <div className="formField">

@@ -1,43 +1,21 @@
-import React from "react";
-import {BrowserRouter, Switch} from 'react-router-dom'
-import { ThemeProvider } from "styled-components";
-import { lightTheme } from "./styles/theme";
+import React, {useContext} from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Routes from './Routes'
+import Auth from './components/Auth'
 import GlobalStyle from "./styles/GlobalStyle";
-import Landing from './pages/Landing'
-import {AuthRoute, ProtectedRoute} from './Routes'
-import Home from './pages/Home'
-import Roast from './pages/Roast'
-import NewRoast from './components/Roast/NewRoast'
+import { lightTheme } from "./styles/theme";
+import { ThemeProvider } from "styled-components";
+import { UserContext } from "./context/UserContext";
 
 function App() {
-    const user = 'user'
+    const {user} = useContext(UserContext)
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      <BrowserRouter>
-        <Switch>
-          <AuthRoute
-            path="/landing"
-            component={Landing}
-            currentUserId={user}
-          />
-          <ProtectedRoute
-            exact path="/"
-            component={Home}
-            currentUserId={user}
-          />
-          <ProtectedRoute
-            path="/new"
-            component={NewRoast}
-            currentUserId={user}
-          />
-          <ProtectedRoute
-            path="/roast/:roastName"
-            component={Roast}
-            currentUserId={user}
-          />
-        </Switch>
-      </BrowserRouter>
+      <ToastContainer autoClose={2000} closeButton={false} />
+
+      {user ? <Routes /> : <Auth/>}
     </ThemeProvider>
   );
 }

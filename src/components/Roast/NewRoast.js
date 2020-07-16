@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import useInput from "../../hooks/useInput";
 import { client } from "../../utils/index";
+import {UserContext} from '../../context/UserContext'
+import {Redirect} from 'react-router-dom'
 
 const NewRoastWrapper = styled.div`
   display: flex;
@@ -81,16 +83,18 @@ const NewRoastWrapper = styled.div`
   }
 `;
 
-const NewRoast = () => {
+const NewRoast = (props) => {
   const roastName = useInput("");
   const description = useInput("");
+  const {user} = useContext(UserContext)
 
   const createRoast = async (e) => {
       e.preventDefault()
     console.log(roastName);
     const body = { name: roastName.value, description: description.value };
-    const roast = await client(`/roasts/1`, { body });
-    console.log(roast);
+    const roast = await client(`/roasts/${user.id}`, { body });
+    props.history.push(`/u/${user.username}/${roast.name}`)
+
   };
 
   return (
@@ -103,7 +107,7 @@ const NewRoast = () => {
           <div className="newRoastForm__nameDetails">
             <div className="newRoastForm__roastName">
               <label htmlFor="form-username">Owner</label>
-              <div id="form-username">jamesurobertson</div>
+              <div id="form-username">{user.username}</div>
             </div>
             <h1>/</h1>
             <div className="newRoastForm__roastName">

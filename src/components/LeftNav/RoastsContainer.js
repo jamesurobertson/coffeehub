@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { TiCoffee } from "react-icons/ti";
 import { FiCoffee } from "react-icons/fi";
+import {client} from '../../utils/index'
+import {UserContext} from '../../context/UserContext'
+import {RoastContext} from '../../context/RoastContext'
 
 const RoastsContainerWrapper = styled.div`
   display: flex;
@@ -57,12 +60,27 @@ const RoastContainerHeader = styled.div`
     padding: 4px 12px;
     display: flex;
     align-items: center;
-    color: ${(props) => props.theme.white};
+    color: white;
     background-color: ${(props) => props.theme.green};
     border-radius: 5px;
   }
-`;
+`
+
 const RoastsContainer = () => {
+
+    const {user} = useContext(UserContext)
+    const {setRoastData} = useContext(RoastContext)
+    const [roasts, setRoasts] = useState([])
+
+    useEffect(() => {
+        (async() => {
+           const {roasts_list} = await client(`/roasts/user/${user.id}`)
+            setRoasts(roasts_list)
+        })()
+    }, [])
+
+  if (!roasts) return null
+  console.log(roasts)
   return (
     <RoastsContainerWrapper>
       <RoastContainerHeader>
@@ -74,30 +92,15 @@ const RoastsContainer = () => {
       </RoastContainerHeader>
       <input className="roastContainer__search" placeholder="Find a Roast..." />
       <RoastContainer>
-        <div className="individualRoast">
-          <FiCoffee />
-          <Link to="/jamesurobertson/roast">jamesurobertson/roastexample</Link>
-        </div>
-        <div className="individualRoast">
-          <FiCoffee />
-          <Link to="/jamesurobertson/roast">jamesurobertson/roastexample</Link>
-        </div>
-        <div className="individualRoast">
-          <FiCoffee />
-          <Link to="/jamesurobertson/roast">jamesurobertson/roastexample</Link>
-        </div>
-        <div className="individualRoast">
-          <FiCoffee />
-          <Link to="/jamesurobertson/roast">jamesurobertson/roastexample</Link>
-        </div>
-        <div className="individualRoast">
-          <FiCoffee />
-          <Link to="/jamesurobertson/roast">jamesurobertson/roastexample</Link>
-        </div>
-        <div className="individualRoast">
-          <FiCoffee />
-          <Link to="/jamesurobertson/roast">jamesurobertson/roastexample</Link>
-        </div>
+          {roasts.map(roast => {
+              const {name: roastName, id} = roast
+              return (
+                <div key={`roast-${id}`} className="individualRoast">
+                <FiCoffee />
+                <Link to={`/u/${user.username}/${roastName}`}>{`${user.username}/${roastName}`}</Link>
+              </div>
+              )
+          })}
         <div className="Roasts__show-more">Show more</div>
       </RoastContainer>
     </RoastsContainerWrapper>

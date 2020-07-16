@@ -1,10 +1,10 @@
 export const client = (endpoint, { body, ...customConfig } = {}) => {
-	const token = localStorage.getItem("token");
+	const token = localStorage.getItem("COFFEEHUB_ACCESS_TOKEN");
     const headers = { "Content-Type": "application/json" };
     console.log(token)
     console.log(`body`, body)
 	if (token) {
-		headers.Authorization = `Bearer ${token}`;
+		headers.Authorization = `${token}`;
 	}
 
 	const config = {
