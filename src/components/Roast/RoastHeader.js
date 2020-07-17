@@ -74,10 +74,10 @@ const RoastHeader = () => {
         </div>
       </div>
       <div className="roastheader__nav">
-        <NavLink exact activeClass="active" to="/roast/never/">
+        <NavLink exact activeclass="active" to={`/u/${roastData.user.username}/${roastData.name}`}>
           Roast
         </NavLink>
-        <NavLink activeClass="active" to="/roast/never/comments">
+        <NavLink activeclass="active" to={`/u/${roastData.user.username}/${roastData.name}/comments`}>
           Comments
         </NavLink>
       </div>

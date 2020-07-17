@@ -1,19 +1,13 @@
 import React, {useState, useContext, useEffect} from "react";
 import styled from "styled-components";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
-import {RoastContext} from '../../context/RoastContext'
+import {RoastContext} from '../../../context/RoastContext'
+import Widget from '../../../styles/Widget'
 
-const GraphWrapper = styled.div`
+const GraphWrapper = styled(Widget)`
   display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-  margin: 20px auto;
-  padding: 20px 0 ;
-  border: 1px solid ${(props) => props.theme.border};
   border-radius: 5px;
-  background-color: ${(props) => props.theme.bgSecondary};
+  padding: 20px;
 
   h1 {
     padding-bottom: 20px;
@@ -31,15 +25,24 @@ const Graph = () => {
 
     const {roastData} = useContext(RoastContext)
     const {timestamps} = roastData
+    const [dynamicWidth, setDynamicWidth] = useState(Math.min(window.innerWidth *.8, 800))
     const [data, setData] = useState([])
 
     useEffect(() => {
+        if (timestamps.length === 0) return
         const newData = []
         timestamps.forEach(stamp => {
             newData.push({time: stamp.timestamp, temp: stamp.roastTemp})
         })
         setData(newData)
     }, [roastData])
+
+    useEffect(() => {
+        window.addEventListener("resize", () => {
+            if (window.innerWidth * .8 >= 800) return
+            setDynamicWidth(window.innerWidth *.8)
+        })
+    }, [])
 
     const getIntroOfPage = (label) => {
         if (label === 'Page A') {
@@ -58,6 +61,7 @@ const Graph = () => {
     };
 
     const CustomTooltip = ({ active, payload, label }) => {
+        if (data.length === 0) return null
         if (active) {
           return (
             <div className="custom-tooltip">
@@ -70,13 +74,12 @@ const Graph = () => {
         return null;
       };
 
-      if (!data) return null
-      console.log(data)
+    if (!data) return null
   return (
     <GraphWrapper>
-      <LineChart width={750} height={300} data={data}>
+      <LineChart width={dynamicWidth} height={300} data={data}>
         <Line dot={false} type="monotone" dataKey="temp" stroke="#0366D6" allowDecimals />
-        <XAxis dataKey="time" ticks={[0,1,2,3]}/>
+        <XAxis dataKey="time"/>
         <YAxis type='number' domain={[75, 425]} ticks={[100, 150, 200, 250, 300, 350, 400, 450]}/>
         <Tooltip content={<CustomTooltip />} />
       </LineChart>

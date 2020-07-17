@@ -60,7 +60,7 @@ const RoastFormWrapper = styled.div`
 const options = [
   { value: 1, label: "Brazil" },
   { value: 2, label: "Burundi" },
-  { value: 3, label: "Columbia" },
+  { value: 3, label: "Colombia" },
   { value: 4, label: "Congo" },
   { value: 5, label: "Costa Rica" },
   { value: 6, label: "El Salvador" },
