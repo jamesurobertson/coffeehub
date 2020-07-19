@@ -3,7 +3,6 @@ import styled from "styled-components";
 import useInput from "../../hooks/useInput";
 import { client } from "../../utils/index";
 import {UserContext} from '../../context/UserContext'
-import {Redirect} from 'react-router-dom'
 import {toast} from 'react-toastify'
 
 const NewRoastWrapper = styled.div`

@@ -85,8 +85,7 @@ const RoastSetUpForm = () => {
   const [origin, setOrigin] = useState("");
   const {setRoastData, roastData} = useContext(RoastContext)
 
-  const startRoast = async (e) => {
-    console.log(e.target);
+  const startRoast = (e) => {
     e.preventDefault();
     const body = {
       supplier: supplier.value,
@@ -96,10 +95,8 @@ const RoastSetUpForm = () => {
       ambientTemp: ambientTemp.value,
     };
 
-    console.log(body)
 
-    const roast = await client(`/roasts/${roastData.id}`, { body, method: "PUT" });
-    console.log(roast)
+    client(`/roasts/${roastData.id}`, { body, method: "PUT" });
     setRoastData({...roastData, ...body})
   };
 

@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { RoastContext } from "../../context/RoastContext";
 import Graph from "./widgets/Graph";
 import TimestampsWidget from "./widgets/TimestampsWidget";
 import MilestonesWidget from "./widgets/MilestonesWidget";

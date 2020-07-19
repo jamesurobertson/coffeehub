@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import LeftNav from '../components/LeftNav/LeftNav'
-import Feed from '../components/Feed'
+import Feed from '../components/Feed/Feed'
 
 const HomeWrapper = styled.div`
     display: flex;

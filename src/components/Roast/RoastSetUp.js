@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Graph from "./widgets/Graph";
-import Chart from "./widgets/Chart";
 import { Link } from "react-router-dom";
 import RoastSetUpForm from "./RoastSetUpForm";
 

@@ -35,7 +35,7 @@ const Graph = () => {
             newData.push({time: stamp.timestamp, temp: stamp.roastTemp})
         })
         setData(newData)
-    }, [roastData])
+    }, [roastData, timestamps])
 
     useEffect(() => {
         window.addEventListener("resize", () => {

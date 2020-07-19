@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react'
-import styled from 'styled-components'
+import React, {useEffect} from 'react'
 
 const Interval = ({time, setTime}) => {
 
@@ -9,7 +8,7 @@ const Interval = ({time, setTime}) => {
         }, 1000)
 
         return () => clearInterval(interval)
-    }, [])
+    }, [setTime])
 
     const MMSS = (num) => {
         const minutes = Math.floor(num / 60)

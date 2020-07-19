@@ -31,7 +31,6 @@ const NotesWidget = () => {
 
 
 const addNote = () => {
-    console.log('add note')
     if (!note.value) {
         return toast.error("You must provide a note")
     }

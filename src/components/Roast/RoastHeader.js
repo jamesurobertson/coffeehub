@@ -53,7 +53,6 @@ const RoastHeader = () => {
     const {roastData} = useContext(RoastContext)
 
     if (!roastData) return null
-    console.log(roastData)
   return (
     <RoastHeaderWrapper>
       <div className="roastheader__header">

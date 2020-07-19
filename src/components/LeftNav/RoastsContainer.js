@@ -5,7 +5,6 @@ import { TiCoffee } from "react-icons/ti";
 import { FiCoffee } from "react-icons/fi";
 import {client} from '../../utils/index'
 import {UserContext} from '../../context/UserContext'
-import {RoastContext} from '../../context/RoastContext'
 
 const RoastsContainerWrapper = styled.div`
   display: flex;
@@ -69,7 +68,6 @@ const RoastContainerHeader = styled.div`
 const RoastsContainer = () => {
 
     const {user} = useContext(UserContext)
-    const {setRoastData} = useContext(RoastContext)
     const [roasts, setRoasts] = useState([])
 
     useEffect(() => {
@@ -77,10 +75,9 @@ const RoastsContainer = () => {
            const {roasts_list} = await client(`/roasts/user/${user.id}`)
             setRoasts(roasts_list)
         })()
-    }, [])
+    }, [user])
 
   if (!roasts) return null
-  console.log(roasts)
   return (
     <RoastsContainerWrapper>
       <RoastContainerHeader>

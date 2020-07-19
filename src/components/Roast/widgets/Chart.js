@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Widget from "../../../styles/Widget";
 import { RoastContext } from "../../../context/RoastContext";
-import { UserContext } from "../../../context/UserContext";
 
 const ChartWrapper = styled(Widget)`
   flex-flow: row;
@@ -29,16 +28,8 @@ const ChartWrapper = styled(Widget)`
 
 const Chart = () => {
   const { roastData } = useContext(RoastContext);
-  const { user } = useContext(UserContext);
 
-  console.log(roastData);
 
-  const edit = (e) => {
-    const { 0: type, 1: id } = e.target.id.split("-");
-    console.log(type, id);
-  };
-
-  console.log(roastData);
   return (
     <ChartWrapper>
       <div className="notes-section">
@@ -81,11 +72,11 @@ const Chart = () => {
           </tr>
           <tr>
             <td>Load</td>
-            <td>{roastData.load}grams</td>
+            <td>{roastData.load} grams</td>
           </tr>
           <tr>
             <td>Yield</td>
-            <td>{roastData.yield}grams</td>
+            <td>{roastData.yield} grams</td>
           </tr>
           <tr>
             <td>FC</td>

@@ -6,7 +6,6 @@ import RoastHeader from '../components/Roast/RoastHeader'
 import RoastMain from '../components/Roast/RoastMain'
 import {client} from '../utils/index'
 import {RoastContext} from '../context/RoastContext'
-import RoastSetUpForm from '../components/Roast/RoastSetUpForm'
 
 
 const RoastWrapper = styled.div`
@@ -22,11 +21,10 @@ const Roast = (props) => {
             const {2: username, 3: roastName} = props.location.pathname.split('/')
 
             const roast = await client(`/roasts/${username}/${roastName}`)
-            console.log(roast)
             setRoastData(roast)
 
         })()
-    }, [])
+    }, [props.location, setRoastData])
 
     if (!roastData) return null
     return (

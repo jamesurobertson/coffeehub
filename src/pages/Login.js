@@ -36,10 +36,8 @@ const Login = ({ signup }) => {
 		email.setValue("");
 		password.setValue("");
     } catch (err) {
-        console.log(err)
         toast.error(err.message)
     }
-    console.log("log in!");
   };
   return (
     <SignUpWrapper>

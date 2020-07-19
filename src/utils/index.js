@@ -1,8 +1,6 @@
 export const client = (endpoint, { body, ...customConfig } = {}) => {
 	const token = localStorage.getItem("COFFEEHUB_ACCESS_TOKEN");
     const headers = { "Content-Type": "application/json" };
-    console.log(token)
-    console.log(`body`, body)
 	if (token) {
 		headers.Authorization = `${token}`;
 	}
@@ -19,7 +17,6 @@ export const client = (endpoint, { body, ...customConfig } = {}) => {
 	if (body) {
 		config.body = JSON.stringify(body);
     }
-    console.log(config)
 	return fetch(`${process.env.REACT_APP_BACKEND_URL}/api${endpoint}`, config).then(
 		async res => {
 			const data = await res.json();

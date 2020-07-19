@@ -77,7 +77,6 @@ const TimestampsWidget = () => {
   };
 
   const endRoast = () => {
-      console.log('end roast!')
       setOpenModal(true)
   }
 
