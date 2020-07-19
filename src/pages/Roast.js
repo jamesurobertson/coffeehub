@@ -32,9 +32,10 @@ const Roast = (props) => {
     return (
         <RoastWrapper>
             <RoastHeader/>
-            {roastData.load ? <GraphSetUp/> :
-            <RoastSetUp/>
-            }
+            {roastData.totalTime ? <RoastMain/> :
+            roastData.load ? <GraphSetUp/> :
+            <RoastSetUp/> }
+
         </RoastWrapper>
     )
 }

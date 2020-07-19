@@ -1,87 +1,109 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import Widget from "../../../styles/Widget";
+import { RoastContext } from "../../../context/RoastContext";
+import { UserContext } from "../../../context/UserContext";
 
-const ChartWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-  margin: 20px auto;
-  padding: 20px 0;
-  border: 1px solid ${(props) => props.theme.border};
-  background-color: ${(props) => props.theme.bgSecondary};
+const ChartWrapper = styled(Widget)`
+  flex-flow: row;
 
   .pure-table {
-      margin: 0 30px;
+    margin: 0 30px;
   }
-`
+
+  .notes-section {
+    display: flex;
+    width: 300px;
+    flex-flow: column;
+    justify-content: space-between;
+    border: 1px solid ${(props) => props.theme.borderDarker};
+    border-radius: 5px;
+    padding: 10px;
+
+    h1 {
+        padding-bottom: 10px;
+      align-self: center;
+    }
+  }
+`;
 
 const Chart = () => {
-  return(
-  <ChartWrapper>
-      <table class='pure-table pure-table-horizontal'>
-          <tbody>
-              <tr>
-                  <td>Minute</td>
-                  <td>7</td>
-                  <td>10</td>
-                  <td>12</td>
-                  <td>15</td>
-                  <td>15.5</td>
+  const { roastData } = useContext(RoastContext);
+  const { user } = useContext(UserContext);
+
+  console.log(roastData);
+
+  const edit = (e) => {
+    const { 0: type, 1: id } = e.target.id.split("-");
+    console.log(type, id);
+  };
+
+  console.log(roastData);
+  return (
+    <ChartWrapper>
+      <div className="notes-section">
+        <h1>Notes</h1>
+        <ul>
+          {roastData.notes.map((note) => {
+            return <li key={`notes-${note.id}`}>- {note.note}</li>;
+          })}
+        </ul>
+      </div>
+      <table className="pure-table pure-table-horizontal">
+        <thead>
+          <tr>
+            <th>{`Roaster Temp`}</th>
+            <th>Energy</th>
+            <th>Fan</th>
+          </tr>
+        </thead>
+        <tbody>
+          {roastData.milestones.map((ms) => {
+            return (
+              <tr key={`milestones-${ms.id}`}>
+                <td>{ms.roastTemp}°F</td>
+                <td>{(ms.heatLevel / 10) * 100}%</td>
+                <td>{(ms.fanspeed / 4) * 100}%</td>
               </tr>
-              <tr>
-                  <td>Fan Speed</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>4</td>
-                  <td>4</td>
-              </tr>
-              <tr>
-                  <td>Power</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>5</td>
-                  <td>2</td>
-                  <td>4</td>
-              </tr>
-          </tbody>
+            );
+          })}
+        </tbody>
       </table>
-      <table class='pure-table pure-table-horizontal'>
-          <tbody>
-              <tr>
-                  <td>Total Time</td>
-                  <td>16</td>
-              </tr>
-              <tr>
-                  <td>Ambient Temp</td>
-                  <td>73</td>
+      <table className="pure-table pure-table-horizontal">
+        <tbody>
+          <tr>
+            <td>{`TotalTime`}</td>
+            <td>{roastData.totalTime}</td>
+          </tr>
+          <tr>
+            <td>{`AmbientTemp`}</td>
+            <td>{roastData.ambientTemp}</td>
+          </tr>
+          <tr>
+            <td>Load</td>
+            <td>{roastData.load}grams</td>
+          </tr>
+          <tr>
+            <td>Yield</td>
+            <td>{roastData.yield}grams</td>
+          </tr>
+          <tr>
+            <td>FC</td>
+            <td>{roastData.firstCrack}</td>
+          </tr>
+          {roastData.secondCrack ? (
+            <tr>
+              <td>SC</td>
+              <td>13</td>
+            </tr>
+          ) : (
+            <tr></tr>
 
-              </tr>
-              <tr>
-                  <td>Load</td>
-                  <td>250g</td>
-
-              </tr>
-              <tr>
-                  <td>Yield</td>
-                  <td>217g</td>
-
-              </tr>
-              <tr>
-                  <td>FC</td>
-                  <td>10</td>
-
-              </tr>
-              <tr>
-                  <td>SC</td>
-                  <td>13</td>
-
-              </tr>
-          </tbody>
+          )}
+        </tbody>
       </table>
-  </ChartWrapper>
-  )
+    </ChartWrapper>
+  );
 };
 
 export default Chart;

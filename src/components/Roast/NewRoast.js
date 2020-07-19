@@ -4,6 +4,7 @@ import useInput from "../../hooks/useInput";
 import { client } from "../../utils/index";
 import {UserContext} from '../../context/UserContext'
 import {Redirect} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 const NewRoastWrapper = styled.div`
   display: flex;
@@ -90,7 +91,9 @@ const NewRoast = (props) => {
 
   const createRoast = async (e) => {
       e.preventDefault()
-    console.log(roastName);
+      if (roastName.value.split(' ').length > 1) {
+          return toast.error('Roast name must be one word')
+      }
     const body = { name: roastName.value, description: description.value };
     const roast = await client(`/roasts/${user.id}`, { body });
     props.history.push(`/u/${user.username}/${roast.name}`)

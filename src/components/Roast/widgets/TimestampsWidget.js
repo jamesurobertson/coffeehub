@@ -8,6 +8,9 @@ import { RoastContext } from "../../../context/RoastContext";
 import Widget from "../../../styles/Widget";
 import Button from "../../../styles/Button";
 import Input from "../../../styles/Input";
+import ConfirmEndRoast from '../ConfirmEndRoast'
+import Modal from 'react-modal'
+Modal.setAppElement('#root')
 
 const TimestampWrapper = styled(Widget)`
   height: 200px;
@@ -33,12 +36,11 @@ const TimestampWrapper = styled(Widget)`
     align-items: center;
     font-size: 20px;
 
-    button {
-      width: 113px;
-    }
-
     .start-counter-button {
       background-color: ${(props) => props.theme.green};
+    }
+    .end-counter-button {
+      background-color: ${(props) => props.theme.red};
     }
   }
 `;
@@ -49,6 +51,8 @@ const TimestampsWidget = () => {
   const [time, setTime] = useState(0);
   const [showTime, setShowTime] = useState(false);
   const [intervalsRecorded, setIntervalsRecorded] = useState([]);
+  const [roastStarted, setRoastStarted] = useState(false);
+  const [openModal, setOpenModal] = useState(false)
 
   const addIncrement = async (e) => {
     e.preventDefault();
@@ -67,8 +71,35 @@ const TimestampsWidget = () => {
     setRoastData({ ...roastData, timestamps: newStamps });
   };
 
-  const startTimer = () => {
+  const startRoast = () => {
     setShowTime(true);
+    setRoastStarted(true);
+  };
+
+  const endRoast = () => {
+      console.log('end roast!')
+      setOpenModal(true)
+  }
+
+  const closeModal = () => {
+      setOpenModal(false)
+  }
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      padding: "0",
+      borderRadius: "10px",
+      transform: "translate(-50%, -50%)",
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+      zIndex: "500",
+    },
   };
 
   return (
@@ -84,9 +115,15 @@ const TimestampsWidget = () => {
         />
       </div>
       <div className="increment-buttons">
-        <Button onClick={startTimer} className="start-counter-button">
-          Start
-        </Button>
+        {roastStarted ? (
+          <Button onClick={endRoast} className="end-counter-button">
+            End Roast
+          </Button>
+        ) : (
+          <Button onClick={startRoast} className="start-counter-button">
+            Start Roast
+          </Button>
+        )}
         {showTime ? (
           <Interval time={time} setTime={setTime} />
         ) : (
@@ -100,6 +137,15 @@ const TimestampsWidget = () => {
           Add Temp
         </Button>
       </div>
+      <Modal
+      isOpen={openModal}
+      onRequestClose={closeModal}
+      style={customStyles}
+      contentLabel="Confirm End Roast"
+      >
+          <ConfirmEndRoast time={time} closeModal={closeModal}/>
+
+        </Modal>
     </TimestampWrapper>
   );
 };

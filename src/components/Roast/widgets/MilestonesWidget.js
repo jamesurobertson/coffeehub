@@ -45,6 +45,7 @@ const MilestoneWrapper = styled(Widget)`
 
 const MilestonesWidget = () => {
   const timestamp = useInput("");
+  const roastTemp = useInput("");
   const fanSpeed = useInput("");
   const heatLevel = useInput("");
 
@@ -52,21 +53,34 @@ const MilestonesWidget = () => {
 
   const postMilestone = (e) => {
     e.preventDefault();
-    if (!timestamp.value || !fanSpeed.value || !heatLevel.value) {
+    if (!fanSpeed.value || !heatLevel.value) {
         return toast.error('Must fill in all required fields')
     }
+    const body = {timestamp: timestamp.value, fanSpeed: fanSpeed.value, heatLevel: heatLevel.value}
+    client(`/milestones/${roastData.id}`, {body})
+    toast.success("Milestone recorded")
+    timestamp.setValue('')
+    fanSpeed.setValue('')
+    heatLevel.setValue('')
   };
   return (
     <MilestoneWrapper>
       <h1> Milestones</h1>
       <form id="milestone-form" onSubmit={postMilestone}>
         <div className="milestone-data-section">
-          <label htmlFor="milestone-timestamp">Timestamp<span className="milestone-asterisk"> *</span></label>
+          <label htmlFor="milestone-timestamp">Timestamp</label>
           <Input
             id="milestone-timestamp"
             value={timestamp.value}
             placeholder='ex. 7:30'
             onChange={timestamp.onChange}
+          />
+          <label htmlFor="milestone-timestamp">Roaster Temp</label>
+          <Input
+            id="milestone-roastTemp"
+            value={roastTemp.value}
+            placeholder='ex. 360'
+            onChange={roastTemp.onChange}
           />
           <label htmlFor="milestone-fanSpeed">Fan Speed<span className="milestone-asterisk"> *</span></label>
           <Input

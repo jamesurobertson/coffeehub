@@ -47,16 +47,6 @@ const Graph = () => {
     const getIntroOfPage = (label) => {
         if (label === 'Page A') {
             return "Page A is about men's clothing";
-        } if (label === 'Page B') {
-            return "Page B is about women's dress";
-      } if (label === 'Page C') {
-          return "Page C is about women's bag";
-      } if (label === 'Page D') {
-          return 'Page D is about household goods';
-      } if (label === 'Page E') {
-          return 'Page E is about food';
-      } if (label === 'Page F') {
-          return 'Page F is about baby food';
         }
     };
 
