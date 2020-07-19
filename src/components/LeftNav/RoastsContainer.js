@@ -30,6 +30,10 @@ const RoastContainer = styled.div`
     display: flex;
   }
 
+  .individualRoast:hover {
+      text-decoration: underline;
+  }
+
   a {
     padding-left: 10px;
     font-weight: bold;

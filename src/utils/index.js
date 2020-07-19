@@ -63,15 +63,16 @@ export const makeFeed = (feedData) => {
     followedUsers.forEach((user) => {
       let entry = { username, profileImageUrl };
       const {
-        numCups,
+        numRoasts,
         numFollowers,
         fullName,
         username: userFollowed,
         profileImageUrl: userFollowedImg,
+        bio,
       } = user;
       entry = {
         ...entry,
-        ...{ numCups, numFollowers, fullName, userFollowed, userFollowedImg },
+        ...{ numRoasts, numFollowers, fullName, userFollowed, userFollowedImg, bio},
       };
       entries.push({follow:entry})
     });

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import CupCard from './CupCard'
+import FollowCard from './FollowCard'
 import {client, makeFeed} from '../../utils/index'
 import {UserContext} from '../../context/UserContext'
 
@@ -9,6 +10,10 @@ const FeedWrapper = styled.div`
     margin: 0 20px;
     width: 100%;
     padding-top: 20px;
+
+    a:hover {
+        color: ${(props) => props.theme.blue};
+    }
 `
 
 const Feed = () => {
@@ -26,7 +31,7 @@ const Feed = () => {
     }, [setFeedList, setLoading])
 
     if (loading) {
-        return <CupCard/>
+        return <div> Loading...</div>
     }
     return (
 
@@ -34,8 +39,29 @@ const Feed = () => {
             {feedList.map((details, i) => {
                 if (details.cup) {
                     return <CupCard key={i} details={details.cup}/>
-                } else {
-                    return <div key={i}/>
+                } else if (details.follow){
+                    return <FollowCard key={i} details={details.follow}/>
+                }
+            })}
+            {feedList.map((details, i) => {
+                if (details.cup) {
+                    return <CupCard key={i} details={details.cup}/>
+                } else if (details.follow){
+                    return <FollowCard key={i} details={details.follow}/>
+                }
+            })}
+            {feedList.map((details, i) => {
+                if (details.cup) {
+                    return <CupCard key={i} details={details.cup}/>
+                } else if (details.follow){
+                    return <FollowCard key={i} details={details.follow}/>
+                }
+            })}
+            {feedList.map((details, i) => {
+                if (details.cup) {
+                    return <CupCard key={i} details={details.cup}/>
+                } else if (details.follow){
+                    return <FollowCard key={i} details={details.follow}/>
                 }
             })}
         </FeedWrapper>
