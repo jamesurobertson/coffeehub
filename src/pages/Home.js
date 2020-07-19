@@ -5,9 +5,11 @@ import Feed from '../components/Feed/Feed'
 
 const HomeWrapper = styled.div`
     display: flex;
+    background-color: ${(props) => props.theme.bgSecondary};
 `
 
 const Home = () => {
+
     return (
         <HomeWrapper>
             <LeftNav/>

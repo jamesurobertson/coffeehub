@@ -8,7 +8,9 @@ import {UserContext} from '../../context/UserContext'
 
 const RoastsContainerWrapper = styled.div`
   display: flex;
+  position: relative;
   flex-flow: column;
+  top: 0;
   width: 100%;
   padding: 10px 24px;
 

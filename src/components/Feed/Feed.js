@@ -1,16 +1,44 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
 import styled from "styled-components";
+import CupCard from './CupCard'
+import {client, makeFeed} from '../../utils/index'
+import {UserContext} from '../../context/UserContext'
 
 const FeedWrapper = styled.div`
-    height: calc(100vh - 52px);
+    position: relative;
+    margin: 0 20px;
     width: 100%;
-    background-color: 1px solid ${(props) => props.theme.bgSecondary};
-
+    padding-top: 20px;
 `
 
 const Feed = () => {
+    const {user} = useContext(UserContext)
+    const [feedList, setFeedList] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        (async() => {
+            const {feed} = await client(`/users/${user.id}/feed`)
+            const list = makeFeed(feed)
+            setFeedList(list)
+            setLoading(false)
+        })()
+    }, [setFeedList, setLoading])
+
+    if (loading) {
+        return <CupCard/>
+    }
     return (
-        <FeedWrapper></FeedWrapper>
+
+        <FeedWrapper>
+            {feedList.map((details, i) => {
+                if (details.cup) {
+                    return <CupCard key={i} details={details.cup}/>
+                } else {
+                    return <div key={i}/>
+                }
+            })}
+        </FeedWrapper>
     )
 }
 

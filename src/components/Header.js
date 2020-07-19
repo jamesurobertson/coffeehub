@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 52px;
   background-color: ${(props) => props.theme.black};
   color: ${(props) => props.theme.white};
+  z-index: 100;
 
   .header__search {
       margin-left: 10px;
@@ -30,6 +33,8 @@ const HeaderWrapper = styled.div`
 
 const Header = () => {
   return (
+      <>
+      <div style={{height: '52px'}}/>
     <HeaderWrapper>
       <div style={{ display: "flex", alignItems: 'center' }}>
         <Link to="/">
@@ -43,6 +48,7 @@ const Header = () => {
         </form>
       </div>
     </HeaderWrapper>
+    </>
   );
 };
 
