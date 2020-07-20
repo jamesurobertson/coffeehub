@@ -11,7 +11,7 @@ const CupCard = ({ details }) => {
   if (!details) return null;
   return (
     <CupCardWrapper>
-      <img className="feed-card-1" src={details.profileImageUrl} />
+      <img className="feed-card-1" src={details.profileImageUrl} alt={`${details.username}-avatar`} />
       <div className="feed-card-2">
         <div>
           <Link to={`/u/${details.username}`}>{details.username}</Link> cupped{" "}

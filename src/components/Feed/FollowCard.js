@@ -8,7 +8,6 @@ const FollowCardWrapper = styled(FeedCard)``
 
 const FollowCard = ({ details }) => {
   if (!details) return null;
-  console.log(details);
   return (
     <FollowCardWrapper>
       <img
@@ -28,6 +27,7 @@ const FollowCard = ({ details }) => {
               style={{ width: "40px", height: "40px" }}
               className="feed-card-1"
               src={details.userFollowedImg}
+              alt={`${details.userFollowed}-avatar`}
             />
             <div className="feed-card-inner__user-details">
               <div style={{ display: "flex" }}>
@@ -39,7 +39,7 @@ const FollowCard = ({ details }) => {
                   </span>
                 </Link>
               </div>
-              <p>{details.bio}</p>
+              <p style={{ paddingTop: "5px" }}>{details.bio}</p>
               <div className="feed-card__data-details">
                 <div>{details.numRoasts} Roasts</div>
                 <div>{details.numFollowers} followers</div>

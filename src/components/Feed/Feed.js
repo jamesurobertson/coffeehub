@@ -28,7 +28,7 @@ const Feed = () => {
             setFeedList(list)
             setLoading(false)
         })()
-    }, [setFeedList, setLoading])
+    }, [setFeedList, setLoading, user])
 
     if (loading) {
         return <div> Loading...</div>
@@ -41,27 +41,8 @@ const Feed = () => {
                     return <CupCard key={i} details={details.cup}/>
                 } else if (details.follow){
                     return <FollowCard key={i} details={details.follow}/>
-                }
-            })}
-            {feedList.map((details, i) => {
-                if (details.cup) {
-                    return <CupCard key={i} details={details.cup}/>
-                } else if (details.follow){
-                    return <FollowCard key={i} details={details.follow}/>
-                }
-            })}
-            {feedList.map((details, i) => {
-                if (details.cup) {
-                    return <CupCard key={i} details={details.cup}/>
-                } else if (details.follow){
-                    return <FollowCard key={i} details={details.follow}/>
-                }
-            })}
-            {feedList.map((details, i) => {
-                if (details.cup) {
-                    return <CupCard key={i} details={details.cup}/>
-                } else if (details.follow){
-                    return <FollowCard key={i} details={details.follow}/>
+                } else {
+                    return ''
                 }
             })}
         </FeedWrapper>
