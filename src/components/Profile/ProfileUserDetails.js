@@ -59,32 +59,32 @@ const FollowButton = styled(Button)`
   background-color: ${(props) => props.theme.green};
 `;
 
-const ProfileUserDetails = () => {
+const ProfileUserDetails = ({profileData: user}) => {
+    console.log(user)
   return (
     <UserDetailsWrapper>
       <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="avatar" />
-      <h1 className="profile-fullname">Daniel Robertson</h1>
-      <p className="profile-username">DanGR</p>
+      <h1 className="profile-fullname">{user.fullName}</h1>
+      <p className="profile-username">{user.username}</p>
       <p className="profile-bio">
-        Bootcamping with @appacademy, Full-Stack online cohort April 2020
+        {user.bio}
       </p>
       <FollowButton>Follow</FollowButton>
       <div className="profile-data-numbers">
         <p>
-          <BsPeopleFill className='profile-data-icon'/>{' '}16 Followers
+          <BsPeopleFill className='profile-data-icon'/>{' '}{user.followers.length} Followers
         </p>
         <div className='profile-data-seperator'>
-
             ·
             </div>
-        <p> 20 Following</p>
+        <p> {user.following.length} Following</p>
         <div className='profile-data-seperator'>
 
             ·
             </div>
         <p>
           {" "}
-          <AiOutlineCoffee className='profile-data-icon' /> 50
+          <AiOutlineCoffee className='profile-data-icon' /> {user.cups.length}
         </p>
       </div>
     </UserDetailsWrapper>

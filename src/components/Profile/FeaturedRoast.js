@@ -34,16 +34,18 @@ const FeaturedWrapper = styled.div`
     }
 `
 
-const FeaturedRoast = () => {
+const FeaturedRoast = ({roast}) => {
+
+    console.log(roast)
     return (
         <FeaturedWrapper>
-            <Link to={`/u/jamesurobertson/first-roast`}>
-                first-roast
+            <Link to={`/u/${roast.roastUser.username}/${roast.name}`}>
+                {roast.name}
             </Link>
-            <p className='featured-bio'>The first roast on the site!</p>
+            <p className='featured-bio'>{roast.description}</p>
             <div style={{display: 'flex'}}>
-                <div className='roast-data'>Ethiopia</div>
-                <div className='roast-data'><AiOutlineCoffee/>{' '}12</div>
+                <div className='roast-data'>{roast.origin.name}</div>
+                <div className='roast-data'><AiOutlineCoffee/>{' '}{roast.cups.length}</div>
             </div>
         </FeaturedWrapper>
     )

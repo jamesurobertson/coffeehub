@@ -93,25 +93,25 @@ const RoastGarden = () => {
       <text x={`${848 * (0.0833 * 12) - 68}`} y="-8" className="month">
         Dec
       </text>
-      <text text-anchor="start" className="wday" dx="-28" dy="11">
+      <text textAnchor="start" className="wday" dx="-28" dy="11">
         Sun
       </text>
-      <text text-anchor="start" className="wday" dx="-30" dy="28">
+      <text textAnchor="start" className="wday" dx="-30" dy="28">
         Mon
       </text>
-      <text text-anchor="start" className="wday" dx="-27" dy="45">
+      <text textAnchor="start" className="wday" dx="-27" dy="45">
         Tue
       </text>
-      <text text-anchor="start" className="wday" dx="-32" dy="62">
+      <text textAnchor="start" className="wday" dx="-32" dy="62">
         Wed
       </text>
-      <text text-anchor="start" className="wday" dx="-32" dy="79">
+      <text textAnchor="start" className="wday" dx="-32" dy="79">
         Thur
       </text>
-      <text text-anchor="start" className="wday" dx="-22" dy="96">
+      <text textAnchor="start" className="wday" dx="-22" dy="96">
         Fri
       </text>
-      <text text-anchor="start" className="wday" dx="-27" dy="112">
+      <text textAnchor="start" className="wday" dx="-27" dy="112">
         Sat
       </text>
     </g>

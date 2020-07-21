@@ -21,13 +21,13 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = () => {
+const ProfileHeader = (props) => {
   return (
     <HeaderWrapper>
       <NavLink
         exact
         activeclass="active"
-        to={`/u/DanGR`}
+        to={'/'}
         className="profile-tab"
       >
         Overview
