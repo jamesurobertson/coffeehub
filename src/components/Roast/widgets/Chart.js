@@ -20,7 +20,7 @@ const ChartWrapper = styled(Widget)`
     padding: 10px;
 
     h1 {
-        padding-bottom: 10px;
+      padding-bottom: 10px;
       align-self: center;
     }
   }
@@ -29,37 +29,45 @@ const ChartWrapper = styled(Widget)`
 const Chart = () => {
   const { roastData } = useContext(RoastContext);
 
-
+  console.log(`data`, roastData);
   return (
     <ChartWrapper>
-      <div className="notes-section">
-        <h1>Notes</h1>
-        <ul>
-          {roastData.notes.map((note) => {
-            return <li key={`notes-${note.id}`}>- {note.note}</li>;
-          })}
-        </ul>
-      </div>
-      <table className="pure-table pure-table-horizontal">
-        <thead>
-          <tr>
-            <th>{`Roaster Temp`}</th>
-            <th>Energy</th>
-            <th>Fan</th>
-          </tr>
-        </thead>
-        <tbody>
-          {roastData.milestones.map((ms) => {
-            return (
-              <tr key={`milestones-${ms.id}`}>
-                <td>{ms.roastTemp}°F</td>
-                <td>{(ms.heatLevel / 10) * 100}%</td>
-                <td>{(ms.fanspeed / 4) * 100}%</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      {roastData.notes.length > 0 ? (
+        <div className="notes-section">
+          <h1>Notes</h1>
+          <ul>
+            {roastData.notes.map((note) => {
+              return <li key={`notes-${note.id}`}>- {note.note}</li>;
+            })}
+          </ul>
+        </div>
+      ) : (
+        ""
+      )}
+      {roastData.milestones.length > 0 ? (
+        <table className="pure-table pure-table-horizontal">
+          <thead>
+            <tr>
+              <th>{`Roaster Temp`}</th>
+              <th>Energy</th>
+              <th>Fan</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roastData.milestones.map((ms) => {
+              return (
+                <tr key={`milestones-${ms.id}`}>
+                  <td>{ms.roastTemp}°F</td>
+                  <td>{(ms.heatLevel / 10) * 100}%</td>
+                  <td>{(ms.fanspeed / 4) * 100}%</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        ""
+      )}
       <table className="pure-table pure-table-horizontal">
         <tbody>
           <tr>
@@ -78,10 +86,14 @@ const Chart = () => {
             <td>Yield</td>
             <td>{roastData.yield} grams</td>
           </tr>
-          <tr>
-            <td>FC</td>
-            <td>{roastData.firstCrack}</td>
-          </tr>
+          {roastData.firstCrack ? (
+            <tr>
+              <td>FC</td>
+              <td>{roastData.firstCrack}</td>
+            </tr>
+          ) : (
+            ""
+          )}
           {roastData.secondCrack ? (
             <tr>
               <td>SC</td>
@@ -89,7 +101,6 @@ const Chart = () => {
             </tr>
           ) : (
             <tr></tr>
-
           )}
         </tbody>
       </table>

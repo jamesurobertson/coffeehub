@@ -6,6 +6,7 @@ import RoastHeader from '../components/Roast/RoastHeader'
 import RoastMain from '../components/Roast/RoastMain'
 import {client} from '../utils/index'
 import {RoastContext} from '../context/RoastContext'
+import {UserContext} from '../context/UserContext'
 
 
 const RoastWrapper = styled.div`
@@ -16,6 +17,7 @@ const RoastWrapper = styled.div`
 const Roast = (props) => {
 
     const {setRoastData, roastData} = useContext(RoastContext)
+    const {user} = useContext(UserContext)
     useEffect(() => {
         (async () => {
             const {2: username, 3: roastName} = props.location.pathname.split('/')
@@ -30,7 +32,7 @@ const Roast = (props) => {
     return (
         <RoastWrapper>
             <RoastHeader/>
-            {roastData.totalTime ? <RoastMain/> :
+            {roastData.totalTime || roastData.userId !== user.id ? <RoastMain/> :
             roastData.load ? <GraphSetUp/> :
             <RoastSetUp/> }
 
