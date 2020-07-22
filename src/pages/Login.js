@@ -29,7 +29,6 @@ const Login = ({ signup }) => {
     try {
         const {token, user} = await client('/session/login', {body})
         localStorage.setItem('COFFEEHUB_ACCESS_TOKEN', token)
-        localStorage.setItem('user', JSON.stringify(user))
         setUser(user)
         toast.success("Login successful");
 

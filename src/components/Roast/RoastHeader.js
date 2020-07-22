@@ -52,22 +52,21 @@ const RoastHeaderWrapper = styled.div`
 `;
 
 const RoastHeader = () => {
-    const {user} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     const {roastData} = useContext(RoastContext)
-    const [cupList, setCupList] = useState(roastData.cups)
 
     const cupRoast = async () => {
         const res = await client(`/roasts/cup/${roastData.id}`, {method:'POST'})
         const updatedCups = [...user.cups, res]
         toast.success(`Cupped ${roastData.user.username}/${roastData.name}`)
-        setCupList(updatedCups)
+        setUser({...user, cups: updatedCups})
 }
 
     const uncupRoast = () => {
         client(`/roasts/cup/${roastData.id}`, {method:'DELETE'})
         toast.success(`Uncupped ${roastData.user.username}/${roastData.name}`)
-        const updatedCups = cupList.filter(cup => cup.roastId !== roastData.id)
-        setCupList(updatedCups)
+        const updatedCups = user.cups.filter(cup => cup.roastId !== roastData.id)
+        setUser({...user, cups: updatedCups})
 
     }
 
@@ -88,7 +87,7 @@ const RoastHeader = () => {
           </Link>
         </div>
         <div className="roastheader__actions">
-        {cupList.some(cup => cup.roastId === roastData.id) ?
+        {user.cups.some(cup => cup.roastId === roastData.id) ?
       <Button onClick={uncupRoast}><AiOutlineCoffee /> Uncup</Button> :
       <Button onClick={cupRoast}><AiOutlineCoffee /> Cup</Button> }
         </div>

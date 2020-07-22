@@ -12,20 +12,19 @@ const CupCardWrapper = styled(FeedCard)``
 
 const CupCard = ({ details }) => {
     const {user, setUser} = useContext(UserContext)
-    const [cupList, setCupList] = useState(user.cups)
 
     const cupRoast = async () => {
         const res = await client(`/roasts/cup/${details.roastId}`, {method:'POST'})
         const updatedCups = [...user.cups, res]
         toast.success(`Cupped ${details.roastUsername}/${details.name}`)
-        setCupList(updatedCups)
+        setUser({...user, cups: updatedCups})
 }
 
     const uncupRoast = () => {
         client(`/roasts/cup/${details.roastId}`, {method:'DELETE'})
         toast.success(`Uncupped ${details.roastUsername}/${details.name}`)
-        const updatedCups = cupList.filter(cup => cup.roastId !== details.roastId)
-        setCupList(updatedCups)
+        const updatedCups = user.cups.filter(cup => cup.roastId !== details.roastId)
+        setUser({...user, cups: updatedCups})
 
     }
     if (!details) return null;
@@ -56,7 +55,7 @@ const CupCard = ({ details }) => {
               <div>{new Date(details.createdAt).toDateString()}</div>
             </div>
           </div>
-          {cupList.some(cup => cup.roastId === details.roastId) ?
+          {user.cups.some(cup => cup.roastId === details.roastId) ?
       <Button onClick={uncupRoast}><AiOutlineCoffee /> Uncup</Button> :
       <Button onClick={cupRoast}><AiOutlineCoffee /> Cup</Button> }
         </div>

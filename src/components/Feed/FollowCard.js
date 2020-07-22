@@ -11,21 +11,20 @@ const FollowCardWrapper = styled(FeedCard)``
 
 const FollowCard = ({ details }) => {
     const {user, setUser} = useContext(UserContext)
-    const [followingList, setFollowingList] = useState(user.following)
 
 
     const followUser = async () => {
         const res = await client(`/users/follow/${details.userFollowed}`, {method:'POST'})
         const updatedFollowing = [...user.following, res]
         toast.success(`Followed ${details.userFollowed}`)
-        setFollowingList(updatedFollowing)
+        setUser({...user, following: updatedFollowing})
     }
 
     const unfollowUser = () => {
         const res = client(`/users/follow/${details.userFollowed}`, {method:'DELETE'})
         toast.success(`Unfollowed ${details.userFollowed}`)
-        const updatedFollowing = followingList.filter(follow => follow.userFollowedId !== details.id)
-        setFollowingList(updatedFollowing)
+        const updatedFollowing = user.following.filter(follow => follow.userFollowedId !== details.id)
+        setUser({...user, following: updatedFollowing})
 
     }
     if (!details) return null;
@@ -70,7 +69,7 @@ const FollowCard = ({ details }) => {
 
           {details.id === user.id ?
       '' :
-      followingList.some(user => user.userFollowedId === details.id) ?
+      user.following.some(user => user.userFollowedId === details.id) ?
       <Button onClick={unfollowUser}>Unfollow</Button> :
       <Button onClick={followUser}>Follow</Button> }
         </div>

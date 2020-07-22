@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useContext} from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Roast from "./pages/Roast";
@@ -7,6 +7,7 @@ import Header from "./components/Header"
 import Profile from './pages/Profile'
 
 const Routes = () => {
+
   return (
     <BrowserRouter>
       <Header />

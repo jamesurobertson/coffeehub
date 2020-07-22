@@ -1,10 +1,19 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
+import {client} from '../utils/index'
 
 export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const localSt = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState(localSt ? localSt : null);
+    const [user, setUser] = useState(null);
+
+
+    useEffect(() => {
+        (async() => {
+            const user = await client('/users')
+            console.log(user)
+            setUser(user)
+        })()
+    },[])
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
