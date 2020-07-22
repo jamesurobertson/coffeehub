@@ -23,7 +23,7 @@ const Feed = () => {
 
     useEffect(() => {
         (async() => {
-            const {feed} = await client(`/users/${user.id}/feed`)
+            const {feed} = await client(`/users/feed`)
             const list = makeFeed(feed)
             setFeedList(list)
             setLoading(false)

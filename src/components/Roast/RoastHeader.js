@@ -1,9 +1,12 @@
-import React, {useContext} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
-import ActionButton from "../ActionButton";
+import Button from "../../styles/Button";
 import {UserContext} from '../../context/UserContext'
 import {RoastContext} from '../../context/RoastContext'
+import { AiOutlineCoffee } from "react-icons/ai";
+import {client} from '../../utils/index'
+import {toast} from 'react-toastify'
 
 const RoastHeaderWrapper = styled.div`
   display: flex;
@@ -51,32 +54,51 @@ const RoastHeaderWrapper = styled.div`
 const RoastHeader = () => {
     const {user} = useContext(UserContext)
     const {roastData} = useContext(RoastContext)
+    const [cupList, setCupList] = useState(roastData.cups)
+
+    const cupRoast = async () => {
+        const res = await client(`/roasts/cup/${roastData.id}`, {method:'POST'})
+        const updatedCups = [...user.cups, res]
+        toast.success(`Cupped ${roastData.user.username}/${roastData.name}`)
+        setCupList(updatedCups)
+}
+
+    const uncupRoast = () => {
+        client(`/roasts/cup/${roastData.id}`, {method:'DELETE'})
+        toast.success(`Uncupped ${roastData.user.username}/${roastData.name}`)
+        const updatedCups = cupList.filter(cup => cup.roastId !== roastData.id)
+        setCupList(updatedCups)
+
+    }
 
     if (!roastData) return null
+    console.log(roastData)
   return (
     <RoastHeaderWrapper>
       <div className="roastheader__header">
         <div className="roastheader__links">
           <Link
             className="roastheader__link-name"
-            to={`/u/${roastData.user.username}`}
+            to={`/p/${roastData.user.username}`}
           >
             {roastData.user.username}
           </Link>
           /
-          <Link className="roastheader__link-roast" to={`/u/${user.username}/${roastData.name}`}>
+          <Link className="roastheader__link-roast" to={`/r/${user.username}/${roastData.name}`}>
           {roastData.name}
           </Link>
         </div>
         <div className="roastheader__actions">
-          <ActionButton action="Cup" />
+        {cupList.some(cup => cup.roastId === roastData.id) ?
+      <Button onClick={uncupRoast}><AiOutlineCoffee /> Uncup</Button> :
+      <Button onClick={cupRoast}><AiOutlineCoffee /> Cup</Button> }
         </div>
       </div>
       <div className="roastheader__nav">
-        <NavLink exact activeclass="active" to={`/u/${roastData.user.username}/${roastData.name}`}>
+        <NavLink exact activeclass="active" to={`/r/${roastData.user.username}/${roastData.name}`}>
           Roast
         </NavLink>
-        <NavLink activeclass="active" to={`/u/${roastData.user.username}/${roastData.name}/comments`}>
+        <NavLink activeclass="active" to={`/r/${roastData.user.username}/${roastData.name}/comments`}>
           Comments
         </NavLink>
       </div>

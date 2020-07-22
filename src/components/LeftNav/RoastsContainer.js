@@ -78,7 +78,7 @@ const RoastsContainer = () => {
 
     useEffect(() => {
         (async() => {
-           const {roasts_list} = await client(`/roasts/user/${user.id}`)
+           const {roasts_list} = await client(`/roasts`)
             setRoasts(roasts_list)
         })()
     }, [user])
@@ -100,7 +100,7 @@ const RoastsContainer = () => {
               return (
                 <div key={`roast-${id}`} className="individualRoast">
                 <FiCoffee />
-                <Link to={`/u/${user.username}/${roastName}`}>{`${user.username}/${roastName}`}</Link>
+                <Link to={`/r/${user.username}/${roastName}`}>{`${user.username}/${roastName}`}</Link>
               </div>
               )
           })}

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import RoastGarden from "./RoastGarden";
 import FeaturedRoast from "./FeaturedRoast";
+import ActivityLog from './ActivityLog'
 
 const MainWrapper = styled.div`
   display: flex;
@@ -36,13 +37,12 @@ const MainWrapper = styled.div`
 const ProfileMain = ({profileData: user}) => {
   return (
     <MainWrapper>
-      <div>
         <div> Featured Roasts</div>
         <div className="featured-roasts">
           {user.roasts.length === 0 ? <div className='profile--noroasts'>
               {user.username} doesnt' have any roasts yet.
           </div> : ''}
-          {user.roasts.map((roast, i) => {
+          {user.roasts.slice(0, 6).map((roast, i) => {
             return <FeaturedRoast roast={roast} key={i}/>;
           })}
         </div>
@@ -51,7 +51,7 @@ const ProfileMain = ({profileData: user}) => {
         <div className="garden-container">
           <RoastGarden />
         </div>
-      </div>
+        <ActivityLog/>
     </MainWrapper>
   );
 };

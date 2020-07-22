@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useContext, useReducer} from "react";
 import styled from "styled-components";
 import Button from "../../styles/Button";
 import { AiOutlineCoffee } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
+import {UserContext} from '../../context/UserContext'
+import {client} from '../../utils/index'
+import {toast} from 'react-toastify'
 
 const UserDetailsWrapper = styled.div`
   display: flex;
@@ -11,6 +14,7 @@ const UserDetailsWrapper = styled.div`
   width: 100%;
   max-width: 312px;
   min-width: 180px;
+  padding-left: 20px;
 
   img {
     width: 90%;
@@ -37,6 +41,7 @@ const UserDetailsWrapper = styled.div`
       display: flex;
       align-items: center;
       font-size: 12px;
+      flex-wrap: wrap;
       p {
           display: flex;
           align-items: flex-start;
@@ -59,32 +64,54 @@ const FollowButton = styled(Button)`
   background-color: ${(props) => props.theme.green};
 `;
 
-const ProfileUserDetails = ({profileData: user}) => {
-    console.log(user)
+const ProfileUserDetails = ({profileData}) => {
+    const {user, setUser} = useContext(UserContext)
+
+    const followUser = async () => {
+    const res = await client(`/users/follow/${profileData.username}`, {method:'POST'})
+    const updatedFollowing = [...user.following, res]
+    setUser({...user, following: updatedFollowing})
+    toast.success(`Followed ${profileData.username}`)
+    }
+
+    const unfollowUser = () => {
+        const res = client(`/users/follow/${profileData.username}`, {method:'DELETE'})
+        toast.success(`Unfollowed ${profileData.username}`)
+
+        const updatedFollowing = user.following.filter(follow => follow.userFollowedId !== profileData.id)
+        setUser({...user, following: updatedFollowing})
+    }
+    const editProfile = () => {
+        console.log('edit profile')
+    }
   return (
     <UserDetailsWrapper>
-      <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="avatar" />
-      <h1 className="profile-fullname">{user.fullName}</h1>
-      <p className="profile-username">{user.username}</p>
+      <img src={profileData.profileImageUrl} alt="avatar" />
+      <h1 className="profile-fullname">{profileData.fullName}</h1>
+      <p className="profile-username">{profileData.username}</p>
       <p className="profile-bio">
-        {user.bio}
+        {profileData.bio}
       </p>
-      <FollowButton>Follow</FollowButton>
+      {profileData.username === user.username ?
+      <FollowButton onClick={editProfile}>Edit Profile</FollowButton> :
+      user.following.some(user => user.userFollowedId === profileData.id) ?
+      <FollowButton onClick={unfollowUser}>Unfollow</FollowButton> :
+      <FollowButton onClick={followUser}>Follow</FollowButton> }
       <div className="profile-data-numbers">
         <p>
-          <BsPeopleFill className='profile-data-icon'/>{' '}{user.followers.length} Followers
+          <BsPeopleFill className='profile-data-icon'/>{' '}{profileData.followers.length} Followers
         </p>
         <div className='profile-data-seperator'>
             ·
             </div>
-        <p> {user.following.length} Following</p>
+        <p> {profileData.following.length} Following</p>
         <div className='profile-data-seperator'>
 
             ·
             </div>
         <p>
           {" "}
-          <AiOutlineCoffee className='profile-data-icon' /> {user.cups.length}
+          <AiOutlineCoffee className='profile-data-icon' /> {profileData.cups.length}
         </p>
       </div>
     </UserDetailsWrapper>

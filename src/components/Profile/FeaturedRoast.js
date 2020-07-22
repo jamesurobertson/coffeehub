@@ -39,7 +39,7 @@ const FeaturedRoast = ({roast}) => {
     console.log(roast)
     return (
         <FeaturedWrapper>
-            <Link to={`/u/${roast.roastUser.username}/${roast.name}`}>
+            <Link to={`/r/${roast.roastUser.username}/${roast.name}`}>
                 {roast.name}
             </Link>
             <p className='featured-bio'>{roast.description}</p>

@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react";
+import {Switch, Route} from 'react-router-dom'
 import styled from "styled-components";
 import ProfileUserDetails from "../components/Profile/ProfileUserDetails";
 import ProfileMain from "../components/Profile/ProfileMain";
 import ProfileHeader from "../components/Profile/ProfileHeader";
+import ActivityLog from "../components/Profile/ActivityLog";
 import {client} from '../utils/index'
 
 
@@ -36,8 +38,12 @@ const Profile = (props) => {
     <ProfileWrapper>
       <ProfileUserDetails profileData={profileData}/>
       <div className="profile-main">
-        <ProfileHeader />
-        <ProfileMain profileData={profileData}/>
+        <ProfileHeader profileData={profileData}/>
+        <Switch>
+            <Route path={`/p/${profileData.username}/roasts`} render={() => <ActivityLog/>}/>
+            <Route exact path={`/p/${profileData.username}`} render={() => <ProfileMain profileData={profileData}/>}/>
+
+        </Switch>
       </div>
     </ProfileWrapper>
   );

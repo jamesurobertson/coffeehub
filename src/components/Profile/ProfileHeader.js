@@ -6,7 +6,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   margin-top: 24px;
   height: 50px;
-  width: 66%;
+  width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.border};
 
   .profile-tab {
@@ -21,20 +21,20 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = (props) => {
+const ProfileHeader = ({profileData: user}) => {
   return (
     <HeaderWrapper>
       <NavLink
         exact
         activeclass="active"
-        to={'/'}
+        to={`/p/${user.username}`}
         className="profile-tab"
       >
         Overview
       </NavLink>
       <NavLink
         activeclass="active"
-        to={`/u/DanGR/roasts`}
+        to={`/p/${user.username}/roasts`}
         className="profile-tab"
       >
         Roasts
