@@ -26,7 +26,6 @@ const RoastGarden = () => {
   const days = Array(7).fill(0);
 
   const numDays = diffDays(oneYearAgo(), today())
-  console.log(numDays)
 
   return (
     <RoastGardenWrapper>

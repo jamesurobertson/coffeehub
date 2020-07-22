@@ -42,7 +42,7 @@ const ProfileMain = ({profileData: user}) => {
           {user.roasts.length === 0 ? <div className='profile--noroasts'>
               {user.username} doesnt' have any roasts yet.
           </div> : ''}
-          {user.roasts.slice(0, 6).map((roast, i) => {
+          {user.roasts.slice(0, 5).map((roast, i) => {
             return <FeaturedRoast roast={roast} key={i}/>;
           })}
         </div>

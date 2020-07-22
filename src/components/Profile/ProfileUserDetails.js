@@ -82,7 +82,6 @@ const ProfileUserDetails = ({profileData}) => {
         setUser({...user, following: updatedFollowing})
     }
     const editProfile = () => {
-        console.log('edit profile')
     }
   return (
     <UserDetailsWrapper>

@@ -36,7 +36,6 @@ const FeaturedWrapper = styled.div`
 
 const FeaturedRoast = ({roast}) => {
 
-    console.log(roast)
     return (
         <FeaturedWrapper>
             <Link to={`/r/${roast.roastUser.username}/${roast.name}`}>

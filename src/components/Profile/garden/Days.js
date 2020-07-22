@@ -6,7 +6,6 @@ export default function Days({
 }) {
 
     const click = (e) => {
-        console.log(e.target)
     }
   return (
     <g>

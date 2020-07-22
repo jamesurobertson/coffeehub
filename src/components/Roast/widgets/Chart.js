@@ -29,7 +29,6 @@ const ChartWrapper = styled(Widget)`
 const Chart = () => {
   const { roastData } = useContext(RoastContext);
 
-  console.log(`data`, roastData);
   return (
     <ChartWrapper>
       {roastData.notes.length > 0 ? (

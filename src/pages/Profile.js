@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ProfileUserDetails from "../components/Profile/ProfileUserDetails";
 import ProfileMain from "../components/Profile/ProfileMain";
 import ProfileHeader from "../components/Profile/ProfileHeader";
-import ActivityLog from "../components/Profile/ActivityLog";
+import AllRoasts from "../components/Profile/AllRoasts";
 import {client} from '../utils/index'
 
 
@@ -40,7 +40,7 @@ const Profile = (props) => {
       <div className="profile-main">
         <ProfileHeader profileData={profileData}/>
         <Switch>
-            <Route path={`/p/${profileData.username}/roasts`} render={() => <ActivityLog/>}/>
+            <Route path={`/p/${profileData.username}/roasts`} render={() => <AllRoasts profileData={profileData}/>}/>
             <Route exact path={`/p/${profileData.username}`} render={() => <ProfileMain profileData={profileData}/>}/>
 
         </Switch>
