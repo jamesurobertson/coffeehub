@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Button from "../../styles/Button";
 import Input from "../../styles/Input";
@@ -24,8 +24,20 @@ const NewRoast = styled(Button)`
 
 const AllRoasts = ({ profileData }) => {
   const { user } = useContext(UserContext);
+  const [roastsArray, setRoastsArray] = useState(profileData.roasts)
   const searchInput = useInput("");
-  console.log(profileData);
+
+  const searchChange = (e) => {
+    searchInput.setValue(e.target.value)
+    const searchArray = profileData.roasts.filter(roast => {
+        return (
+            roast.name.includes(e.target.value)
+        )
+    })
+
+    setRoastsArray(searchArray)
+  }
+
   return (
     <RoastsWrapper>
       <div className="allroasts-header">
@@ -33,11 +45,11 @@ const AllRoasts = ({ profileData }) => {
           style={{ width: "50%" }}
           placeholder="Find a Roast..."
           value={searchInput.value}
-          onChange={searchInput.onChange}
+          onChange={searchChange}
         />
         {user.id === profileData.id ? <NewRoast>New</NewRoast> : ""}
       </div>
-      {profileData.roasts.map(roast => {
+      {roastsArray.map(roast => {
           return (
               <RoastCard roast={roast}/>
           )
