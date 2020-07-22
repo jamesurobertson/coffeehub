@@ -12,8 +12,8 @@ const Routes = () => {
       <Header />
       <Switch>
         <Route path="/new" component={NewRoast} />
-        <Route path="/u/:username/:roastName" component={Roast} />
-        <Route exact path="/u/:username" component={Profile}/>
+        <Route path="/r/:username/:roastName" component={Roast} />
+        <Route path="/p/:username" component={Profile}/>
         <Route path="/" component={Home} />
       </Switch>
     </BrowserRouter>

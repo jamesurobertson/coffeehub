@@ -94,8 +94,8 @@ const NewRoast = (props) => {
           return toast.error('Roast name must be one word')
       }
     const body = { name: roastName.value, description: description.value };
-    const roast = await client(`/roasts/${user.id}`, { body });
-    props.history.push(`/u/${user.username}/${roast.name}`)
+    const roast = await client(`/roasts`, { body });
+    props.history.push(`/r/${user.username}/${roast.name}`)
 
   };
 

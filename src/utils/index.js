@@ -69,10 +69,11 @@ export const makeFeed = (feedData) => {
         username: userFollowed,
         profileImageUrl: userFollowedImg,
         bio,
+        id
       } = user;
       entry = {
         ...entry,
-        ...{ numRoasts, numFollowers, fullName, userFollowed, userFollowedImg, bio},
+        ...{ numRoasts, numFollowers, fullName, userFollowed, userFollowedImg, bio, id},
       };
       entries.push({follow:entry})
     });
