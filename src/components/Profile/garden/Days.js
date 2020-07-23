@@ -1,37 +1,56 @@
-import React from 'react'
-import { formatDate } from '../../../utils/garden';
+import React, { useState, useEffect } from "react";
+import { formatDate } from "../../../utils/garden";
 
-export default function Days({
-  values, size, space, padX, padY, colorFun, onClick
-}) {
+const Days = ({ values, size, space, padX, padY, roasts }) => {
+    const [roastDates, setRoastDates] = useState([])
 
-    const click = (e) => {
-    }
+  const click = (e) => {
+  };
+
+  useEffect(() => {
+    const roastedDates = roasts.map((roast) => {
+      return {
+        date: formatDate(new Date(roast.createdAt)),
+        name: roast.name,
+      };
+    });
+    setRoastDates(roastedDates);
+  }, [roasts]);
+
   return (
     <g>
-      {values.map((v, i) => {
+      {values.map((value, i) => {
         const s = size + space * 2;
         const x = padX + i * s + space;
         const y0 = padY + space;
         return (
-          <g>
-            {v.map((d) => (
-              <rect
-                class="cg-day"
-                x={x}
-                y={d.day * s + y0}
-                width={10}
-                height={10}
-                fill={Math.random() < 0.8 ? "#9be9a8" : "#815839"}
-                data-count={d.count}
-                data-date={formatDate(d.date)}
-                onClick={click}>
-            <title>{formatDate(d.date)}</title>
-            </rect>
-            ))}
+          <g key={i}>
+            {value.map((d, i) => {
+              const date = formatDate(d.date);
+              const sameDay = roastDates.filter(roast => roast.date === date)
+              return (
+                <rect
+                  className="day"
+                  key={`${d}-${i}`}
+                  x={x}
+                  y={d.day * s + y0}
+                  rx="8"
+                  width={10}
+                  height={15}
+                  fill={sameDay.length > 0 ? "#815839" : "#9be9a8"}
+                  data-count={d.count}
+                  data-date={date}
+                  onClick={click}
+                >
+                  <title>{`${sameDay.length || 'No'} roasts on ${date}`}</title>
+                </rect>
+              );
+            })}
           </g>
         );
       })}
     </g>
   );
-}
+};
+
+export default Days;

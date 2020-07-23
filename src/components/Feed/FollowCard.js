@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../styles/Button";
@@ -21,7 +21,7 @@ const FollowCard = ({ details }) => {
     }
 
     const unfollowUser = () => {
-        const res = client(`/users/follow/${details.userFollowed}`, {method:'DELETE'})
+        client(`/users/follow/${details.userFollowed}`, {method:'DELETE'})
         toast.success(`Unfollowed ${details.userFollowed}`)
         const updatedFollowing = user.following.filter(follow => follow.userFollowedId !== details.id)
         setUser({...user, following: updatedFollowing})

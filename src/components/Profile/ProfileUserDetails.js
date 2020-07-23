@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import Button from "../../styles/Button";
 import { AiOutlineCoffee } from "react-icons/ai";
@@ -75,7 +75,7 @@ const ProfileUserDetails = ({profileData}) => {
     }
 
     const unfollowUser = () => {
-        const res = client(`/users/follow/${profileData.username}`, {method:'DELETE'})
+        client(`/users/follow/${profileData.username}`, {method:'DELETE'})
         toast.success(`Unfollowed ${profileData.username}`)
 
         const updatedFollowing = user.following.filter(follow => follow.userFollowedId !== profileData.id)

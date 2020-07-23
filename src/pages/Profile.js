@@ -31,7 +31,7 @@ const Profile = (props) => {
             setIsLoading(false)
 
         })()
-    },[])
+    },[props.location.pathname])
 
     if (isLoading) return 'loading...'
   return (

@@ -1,24 +1,29 @@
 import {
-  diffDays, formatDate, today, oneYearAgo, rectColor
+  diffDays, formatDate, today, oneYearAgo
 } from '../../../utils/garden';
 import Days from './Days';
+import Months from './Months';
 import React from 'react'
 import styled from 'styled-components'
 
 const GardenWrapper = styled.div`
-background-color: ${(props) => props.theme.bg};
+background-color: transparent;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 10px;
 `
 
 const Graph = (props) => {
    const {
         data = [],
-        colorFun = rectColor,
         startDate = oneYearAgo(),
         endDate = today(),
         size = 12,
-        space = 1,
+        space = 2,
         padX = 0,
-        padY = 0,
+        padY = 30,
+        roasts
     } = props
 
   const values = [];
@@ -27,7 +32,7 @@ const Graph = (props) => {
     memo[v.date] = v.count;
     return memo;
   }, {});
-  // Compute values
+
   let group = 0;
   for (let i = 0; i <= days; i += 1) {
     const date = new Date(startDate);
@@ -44,18 +49,15 @@ const Graph = (props) => {
     values[group - 1].push({ count, date, day });
   }
 
-  const s = size + space * 2;
-  const width = (group * s) + (padX * 2);
-  const height = 7 * s + padY + 10;
-  const box = `0 0 ${width} ${height}`;
 
   const attrs = {
-     values, size, space, colorFun, padX, padY
-  };
+     values, size, space, padX, padY, roasts
+  }
   return (
       <GardenWrapper>
-      <svg width={width} height={height}>
+      <svg width={850} height={170}>
       <Days {...attrs} />
+      <Months {...attrs}/>
     </svg>
 
       </GardenWrapper>

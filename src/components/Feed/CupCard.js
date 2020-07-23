@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Button from "../../styles/Button";
@@ -7,6 +7,7 @@ import FeedCard from '../../styles/FeedCard'
 import {UserContext} from '../../context/UserContext'
 import {client} from '../../utils/index'
 import {toast} from 'react-toastify'
+import RoastDetails from '../RoastDetails'
 
 const CupCardWrapper = styled(FeedCard)``
 
@@ -46,11 +47,7 @@ const CupCard = ({ details }) => {
             </Link>
             <p style={{ paddingTop: "5px" }}>{details.description}</p>
             <div className="feed-card__data-details">
-              <div>{details.beanOrigin}</div>
-
-              <div>
-                <AiOutlineCoffee color="black" /> {details.numLikes}
-              </div>
+              <RoastDetails origin={details.beanOrigin} numCups={details.numLikes}/>
 
               <div>{new Date(details.createdAt).toDateString()}</div>
             </div>

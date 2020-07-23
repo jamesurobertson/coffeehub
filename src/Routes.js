@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Roast from "./pages/Roast";

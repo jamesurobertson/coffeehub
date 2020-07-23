@@ -10,7 +10,6 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         (async() => {
             const user = await client('/users')
-            console.log(user)
             setUser(user)
         })()
     },[])

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import Button from "../../styles/Button";

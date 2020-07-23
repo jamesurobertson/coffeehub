@@ -6,6 +6,7 @@ import Button from "../../styles/Button";
 import {UserContext} from '../../context/UserContext'
 import {client} from '../../utils/index'
 import {toast} from 'react-toastify'
+import RoastDetails from '../RoastDetails'
 
 const RoastCardWrapper = styled.div`
   display: flex;
@@ -38,7 +39,7 @@ const RoastCardWrapper = styled.div`
 `;
 
 const RoastCard = ({ roast }) => {
-    const {user, setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const [cupList, setCupList] = useState(user.cups)
 
     const cupRoast = async () => {
@@ -55,20 +56,14 @@ const RoastCard = ({ roast }) => {
         setCupList(updatedCups)
 
     }
-    console.log(roast)
   return (
     <RoastCardWrapper>
       <div className="roastCard-details">
         <Link to={`/r/${roast.roastUser.username}/${roast.name}`}>
           {roast.name}
         </Link>
-        <div className="roast-data-container" style={{ display: "flex" }}>
-          <div className="roast-data">{roast.origin.name}</div>
-          <div className="roast-data">
-            <AiOutlineCoffee /> {roast.cups.length}
-          </div>
-        </div>
-      </div>
+       <RoastDetails origin={roast.origin.name} numCups={roast.cups.length}/>
+       </div>
       <div>
       {cupList.some(cup => cup.roastId === roast.id) ?
       <Button onClick={uncupRoast}><AiOutlineCoffee /> Uncup</Button> :

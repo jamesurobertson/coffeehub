@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-import { AiOutlineCoffee } from "react-icons/ai";
+import RoastDetails from '../RoastDetails'
 
 
 const FeaturedWrapper = styled.div`
@@ -28,9 +28,18 @@ const FeaturedWrapper = styled.div`
     }
 
     .roast-data {
+        display: flex;
+        align-items: center;
         color: ${(props) => props.theme.secondaryColor};
         margin-right: 10px;
         font-size: 12px;
+    }
+
+    .originColor {
+        margin-right: 5px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
     }
 `
 
@@ -42,10 +51,7 @@ const FeaturedRoast = ({roast}) => {
                 {roast.name}
             </Link>
             <p className='featured-bio'>{roast.description}</p>
-            <div style={{display: 'flex'}}>
-                <div className='roast-data'>{roast.origin.name}</div>
-                <div className='roast-data'><AiOutlineCoffee/>{' '}{roast.cups.length}</div>
-            </div>
+            <RoastDetails origin={roast.origin.name} numCups ={roast.cups.length}/>
         </FeaturedWrapper>
     )
 }

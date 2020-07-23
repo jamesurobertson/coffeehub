@@ -19,23 +19,6 @@ export function oneYearAgo() {
   return d;
 }
 
-const colors = ['#eee', '#c6e48b', '#7bc96f', '#239a3b', '#196127'];
-export function rectColor(v) {
-  if (!v.count) {
-    return colors[0];
-  }
-  if (v.count > 45) {
-    return colors[4];
-  }
-  if (v.count > 30) {
-    return colors[3];
-  }
-  if (v.count > 15) {
-    return colors[2];
-  }
-  return colors[1];
-}
-
 export function pad(n) {
   return n > 9 ? `${n}` : `0${n}`;
 }

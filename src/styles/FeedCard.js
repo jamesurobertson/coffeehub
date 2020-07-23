@@ -53,7 +53,6 @@ const FeedCard = styled.div`
       font-size: 12px;
       text-align: center;
       color: ${(props) => props.theme.secondaryColor};
-      padding-right: 15px;
     }
   }
 
