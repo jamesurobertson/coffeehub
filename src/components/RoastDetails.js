@@ -16,8 +16,8 @@ const DetailsWrapper = styled.div`
     }
 
     .originColor {
-        width: 8px;
-        height: 8px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         margin-right: 6px;
     }

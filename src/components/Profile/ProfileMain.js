@@ -45,7 +45,7 @@ const ProfileMain = ({ profileData: user }) => {
       <div className="featured-roasts">
         {user.roasts.length === 0 ? (
           <div className="profile--noroasts">
-            {user.username} doesnt' have any roasts yet.
+            {`${user.username} doesnt' have any roasts yet :(`}
           </div>
         ) : (
           ""
@@ -59,7 +59,7 @@ const ProfileMain = ({ profileData: user }) => {
       <div className="garden-container">
         <Garden roasts = {user.roasts}/>
       </div>
-      <ActivityLog />
+      {/* <ActivityLog /> */}
     </MainWrapper>
   );
 };

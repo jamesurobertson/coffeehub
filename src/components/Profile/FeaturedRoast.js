@@ -35,12 +35,6 @@ const FeaturedWrapper = styled.div`
         font-size: 12px;
     }
 
-    .originColor {
-        margin-right: 5px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-    }
 `
 
 const FeaturedRoast = ({roast}) => {
