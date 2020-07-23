@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components";
 import Button from "../../styles/Button";
 import { AiOutlineCoffee } from "react-icons/ai";
@@ -6,6 +6,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import {UserContext} from '../../context/UserContext'
 import {client} from '../../utils/index'
 import {toast} from 'react-toastify'
+import EditProfile from './EditProfile'
 
 const UserDetailsWrapper = styled.div`
   display: flex;
@@ -66,6 +67,7 @@ const FollowButton = styled(Button)`
 
 const ProfileUserDetails = ({profileData}) => {
     const {user, setUser} = useContext(UserContext)
+    const [openModal, setOpenModal] = useState(true)
 
     const followUser = async () => {
     const res = await client(`/users/follow/${profileData.username}`, {method:'POST'})
@@ -82,7 +84,13 @@ const ProfileUserDetails = ({profileData}) => {
         setUser({...user, following: updatedFollowing})
     }
     const editProfile = () => {
+        setOpenModal(true)
     }
+
+    const closeModal = () => {
+        setOpenModal(false)
+    }
+
   return (
     <UserDetailsWrapper>
       <img src={profileData.profileImageUrl} alt="avatar" />
@@ -96,6 +104,7 @@ const ProfileUserDetails = ({profileData}) => {
       user.following.some(user => user.userFollowedId === profileData.id) ?
       <FollowButton onClick={unfollowUser}>Unfollow</FollowButton> :
       <FollowButton onClick={followUser}>Follow</FollowButton> }
+      {openModal ? <EditProfile profileData={profileData} openModal={openModal} closeModal={closeModal}/> : ''}
       <div className="profile-data-numbers">
         <p>
           <BsPeopleFill className='profile-data-icon'/>{' '}{profileData.followers.length} Followers
