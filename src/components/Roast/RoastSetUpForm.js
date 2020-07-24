@@ -1,9 +1,9 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import useInput from "../../hooks/useInput";
-import { client } from "../../utils/index";
-import Select from "react-select";
-import {RoastContext} from '../../context/RoastContext'
+import { client, ErrorMessage } from "../../utils/index";
+import { useForm } from "react-hook-form";
+import Input from "../../styles/Input";
+import { RoastContext } from "../../context/RoastContext";
 
 const RoastFormWrapper = styled.div`
   display: flex;
@@ -19,144 +19,137 @@ const RoastFormWrapper = styled.div`
     flex-flow: column;
   }
 
-  input {
-    border: 1px solid ${(props) => props.theme.border};
-    border-radius: 5px;
-    padding: 8px
-  }
-
   .formField {
-      display: flex;
-      flex-flow: column;
-      width: 25%;
-      min-width: 250px;
-      padding: 5px 0;
-      height: 90px;
+    display: flex;
+    flex-flow: column;
+    width: 25%;
+    min-width: 250px;
+    padding: 5px 0;
+    height: 90px;
+
   }
-  textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+  textarea:focus,
+  input:focus,
+  input[type]:focus,
+  .uneditable-input:focus {
     border: 2px solid #2684ff;
     border-radius: 5px;
     outline: 0 none;
   }
 
   button {
-      width: 25%;
-      color: ${(props) => props.theme.white};
-      font-weight: bold;
-      min-width: 250px;
-      padding: 8px;
-      border: 1px solid ${(props) => props.theme.border};
-      border-radius: 5px;
-      background-color: ${(props) => props.theme.blue};
+    width: 25%;
+    color: ${(props) => props.theme.white};
+    font-weight: bold;
+    min-width: 250px;
+    padding: 8px;
+    border: 1px solid ${(props) => props.theme.border};
+    border-radius: 5px;
+    background-color: ${(props) => props.theme.blue};
   }
 
   label {
-      font-size: 18px;
-      padding-bottom: 5px;
+    font-size: 18px;
+    padding-bottom: 5px;
   }
 
+  select {
+    padding: 8px;
+    border: 1px solid ${(props) => props.theme.border};
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  p {
+      color: ${(props) => props.theme.red};
+      bottom: -20px;
+    }
+
+    p::before {
+      display: inline;
+      content: "⚠ ";
+    }
 `;
 
-const options = [
-  { value: 1, label: "Brazil" },
-  { value: 2, label: "Burundi" },
-  { value: 3, label: "Colombia" },
-  { value: 4, label: "Congo" },
-  { value: 5, label: "Costa Rica" },
-  { value: 6, label: "El Salvador" },
-  { value: 7, label: "Ethiopia" },
-  { value: 8, label: "Flores" },
-  { value: 9, label: "Guatemala" },
-  { value: 10, label: "Java" },
-  { value: 11, label: "Papa New Guinea" },
-  { value: 12, label: "Peru" },
-  { value: 13, label: "Rwanda" },
-  { value: 14, label: "Sulawesi" },
-  { value: 15, label: "Sumatra" },
-  { value: 16, label: "Timor" },
-  { value: 17, label: "Yemen" },
-];
-
 const RoastSetUpForm = () => {
-  const supplier = useInput("");
-  const ambientTemp = useInput("");
-  const load = useInput("");
-  const bean = useInput("");
-  const [origin, setOrigin] = useState("");
-  const {setRoastData, roastData} = useContext(RoastContext)
+  const { register, handleSubmit, errors } = useForm();
+  const { setRoastData, roastData } = useContext(RoastContext);
 
-  const startRoast = (e) => {
-    e.preventDefault();
-    const body = {
-      supplier: supplier.value,
-      originId: origin,
-      bean: bean.value,
-      load: load.value,
-      ambientTemp: ambientTemp.value,
-    };
-
-
+  const startRoast = (body) => {
     client(`/roasts/${roastData.id}`, { body, method: "PUT" });
     setRoastData({...roastData, ...body})
   };
 
-  const selectChangeHandler = (selectedOption) => {
-      setOrigin(selectedOption.value)
-  }
+
   return (
-      <RoastFormWrapper>
+    <RoastFormWrapper>
       <h1> Coffee Details </h1>
-      <form onSubmit={startRoast}>
+      <form onSubmit={handleSubmit(startRoast)}>
         <div className="formField">
           <label>Supplier: </label>
-          <input
+          <Input
             name="supplier"
-            autoComplete={'off'}
+            autoComplete={"off"}
             placeholder="Ex. Sweet Marias"
-            value={supplier.value}
-            onChange={supplier.onChange}
+            ref={register({ required: true })}
           />
+          <ErrorMessage error={errors.supplier} />
         </div>
         <div className="formField">
-          <label>
-            Origin:
-          </label>
-          <Select
-          options={options}
-          onChange={selectChangeHandler}
-          />
+          <label>Origin:</label>
+          <select name="origin" ref={register({ required: true })}>
+            <option value=''>Please choose a bean</option>
+            <option value="1">Brazil</option>
+            <option value="2">Burundi</option>
+            <option value="3">Colombia</option>
+            <option value="4">Congo</option>
+            <option value="5">Costa Rica</option>
+            <option value="6">El Salvador</option>
+            <option value="7">Ethiopia</option>
+            <option value="8">Flores</option>
+            <option value="9">Guatemala</option>
+            <option value="10">Java</option>
+            <option value="11">Papa New Guinea</option>
+            <option value="12">Peru</option>
+            <option value="13">Rwanda</option>
+            <option value="14">Sulawesi</option>
+            <option value="15">Sumatra</option>
+            <option value="16">Timor</option>
+            <option value="17">Yemen</option>
+          </select>
+          <ErrorMessage error={errors.origin} />
         </div>
-      <div className="formField">
+        <div className="formField">
           <label>Bean: </label>
-          <input
-            name="Bean"
-            autoComplete={'off'}
+          <Input
+            name="bean"
+            autoComplete={"off"}
             placeholder="Ex. Agaro Kenisa"
-            value={bean.value}
-            onChange={bean.onChange}
+            ref={register({ required: true })}
           />
+          <ErrorMessage error={errors.bean} />
         </div>
         <div className="formField">
           <label>Load:</label>
-          <input
-            placeholder='In Grams'
+          <Input
+            placeholder="In Grams"
             type="number"
-            autoComplete={'off'}
+            autoComplete={"off"}
             name="load"
-            value={load.value}
-            onChange={load.onChange}
+            ref={register({ required: true })}
           />
+          <ErrorMessage error={errors.load} />
         </div>
         <div className="formField">
           <label>Ambient Temperature: </label>
-          <input
+          <Input
             type="number"
-            placeholder='In Fahrenheit'
-            autoComplete={'off'}
+            placeholder="In Fahrenheit"
+            autoComplete={"off"}
             name="ambientTemp"
-            value={ambientTemp.value}
-            onChange={ambientTemp.onChange}
+            ref={register({ required: true })}
           />
+          <ErrorMessage error={errors.ambientTemp} />
         </div>
         <button type="submit">Start Roast</button>
       </form>

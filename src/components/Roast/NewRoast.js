@@ -1,9 +1,10 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import useInput from "../../hooks/useInput";
-import { client } from "../../utils/index";
-import {UserContext} from '../../context/UserContext'
-import {toast} from 'react-toastify'
+import { client, ErrorMessage } from "../../utils/index";
+import { useForm } from "react-hook-form";
+import { UserContext } from "../../context/UserContext";
+import { toast } from "react-toastify";
 
 const NewRoastWrapper = styled.div`
   display: flex;
@@ -39,6 +40,15 @@ const NewRoastWrapper = styled.div`
       height: 60px;
       display: flex;
       flex-flow: column;
+      position: relative;
+
+      p {
+        color: ${(props) => props.theme.red};
+        position: absolute;
+        left: 235px;
+        bottom: 0;
+        width: 100%;
+      }
     }
 
     #form-username,
@@ -84,19 +94,12 @@ const NewRoastWrapper = styled.div`
 `;
 
 const NewRoast = (props) => {
-  const roastName = useInput("");
-  const description = useInput("");
-  const {user} = useContext(UserContext)
+  const { register, handleSubmit, errors } = useForm();
+  const { user } = useContext(UserContext);
 
-  const createRoast = async (e) => {
-      e.preventDefault()
-      if (roastName.value.split(' ').length > 1) {
-          return toast.error('Roast name must be one word')
-      }
-    const body = { name: roastName.value, description: description.value };
+  const createRoast = async (body) => {
     const roast = await client(`/roasts`, { body });
-    props.history.push(`/r/${user.username}/${roast.name}`)
-
+    props.history.push(`/r/${user.username}/${roast.name}`);
   };
 
   return (
@@ -105,7 +108,7 @@ const NewRoast = (props) => {
         <h1>Create a new Roast</h1>
         <p> A roast contains all the data on a specific roast.</p>
 
-        <form className="newRoastForm" onSubmit={createRoast}>
+        <form className="newRoastForm" onSubmit={handleSubmit(createRoast)}>
           <div className="newRoastForm__nameDetails">
             <div className="newRoastForm__roastName">
               <label htmlFor="form-username">Owner</label>
@@ -120,23 +123,24 @@ const NewRoast = (props) => {
               <input
                 id="form-roastname"
                 autoComplete="off"
-                required={true}
                 name="name"
-                value={roastName.value}
-                onChange={roastName.onChange}
+                ref={register({ required: true, pattern: /^\S*$/ })}
               />
+              <ErrorMessage error={errors.name} />
             </div>
           </div>
-          <p> Great roast names are short and memorable.</p>
+          <p>
+            {" "}
+            Roast names have no spaces and good ones are short and memorable.
+          </p>
           <label htmlFor="newRoastForm__description">
             Description(optional)
           </label>
           <input
-            value={description.value}
-            onChange={description.onChange}
             name="description"
             id="newRoastForm__description"
             autoComplete="off"
+            ref={register()}
           />
           <button type="submit">Create Roast</button>
         </form>

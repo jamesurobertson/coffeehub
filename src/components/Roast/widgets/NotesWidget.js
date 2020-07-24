@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
 import styled from "styled-components";
-import useInput from "../../../hooks/useInput";
 import Widget from "../../../styles/Widget";
 import Button from "../../../styles/Button";
 import Input from "../../../styles/Input";
-import {client} from '../../../utils/index'
+import {client, ErrorMessage} from '../../../utils/index'
 import {RoastContext} from '../../../context/RoastContext'
 import {toast} from 'react-toastify'
+import { useForm } from "react-hook-form";
 
 const NotesWrapper = styled(Widget)`
   textarea {
@@ -20,42 +20,54 @@ const NotesWrapper = styled(Widget)`
   input {
       margin: 5px 0;
     }
+
+    form {
+        display: flex;
+        flex-flow: column;
+    }
+
+    p {
+    color: ${(props) => props.theme.red};
+    bottom: -20px;
+  }
+
+  p::before {
+    display: inline;
+    content: "⚠ ";
+  }
 `;
 
 const AddNoteButton = styled(Button)``;
 
 const NotesWidget = () => {
-  const note = useInput("");
-  const timestamp = useInput("");
-  const {roastData} = useContext(RoastContext)
+    const {roastData} = useContext(RoastContext)
+    const { register, handleSubmit, errors } = useForm();
 
 
-const addNote = () => {
-    if (!note.value) {
-        return toast.error("You must provide a note")
-    }
-    const body = {timestamp: timestamp.value, note: note.value}
+const addNote = (body) => {
     client(`/notes/${roastData.id}`, {body})
     toast.success('Note recorded')
-    note.setValue('')
-    timestamp.setValue('')
 }
   return (
     <NotesWrapper>
+        <form onSubmit={handleSubmit(addNote)}>
+
       <label htmlFor="milestone-note">Notes</label>
       <textarea
         id="milestone-note"
-        value={note.value}
-        onChange={note.onChange}
-      />
+        name='note'
+        rows='8'
+        ref={register({required: true})}
+        />
+        <ErrorMessage error={errors.note} />
 
       <label htmlFor="note-input">Timestamp</label>
-      <Input id="note-input" placeholder="ex. 7:30"
-      value={timestamp.value}
-      onChange={timestamp.onChange}
+      <Input id="note-input" placeholder="ex. 7:30" name='timestampe'
+      ref={register()}
       />
 
-      <AddNoteButton onClick={addNote} >Add Note</AddNoteButton>
+      <AddNoteButton type='submit'>Add Note</AddNoteButton>
+      </form>
     </NotesWrapper>
   );
 };

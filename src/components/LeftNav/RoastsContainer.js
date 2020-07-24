@@ -69,6 +69,24 @@ const RoastContainerHeader = styled.div`
     background-color: ${(props) => props.theme.green};
     border-radius: 5px;
   }
+
+  .roastContainer__page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    background-color: ${(props) => props.theme.green};
+    border-radius: 5px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    &:hover {
+        opacity: .90;
+    }
+
+  }
 `;
 
 const RoastsContainer = () => {
@@ -98,6 +116,7 @@ const RoastsContainer = () => {
           <TiCoffee size="1.5em" />
           New
         </Link>
+
       </RoastContainerHeader>
       <input className="roastContainer__search" placeholder="Find a Roast..." />
       <RoastContainer>

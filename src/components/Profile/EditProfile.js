@@ -167,7 +167,6 @@ const EditProfile = ({
     }
   };
 
-  console.log(profileData);
   return (
     <Modal
       isOpen={openModal}

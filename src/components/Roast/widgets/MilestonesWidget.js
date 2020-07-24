@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { RoastContext } from "../../../context/RoastContext";
-import useInput from "../../../hooks/useInput";
-import { client } from "../../../utils/index";
+import { useForm } from "react-hook-form";
+import { client, ErrorMessage } from "../../../utils/index";
 import {toast} from 'react-toastify'
 import Widget from '../../../styles/Widget'
 import Button from '../../../styles/Button'
@@ -40,62 +40,63 @@ const MilestoneWrapper = styled(Widget)`
     .milestone-asterisk {
       color: ${(props) => props.theme.red};
     }
+
+    p {
+    color: ${(props) => props.theme.red};
+    bottom: -20px;
+  }
+
+  p::before {
+    display: inline;
+    content: "⚠ ";
+  }
 `;
 
 
 const MilestonesWidget = () => {
-  const timestamp = useInput("");
-  const roastTemp = useInput("");
-  const fanSpeed = useInput("");
-  const heatLevel = useInput("");
+  const { register, handleSubmit, errors } = useForm();
 
   const { roastData } = useContext(RoastContext);
 
-  const postMilestone = (e) => {
-    e.preventDefault();
-    if (!fanSpeed.value || !heatLevel.value) {
-        return toast.error('Must fill in all required fields')
-    }
-    const body = {timestamp: timestamp.value, fanSpeed: fanSpeed.value, heatLevel: heatLevel.value}
+  const postMilestone = (body) => {
     client(`/milestones/${roastData.id}`, {body})
     toast.success("Milestone recorded")
-    timestamp.setValue('')
-    fanSpeed.setValue('')
-    heatLevel.setValue('')
   };
   return (
     <MilestoneWrapper>
       <h1> Milestones</h1>
-      <form id="milestone-form" onSubmit={postMilestone}>
+      <form id="milestone-form" onSubmit={handleSubmit(postMilestone)}>
         <div className="milestone-data-section">
           <label htmlFor="milestone-timestamp">Timestamp</label>
           <Input
             id="milestone-timestamp"
-            value={timestamp.value}
             placeholder='ex. 7:30'
-            onChange={timestamp.onChange}
+            name='timestamp'
+            ref={register()}
           />
           <label htmlFor="milestone-timestamp">Roaster Temp</label>
           <Input
             id="milestone-roastTemp"
-            value={roastTemp.value}
             placeholder='ex. 360'
-            onChange={roastTemp.onChange}
+            name='roastTemp'
+            ref={register()}
           />
           <label htmlFor="milestone-fanSpeed">Fan Speed<span className="milestone-asterisk"> *</span></label>
           <Input
             id="milestone-fanSpeed"
-            value={fanSpeed.value}
             type="number"
-            onChange={fanSpeed.onChange}
+            name='fanSpeed'
+            ref={register({required: true})}
           />
+          <ErrorMessage error={errors.fanSpeed} />
           <label htmlFor="milestone-heatLevel">Heat Level<span className="milestone-asterisk"> *</span></label>
           <Input
             id="milestone-heatLevel"
-            value={heatLevel.value}
             type="number"
-            onChange={heatLevel.onChange}
+            name='heatLevel'
+            ref={register({required: true})}
           />
+          <ErrorMessage error={errors.heatLevel} />
         </div>
 
       </form>

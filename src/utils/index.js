@@ -84,6 +84,7 @@ export const makeFeed = (feedData) => {
 };
 
 export const ErrorMessage = ({ error }) => {
+    console.log(error)
   if (error) {
     switch (error.type) {
       case "required":
@@ -91,7 +92,7 @@ export const ErrorMessage = ({ error }) => {
       case "minLength":
         return <p>Must be at least 2 characters</p>;
       case "pattern":
-        return <p>Must be a valid email address</p>;
+        return <p>Can not have any spaces</p>;
       case "min":
         return <p>Minmium age is 18</p>;
       case "validate":
