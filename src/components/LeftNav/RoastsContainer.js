@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { TiCoffee } from "react-icons/ti";
 import { FiCoffee } from "react-icons/fi";
-import {client} from '../../utils/index'
-import {UserContext} from '../../context/UserContext'
+import { client } from "../../utils/index";
+import { UserContext } from "../../context/UserContext";
 
 const RoastsContainerWrapper = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const RoastContainer = styled.div`
   }
 
   .individualRoast:hover {
-      text-decoration: underline;
+    text-decoration: underline;
   }
 
   a {
@@ -69,42 +69,56 @@ const RoastContainerHeader = styled.div`
     background-color: ${(props) => props.theme.green};
     border-radius: 5px;
   }
-`
+`;
 
 const RoastsContainer = () => {
+  const { user } = useContext(UserContext);
+  const [roasts, setRoasts] = useState([]);
 
-    const {user} = useContext(UserContext)
-    const [roasts, setRoasts] = useState([])
+  useEffect(() => {
+    (async () => {
+      const { roasts_list } = await client(`/roasts/initial`);
+      setRoasts(roasts_list);
+    })();
+  }, [user]);
 
-    useEffect(() => {
-        (async() => {
-           const {roasts_list} = await client(`/roasts`)
-            setRoasts(roasts_list)
-        })()
-    }, [user])
+  const showMore = () => {
+    (async () => {
+        const { roasts_list } = await client(`/roasts`);
+        setRoasts(roasts_list);
+      })();
+  };
 
-  if (!roasts) return null
+  if (!roasts) return null;
   return (
     <RoastsContainerWrapper>
       <RoastContainerHeader>
         <h2>Roasts</h2>
-        <Link className="roastContainer__newroast" to="/new">
+        <Link className="roastContainer__page" to="/new">
           <TiCoffee size="1.5em" />
           New
         </Link>
       </RoastContainerHeader>
       <input className="roastContainer__search" placeholder="Find a Roast..." />
       <RoastContainer>
-          {roasts.map(roast => {
-              const {name: roastName, id} = roast
-              return (
-                <div key={`roast-${id}`} className="individualRoast">
-                <FiCoffee />
-                <Link to={`/r/${user.username}/${roastName}`}>{`${user.username}/${roastName}`}</Link>
-              </div>
-              )
-          })}
-        <div className="Roasts__show-more">Show more</div>
+        {roasts.map((roast) => {
+          const { name: roastName, id } = roast;
+          return (
+            <div key={`roast-${id}`} className="individualRoast">
+              <FiCoffee />
+              <Link
+                to={`/r/${user.username}/${roastName}`}
+              >{`${user.username}/${roastName}`}</Link>
+            </div>
+          );
+        })}
+        {roasts.length > 6 ? (
+          ""
+        ) : (
+          <div onClick={showMore} className="Roasts__show-more">
+            Show more
+          </div>
+        )}
       </RoastContainer>
     </RoastsContainerWrapper>
   );
