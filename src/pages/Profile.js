@@ -36,7 +36,7 @@ const Profile = (props) => {
     if (isLoading) return 'loading...'
   return (
     <ProfileWrapper>
-      <ProfileUserDetails profileData={profileData}/>
+      <ProfileUserDetails setProfileData={setProfileData} profileData={profileData}/>
       <div className="profile-main">
         <ProfileHeader profileData={profileData}/>
         <Switch>

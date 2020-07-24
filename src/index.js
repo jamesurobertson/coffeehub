@@ -5,12 +5,10 @@ import { UserProvider } from "./context/UserContext";
 import { RoastProvider } from "./context/RoastContext";
 
 ReactDOM.render(
-  <React.StrictMode>
     <UserProvider>
       <RoastProvider>
         <App />
       </RoastProvider>
-    </UserProvider>
-  </React.StrictMode>,
+    </UserProvider>,
   document.getElementById("root")
 );

@@ -55,7 +55,7 @@ const Graph = (props) => {
   }
   return (
       <GardenWrapper>
-      <svg width={850} height={170}>
+      <svg width={850} height={150}>
       <Days {...attrs} />
       <Months {...attrs}/>
     </svg>

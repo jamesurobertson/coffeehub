@@ -19,7 +19,7 @@ const Interval = ({time, setTime}) => {
             .join(":")
     }
     return (
-        <div style={{fontSize: '40px'}}>{MMSS(time)}</div>
+        <div style={{fontSize: '40px', margin: '0 10px'}}>{MMSS(time)}</div>
     )
 }
 

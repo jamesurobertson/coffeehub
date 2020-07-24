@@ -1,12 +1,12 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Button from "../../styles/Button";
 import { AiOutlineCoffee } from "react-icons/ai";
 import { BsPeopleFill } from "react-icons/bs";
-import {UserContext} from '../../context/UserContext'
-import {client} from '../../utils/index'
-import {toast} from 'react-toastify'
-import EditProfile from './EditProfile'
+import { UserContext } from "../../context/UserContext";
+import { client } from "../../utils/index";
+import { toast } from "react-toastify";
+import EditProfile from "./EditProfile";
 
 const UserDetailsWrapper = styled.div`
   display: flex;
@@ -39,23 +39,23 @@ const UserDetailsWrapper = styled.div`
   }
 
   .profile-data-numbers {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    flex-wrap: wrap;
+    p {
       display: flex;
-      align-items: center;
-      font-size: 12px;
-      flex-wrap: wrap;
-      p {
-          display: flex;
-          align-items: flex-start;
-        color: ${(props) => props.theme.secondaryColor};
-      }
+      align-items: flex-start;
+      color: ${(props) => props.theme.secondaryColor};
+    }
 
-      .profile-data-seperator {
-          margin: 0 5px;
-      }
+    .profile-data-seperator {
+      margin: 0 5px;
+    }
 
-      .profile-data-icon {
-          margin-right: 6px;
-      }
+    .profile-data-icon {
+      margin-right: 6px;
+    }
   }
 `;
 
@@ -65,61 +65,73 @@ const FollowButton = styled(Button)`
   background-color: ${(props) => props.theme.green};
 `;
 
-const ProfileUserDetails = ({profileData}) => {
-    const {user, setUser} = useContext(UserContext)
-    const [openModal, setOpenModal] = useState(true)
+const ProfileUserDetails = ({ setProfileData, profileData }) => {
+  const { user, setUser } = useContext(UserContext);
+  const [openModal, setOpenModal] = useState(false);
 
-    const followUser = async () => {
-    const res = await client(`/users/follow/${profileData.username}`, {method:'POST'})
-    const updatedFollowing = [...user.following, res]
-    setUser({...user, following: updatedFollowing})
-    toast.success(`Followed ${profileData.username}`)
-    }
+  const followUser = async () => {
+    const res = await client(`/users/follow/${profileData.username}`, {
+      method: "POST",
+    });
+    const updatedFollowing = [...user.following, res];
+    setUser({ ...user, following: updatedFollowing });
+    toast.success(`Followed ${profileData.username}`);
+  };
 
-    const unfollowUser = () => {
-        client(`/users/follow/${profileData.username}`, {method:'DELETE'})
-        toast.success(`Unfollowed ${profileData.username}`)
+  const unfollowUser = () => {
+    client(`/users/follow/${profileData.username}`, { method: "DELETE" });
+    toast.success(`Unfollowed ${profileData.username}`);
 
-        const updatedFollowing = user.following.filter(follow => follow.userFollowedId !== profileData.id)
-        setUser({...user, following: updatedFollowing})
-    }
-    const editProfile = () => {
-        setOpenModal(true)
-    }
+    const updatedFollowing = user.following.filter(
+      (follow) => follow.userFollowedId !== profileData.id
+    );
+    setUser({ ...user, following: updatedFollowing });
+};
+const editProfile = () => {
+    setOpenModal(true);
+};
 
-    const closeModal = () => {
-        setOpenModal(false)
-    }
+const closeModal = () => {
+    setOpenModal(false);
+};
 
   return (
     <UserDetailsWrapper>
       <img src={profileData.profileImageUrl} alt="avatar" />
       <h1 className="profile-fullname">{profileData.fullName}</h1>
       <p className="profile-username">{profileData.username}</p>
-      <p className="profile-bio">
-        {profileData.bio}
-      </p>
-      {profileData.username === user.username ?
-      <FollowButton onClick={editProfile}>Edit Profile</FollowButton> :
-      user.following.some(user => user.userFollowedId === profileData.id) ?
-      <FollowButton onClick={unfollowUser}>Unfollow</FollowButton> :
-      <FollowButton onClick={followUser}>Follow</FollowButton> }
-      {openModal ? <EditProfile profileData={profileData} openModal={openModal} closeModal={closeModal}/> : ''}
+      <p className="profile-bio">{profileData.bio}</p>
+      {profileData.username === user.username ? (
+        <FollowButton onClick={editProfile}>Edit Profile</FollowButton>
+      ) : user.following.some(
+          (user) => user.userFollowedId === profileData.id
+        ) ? (
+        <FollowButton onClick={unfollowUser}>Unfollow</FollowButton>
+      ) : (
+        <FollowButton onClick={followUser}>Follow</FollowButton>
+      )}
+      {openModal ? (
+        <EditProfile
+          setProfileData={setProfileData}
+          profileData={profileData}
+          openModal={openModal}
+          closeModal={closeModal}
+        />
+      ) : (
+        ""
+      )}
       <div className="profile-data-numbers">
         <p>
-          <BsPeopleFill className='profile-data-icon'/>{' '}{profileData.followers.length} Followers
+          <BsPeopleFill className="profile-data-icon" />{" "}
+          {profileData.followers.length} Followers
         </p>
-        <div className='profile-data-seperator'>
-            ·
-            </div>
+        <div className="profile-data-seperator">·</div>
         <p> {profileData.following.length} Following</p>
-        <div className='profile-data-seperator'>
-
-            ·
-            </div>
+        <div className="profile-data-seperator">·</div>
         <p>
           {" "}
-          <AiOutlineCoffee className='profile-data-icon' /> {profileData.cups.length}
+          <AiOutlineCoffee className="profile-data-icon" />{" "}
+          {profileData.cups.length}
         </p>
       </div>
     </UserDetailsWrapper>

@@ -69,6 +69,7 @@ const TimestampsWidget = () => {
     const newTime = await client(`/timestamps/${roastData.id}`, { body });
     const newStamps = [...roastData.timestamps, newTime];
     setRoastData({ ...roastData, timestamps: newStamps });
+    temp.setValue('')
   };
 
   const startRoast = () => {
@@ -126,7 +127,7 @@ const TimestampsWidget = () => {
         {showTime ? (
           <Interval time={time} setTime={setTime} />
         ) : (
-          <span style={{ fontSize: "40px" }}>00:00</span>
+          <span style={{ fontSize: "40px", margin:'0 10px' }}>00:00</span>
         )}
         <Button
           onClick={addIncrement}

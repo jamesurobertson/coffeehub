@@ -39,7 +39,7 @@ const RoastCardWrapper = styled.div`
 `;
 
 const RoastCard = ({ roast }) => {
-    const {user} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     const [cupList, setCupList] = useState(user.cups)
 
     const cupRoast = async () => {
@@ -47,6 +47,7 @@ const RoastCard = ({ roast }) => {
         const updatedCups = [...user.cups, res]
         toast.success(`Cupped ${roast.roastUser.username}/${roast.name}`)
         setCupList(updatedCups)
+        setUser({...user, cups: updatedCups})
 }
 
     const uncupRoast = () => {
@@ -54,8 +55,10 @@ const RoastCard = ({ roast }) => {
         toast.success(`Uncupped ${roast.roastUser.username}/${roast.name}`)
         const updatedCups = cupList.filter(cup => cup.roastId !== roast.id)
         setCupList(updatedCups)
+        setUser({...user, cups: updatedCups})
 
     }
+
   return (
     <RoastCardWrapper>
       <div className="roastCard-details">
