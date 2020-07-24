@@ -28,6 +28,7 @@ const FollowCard = ({ details }) => {
 
     }
     if (!details) return null;
+    console.log('user', details)
   return (
     <FollowCardWrapper>
       <img

@@ -55,7 +55,6 @@ const RoastCard = ({ roast }) => {
         setUser({...user, cups: updatedCups})
 
     }
-
   return (
     <RoastCardWrapper>
       <div className="roastCard-details">

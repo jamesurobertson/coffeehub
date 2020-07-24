@@ -1,5 +1,6 @@
 import React, {useEffect, useContext} from 'react'
 import styled from 'styled-components'
+import {useParams} from 'react-router-dom'
 import RoastSetUp from '../components/Roast/RoastSetUp'
 import GraphSetUp from '../components/Roast/GraphSetUp'
 import RoastHeader from '../components/Roast/RoastHeader'
@@ -18,15 +19,15 @@ const Roast = (props) => {
 
     const {setRoastData, roastData} = useContext(RoastContext)
     const {user} = useContext(UserContext)
+    const {username, roastName} = useParams()
+
     useEffect(() => {
         (async () => {
-            const {2: username, 3: roastName} = props.location.pathname.split('/')
-
             const roast = await client(`/roasts/${username}/${roastName}`)
             setRoastData(roast)
 
         })()
-    }, [props.location, setRoastData])
+    }, [roastName, username, setRoastData])
 
     if (!roastData) return null
     return (

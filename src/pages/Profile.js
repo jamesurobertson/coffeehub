@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, useParams} from 'react-router-dom'
 import styled from "styled-components";
 import ProfileUserDetails from "../components/Profile/ProfileUserDetails";
 import ProfileMain from "../components/Profile/ProfileMain";
@@ -22,16 +22,16 @@ const ProfileWrapper = styled.div`
 const Profile = (props) => {
     const [isLoading, setIsLoading] = useState(true)
     const [profileData, setProfileData] = useState('')
+    const {username, roastName} = useParams()
     useEffect(() => {
 
         (async () => {
-            const profileUsername = props.location.pathname.split('/')[2]
-            const {user} = await client(`/users/${profileUsername}`)
+            const {user} = await client(`/users/${username}`)
             setProfileData(user)
             setIsLoading(false)
 
         })()
-    },[props.location.pathname])
+    },[username])
 
     if (isLoading) return 'loading...'
   return (

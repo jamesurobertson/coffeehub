@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TiCoffee } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import Search from './Search'
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -41,10 +42,7 @@ const Header = () => {
           <TiCoffee color="white" size="3em" />
         </Link>
         <form>
-          <input
-            className="header__search"
-            placeholder="Search or jump to..."
-          />
+          <Search/>
         </form>
       </div>
     </HeaderWrapper>

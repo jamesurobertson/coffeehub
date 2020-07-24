@@ -47,7 +47,7 @@ const AllRoasts = ({ profileData }) => {
     setRoastsArray(searchArray);
   };
 
-  if (roastsArray.length === 0)
+  if (profileData.roasts.length === 0)
     return (
 
       <NoRoasts>
