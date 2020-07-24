@@ -102,6 +102,11 @@ const NewRoast = (props) => {
     props.history.push(`/r/${user.username}/${roast.name}`);
   };
 
+  const validateRoastName = async (value) => {
+    const res = await client(`/roasts/validate/${value.toLowerCase()}`);
+    return res
+  }
+
   return (
     <NewRoastWrapper>
       <div className="newRoast__header">
@@ -124,7 +129,7 @@ const NewRoast = (props) => {
                 id="form-roastname"
                 autoComplete="off"
                 name="name"
-                ref={register({ required: true, pattern: /^\S*$/ })}
+                ref={register({ required: true, pattern: /^[a-zA-Z0-9_.-]*$/, validate: validateRoastName })}
               />
               <ErrorMessage error={errors.name} />
             </div>

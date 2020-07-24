@@ -92,11 +92,11 @@ export const ErrorMessage = ({ error }) => {
       case "minLength":
         return <p>Must be at least 2 characters</p>;
       case "pattern":
-        return <p>Can not have any spaces</p>;
+        return <p>No spaces or special characters except for dashes, underscores, and periods.</p>;
       case "min":
         return <p>Minmium age is 18</p>;
       case "validate":
-        return <p>Username is already used</p>;
+        return <p>Name already used</p>;
       default:
         return null;
     }
