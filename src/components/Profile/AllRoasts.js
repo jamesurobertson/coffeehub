@@ -67,7 +67,7 @@ const AllRoasts = ({ profileData }) => {
         {user.id === profileData.id ? <NewRoast>New</NewRoast> : ""}
       </div>
       {roastsArray.map((roast) => {
-        return <RoastCard roast={roast} />;
+        return <RoastCard key={roast.id} roast={roast} />;
       })}
     </RoastsWrapper>
   );

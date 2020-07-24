@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import Button from "../../styles/Button";
-import { AiOutlineCoffee } from "react-icons/ai";
+import { FiCoffee } from "react-icons/fi";
 import { BsPeopleFill } from "react-icons/bs";
 import { UserContext } from "../../context/UserContext";
 import { client } from "../../utils/index";
@@ -130,7 +130,7 @@ const closeModal = () => {
         <div className="profile-data-seperator">·</div>
         <p>
           {" "}
-          <AiOutlineCoffee className="profile-data-icon" />{" "}
+          <FiCoffee className="profile-data-icon" />{" "}
           {profileData.cups.length}
         </p>
       </div>

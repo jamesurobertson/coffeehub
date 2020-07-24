@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { AiOutlineCoffee } from "react-icons/ai";
@@ -40,21 +40,18 @@ const RoastCardWrapper = styled.div`
 
 const RoastCard = ({ roast }) => {
     const {user, setUser} = useContext(UserContext)
-    const [cupList, setCupList] = useState(user.cups)
 
     const cupRoast = async () => {
         const res = await client(`/roasts/cup/${roast.id}`, {method:'POST'})
         const updatedCups = [...user.cups, res]
         toast.success(`Cupped ${roast.roastUser.username}/${roast.name}`)
-        setCupList(updatedCups)
         setUser({...user, cups: updatedCups})
 }
 
     const uncupRoast = () => {
         client(`/roasts/cup/${roast.id}`, {method:'DELETE'})
         toast.success(`Uncupped ${roast.roastUser.username}/${roast.name}`)
-        const updatedCups = cupList.filter(cup => cup.roastId !== roast.id)
-        setCupList(updatedCups)
+        const updatedCups = user.cups.filter(cup => cup.roastId !== roast.id)
         setUser({...user, cups: updatedCups})
 
     }
@@ -68,7 +65,7 @@ const RoastCard = ({ roast }) => {
        <RoastDetails origin={roast.origin.name} numCups={roast.cups.length}/>
        </div>
       <div>
-      {cupList.some(cup => cup.roastId === roast.id) ?
+      {user.cups.some(cup => cup.roastId === roast.id) ?
       <Button onClick={uncupRoast}><AiOutlineCoffee /> Uncup</Button> :
       <Button onClick={cupRoast}><AiOutlineCoffee /> Cup</Button> }
       </div>

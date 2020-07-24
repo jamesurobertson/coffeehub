@@ -50,7 +50,7 @@ const ProfileMain = ({ profileData: user }) => {
         ) : (
           ""
         )}
-        {user.roasts.slice(0, 5).map((roast, i) => {
+        {user.roasts.slice(0, 6).map((roast, i) => {
           return <FeaturedRoast roast={roast} key={i} />;
         })}
       </div>

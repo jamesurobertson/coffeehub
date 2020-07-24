@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AiOutlineCoffee } from "react-icons/ai";
+import { FiCoffee } from "react-icons/fi";
 import originColors from '../styles/OriginColors'
 
 const DetailsWrapper = styled.div`
@@ -9,10 +9,14 @@ const DetailsWrapper = styled.div`
 
     .roast-data {
         display: flex;
-        align-items: center;
         color: ${(props) => props.theme.secondaryColor};
         margin-right: 10px;
         font-size: 12px;
+
+        .coffee-icon {
+            margin-right: 6px;
+            size: 1rem;
+        }
     }
 
     .originColor {
@@ -32,7 +36,7 @@ const RoastDetails = ({origin, numCups}) => {
                     <div style={{backgroundColor: `${originColors[`${origin}`]}`}} className='originColor'/>
                     {origin}
                     </div>
-                <div className='roast-data'><AiOutlineCoffee/>{' '}{numCups}</div>
+                <div className='roast-data'><FiCoffee className='coffee-icon' />{' '}{numCups}</div>
         </DetailsWrapper>
     )
 }
