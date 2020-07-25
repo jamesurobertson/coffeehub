@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import styled from "styled-components";
 import { TiCoffee } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import Search from './Search'
+import Search from "./Search";
+import {UserContext} from '../../context/UserContext'
 
 const HeaderWrapper = styled.div`
   display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
@@ -16,7 +19,7 @@ const HeaderWrapper = styled.div`
   z-index: 100;
 
   .header__search {
-      margin-left: 10px;
+    margin-left: 10px;
     padding: 5px 10px;
     width: 325px;
     border: none;
@@ -30,22 +33,35 @@ const HeaderWrapper = styled.div`
     color: ${(props) => props.theme.white};
     opacity: 0.7;
   }
+
+  img {
+      width: 30px;
+      height: auto;
+      border-radius: 50%;
+
+  }
 `;
 
 const Header = () => {
+    const {user} = useContext(UserContext)
+
+    console.log(user)
   return (
-      <>
-      <div style={{height: '52px'}}/>
-    <HeaderWrapper>
-      <div style={{ display: "flex", alignItems: 'center' }}>
-        <Link to="/">
-          <TiCoffee color="white" size="3em" />
+    <>
+      <div style={{ height: "52px" }} />
+      <HeaderWrapper>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Link to="/">
+            <TiCoffee color="white" size="3em" />
+          </Link>
+          <form>
+            <Search />
+          </form>
+        </div>
+        <Link to={`/p/${user.username}`}>
+        <img src={user.profileImageUrl} alt='profile-avatar'/>
         </Link>
-        <form>
-          <Search/>
-        </form>
-      </div>
-    </HeaderWrapper>
+      </HeaderWrapper>
     </>
   );
 };
