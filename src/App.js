@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Routes from './Routes'
 import Auth from './components/Auth'
 import GlobalStyle from "./styles/GlobalStyle";
-import { lightTheme } from "./styles/theme";
+import { lightTheme, darkTheme } from "./styles/theme";
 import { ThemeProvider } from "styled-components";
 import { UserContext } from "./context/UserContext";
 

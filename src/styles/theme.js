@@ -19,8 +19,8 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    bg: '#24292e',
-    bgSecondary: 'blue',
+    bg: '#121212',
+    bgSecondary: 'RGBA(18, 18, 18, .9)',
     bgDark: '#404448',
     primaryColor: '#f6f8fa',
     secondaryColor: '#f6f8fa',

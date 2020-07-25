@@ -9,7 +9,8 @@ import {client} from '../../utils/index'
 import {toast} from 'react-toastify'
 import RoastDetails from '../RoastDetails'
 
-const CupCardWrapper = styled(FeedCard)``
+const CupCardWrapper = styled(FeedCard)`
+`
 
 const CupCard = ({ details }) => {
     const {user, setUser} = useContext(UserContext)
