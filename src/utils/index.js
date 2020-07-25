@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export const client = (endpoint, { body, ...customConfig } = {}) => {
   const token = localStorage.getItem("COFFEEHUB_ACCESS_TOKEN");
@@ -51,15 +51,25 @@ export const makeFeed = (feedData) => {
         origin: { name: beanOrigin },
         numLikes,
         createdAt,
-        user: {username: roastUsername},
-        id: roastId
+        user: { username: roastUsername },
+        id: roastId,
+        cupTime,
       } = roast;
 
       entry = {
         ...entry,
-        ...{ name, description, beanOrigin, numLikes, createdAt, roastUsername, roastId },
+        ...{
+          name,
+          description,
+          beanOrigin,
+          numLikes,
+          createdAt,
+          roastUsername,
+          roastId,
+          time: cupTime,
+        },
       };
-      entries.push({cup: entry});
+      entries.push({ cup: entry });
     });
 
     followedUsers.forEach((user) => {
@@ -71,16 +81,37 @@ export const makeFeed = (feedData) => {
         username: userFollowed,
         profileImageUrl: userFollowedImg,
         bio,
-        id
+        id,
+        followTime,
       } = user;
       entry = {
         ...entry,
-        ...{ numRoasts, numFollowers, fullName, userFollowed, userFollowedImg, bio, id},
+        ...{
+          numRoasts,
+          time: followTime,
+          numFollowers,
+          fullName,
+          userFollowed,
+          userFollowedImg,
+          bio,
+          id,
+        },
       };
-      entries.push({follow:entry})
+      entries.push({ follow: entry });
     });
   });
-  return entries
+
+  const sortedEntries = entries.sort((a, b) => {
+    let timeA
+    let timeB
+    a.cup ? timeA = a.cup.time : timeA = a.follow.time
+    b.cup ? timeB = b.cup.time : timeB = b.follow.time
+
+    console.log(new Date(timeA))
+    console.log(new Date(timeB))
+    return new Date(timeA) > new Date(timeB) ? -1 : 1
+  });
+  return sortedEntries
 };
 
 export const ErrorMessage = ({ error }) => {
@@ -91,7 +122,12 @@ export const ErrorMessage = ({ error }) => {
       case "minLength":
         return <p>Must be at least 2 characters</p>;
       case "pattern":
-        return <p>No spaces or special characters except for dashes, underscores, and periods.</p>;
+        return (
+          <p>
+            No spaces or special characters except for dashes, underscores, and
+            periods.
+          </p>
+        );
       case "min":
         return <p>Minmium age is 18</p>;
       case "validate":
@@ -102,4 +138,4 @@ export const ErrorMessage = ({ error }) => {
   }
 
   return null;
-}
+};
