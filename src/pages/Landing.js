@@ -22,7 +22,9 @@ const LandingWrapper = styled.div`
       background-repeat: no-repeat;
     background-position: center;
     position: relative;
+
   }
+
 `;
 
 const Landing = ({ login, signup }) => {

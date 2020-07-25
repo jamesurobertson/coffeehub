@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Button from '../../styles/Button'
+import { TiCoffee } from "react-icons/ti";
 
 const HeaderWrapper = styled.div`
     display: flex;
@@ -38,7 +39,7 @@ const LandingHeader = ({login, signup}) => {
         <HeaderWrapper>
             <HeaderInner>
                 <div>
-
+                <TiCoffee color="white" size="3em"/>
                 </div>
                 <div>
                 <Button className='signin-button' onClick={login}>Sign in</Button>

@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import Input from "../../styles/Input";
 import Button from "../../styles/Button";
+import {toast} from 'react-toastify';
 import { client, ErrorMessage } from "../../utils/index";
+import { UserContext } from "../../context/UserContext";
 
 const FormWrapper = styled.div`
   display: flex;
@@ -61,15 +63,34 @@ const FormWrapper = styled.div`
 `;
 
 const SignupForm = () => {
+    const {user, setUser} = useContext(UserContext)
+
   const { register, handleSubmit, errors } = useForm();
 
-  const signup = (body) => {
-    console.log(body);
+  const signup = async (body) => {
+    try {
+        const {token, user} = await client('/session/signup', {body})
+
+        setTimeout(()=> {
+            localStorage.setItem('COFFEEHUB_ACCESS_TOKEN', token)
+            setUser(user)
+        }, 500)
+
+    } catch (err) {
+        toast.error(err.message)
+    }
   };
 
-  const validateUser = () => {};
+  const validateUsername = async (value) => {
+    const res = await client(`/session/validateuser/${value.toLowerCase()}`);
+    return res;
+  };
 
-  const validateEmail = () => {};
+  const validateEmail = async (value) => {
+    console.log(value)
+  const res = await client(`/session/validateemail/${value.toLowerCase()}`);
+  return res;
+  }
 
   return (
     <FormWrapper>
@@ -79,9 +100,21 @@ const SignupForm = () => {
           <Input
             id="username"
             name="username"
-            ref={register({ required: true, validate: validateUser })}
+            ref={register({ required: true, validate: validateUsername })}
           />
           <ErrorMessage error={errors.username} />
+        </div>
+        <div>
+          <label htmlFor="fullName">Full Name</label>
+          <Input
+            id="fullName"
+            name="fullName"
+            ref={register({
+              required: true,
+              minLength: 2,
+            })}
+          />
+          <ErrorMessage error={errors.fullName} />
         </div>
         <div>
           <label htmlFor="email">Email</label>

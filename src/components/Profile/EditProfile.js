@@ -143,7 +143,6 @@ const EditProfile = ({
 
   const postImage = async (formData) => {
     if (!formData) return;
-    console.log(formData.get("file"));
     try {
       const token = localStorage.getItem("COFFEEHUB_ACCESS_TOKEN");
 

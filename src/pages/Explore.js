@@ -22,7 +22,6 @@ const Explore = () => {
 
   useEffect(() => {
       (async () => {
-        console.log('search param', searchParam)
         setLoading(true)
       const res = await client(`/explore/${searchParam}`);
       setRoastCount(res.roasts);

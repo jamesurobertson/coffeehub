@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { TiCoffee } from "react-icons/ti";
 import { FiCoffee } from "react-icons/fi";
 import { client } from "../../utils/index";
+import NoRoasts from './NoRoasts'
 import { UserContext } from "../../context/UserContext";
 
 const RoastsContainerWrapper = styled.div`
@@ -108,6 +109,7 @@ const RoastsContainer = () => {
   };
 
   if (!roasts) return null;
+  if (roasts.length === 0) return <NoRoasts/>
   return (
     <RoastsContainerWrapper>
       <RoastContainerHeader>
@@ -132,11 +134,12 @@ const RoastsContainer = () => {
           );
         })}
         {roasts.length > 6 ? (
-          ""
-        ) : (
           <div onClick={showMore} className="Roasts__show-more">
             Show more
           </div>
+
+        ) :  (
+            ''
         )}
       </RoastContainer>
     </RoastsContainerWrapper>

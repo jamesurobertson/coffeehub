@@ -25,7 +25,6 @@ const ExploreMain = ({ searchType, searchParam }) => {
   useEffect(() => {
     (async () => {
       const { list, type } = await client(`/explore/${searchType}/${searchParam}`);
-      console.log(`search list ${searchType}`, list);
       setSearchList(list);
       setResultsType(type)
     })();

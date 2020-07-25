@@ -84,7 +84,6 @@ export const makeFeed = (feedData) => {
 };
 
 export const ErrorMessage = ({ error }) => {
-    console.log(error)
   if (error) {
     switch (error.type) {
       case "required":

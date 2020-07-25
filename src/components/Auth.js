@@ -4,7 +4,7 @@ import Login from "../pages/Login";
 import Landing from "../pages/Landing";
 
 const Auth = () => {
-  const [auth, setAuth] = useState("SIGNUP");
+  const [auth, setAuth] = useState("LANDING");
 
   const login = () => setAuth("LOGIN");
   const signup = () => setAuth("SIGNUP");

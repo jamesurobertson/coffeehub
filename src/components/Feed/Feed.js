@@ -4,12 +4,18 @@ import CupCard from './CupCard'
 import FollowCard from './FollowCard'
 import {client, makeFeed} from '../../utils/index'
 import {UserContext} from '../../context/UserContext'
+import DiscoverCard from './DiscoverCard'
 
 const FeedWrapper = styled.div`
     position: relative;
     margin: 0 20px;
     width: 100%;
+    margin-left: calc(33vw + 20px);
     padding-top: 20px;
+
+    @media screen and (min-width: 1060px) {
+        margin-left: 370px;
+    }
 
     a:hover {
         color: ${(props) => props.theme.blue};
@@ -33,6 +39,8 @@ const Feed = () => {
     if (loading) {
         return <div> Loading...</div>
     }
+    console.log(user)
+    if (user.following.length === 0) return <DiscoverCard/>
     return (
 
         <FeedWrapper>

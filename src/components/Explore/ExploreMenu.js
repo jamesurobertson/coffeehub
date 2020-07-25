@@ -38,7 +38,6 @@ const MenuWrapper = styled.div`
 
 const ExploreMenu = ({ searchParam, roastCount, userCount, originCount }) => {
 
-    console.log(searchParam)
   return (
     <MenuWrapper>
         <Link to={`/explore/${searchParam}/roast`}>
