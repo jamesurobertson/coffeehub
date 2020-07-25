@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../styles/Button";
 import SignupForm from "../components/Landing/SignupForm";
+import LandingHeader from "../components/Landing/LandingHeader";
 import Slogan from "../components/Landing/Slogan";
 
 const LandingWrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
-  margin-top: 75px;
   background-color: ${(props) => props.theme.black};
-  padding: 64px 0;
 
 
   .banner {
+  padding: 64px 0;
+  margin-top: 54px;
       display: flex;
       width: 100%;
       max-width: 1028px;
@@ -27,7 +27,8 @@ const LandingWrapper = styled.div`
 
 const Landing = ({ login, signup }) => {
   return (
-    <LandingWrapper>
+      <LandingWrapper>
+      <LandingHeader login={login} signup={signup}/>
       <div className="banner">
         <Slogan />
         <SignupForm />

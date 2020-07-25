@@ -27,7 +27,7 @@ const Landing = ({ login, signup }) => {
       <h1> Built for coffee roasters</h1>
       <p>
         CoffeeHub is a platform for aiding you in all of your roasting
-        needs. From finding different roast profiles, to tools to aid you during your roast, CoffeeHub is built for you.
+        needs. From finding different roast profiles, to tools to help you during the roast, CoffeeHub is built for you.
       </p>
     </SloganWrapper>
   );
