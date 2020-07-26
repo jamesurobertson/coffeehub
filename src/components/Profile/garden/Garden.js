@@ -23,7 +23,8 @@ const Graph = (props) => {
         space = 2,
         padX = 0,
         padY = 30,
-        roasts
+        roasts,
+        setActivity
     } = props
 
   const values = [];
@@ -51,7 +52,7 @@ const Graph = (props) => {
 
 
   const attrs = {
-     values, size, space, padX, padY, roasts
+     values, size, space, padX, padY, roasts, setActivity
   }
   return (
       <GardenWrapper>

@@ -107,8 +107,6 @@ export const makeFeed = (feedData) => {
     a.cup ? timeA = a.cup.time : timeA = a.follow.time
     b.cup ? timeB = b.cup.time : timeB = b.follow.time
 
-    console.log(new Date(timeA))
-    console.log(new Date(timeB))
     return new Date(timeA) > new Date(timeB) ? -1 : 1
   });
   return sortedEntries

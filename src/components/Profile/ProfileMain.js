@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Garden from "./garden/Garden";
 import FeaturedRoast from "./FeaturedRoast";
@@ -39,6 +39,7 @@ const MainWrapper = styled.div`
 `;
 
 const ProfileMain = ({ profileData: user }) => {
+    const [activity, setActivity] = useState(null)
   return (
     <MainWrapper>
       <div> Featured Roasts</div>
@@ -57,9 +58,9 @@ const ProfileMain = ({ profileData: user }) => {
       <div>{user.roasts.length} Roasts in the last year</div>
 
       <div className="garden-container">
-        <Garden roasts = {user.roasts}/>
+        <Garden roasts = {user.roasts} setActivity={setActivity}/>
       </div>
-      <ActivityLog roasts={user.roasts} />
+      <ActivityLog roasts={user.roasts} activity={activity} />
     </MainWrapper>
   );
 };

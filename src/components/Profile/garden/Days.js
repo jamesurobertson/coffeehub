@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { formatDate } from "../../../utils/garden";
 
-const Days = ({ values, size, space, padX, padY, roasts }) => {
+const Days = ({ values, size, space, padX, padY, roasts, setActivity }) => {
     const [roastDates, setRoastDates] = useState([])
 
-  const click = (e) => {
+  const click = (e, date) => {
+      console.log(date)
+      setActivity(date)
   };
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const Days = ({ values, size, space, padX, padY, roasts }) => {
                   fill={sameDay.length > 0 ? "#815839" : "#9be9a8"}
                   data-count={d.count}
                   data-date={date}
-                  onClick={click}
+                  onClick={(e) => click(e, d.date)}
                 >
                   <title>{`${sameDay.length || 'No'} roasts on ${date}`}</title>
                 </rect>
