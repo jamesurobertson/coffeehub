@@ -6,6 +6,7 @@ import ProfileMain from "../components/Profile/ProfileMain";
 import ProfileHeader from "../components/Profile/ProfileHeader";
 import AllRoasts from "../components/Profile/AllRoasts";
 import { client } from "../utils/index";
+import Loader from '../components/Loader'
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const Profile = (props) => {
     })();
   }, [username]);
 
-  if (isLoading) return null;
+  if (isLoading) return <Loader/>
   return (
       <ProfileWrapper>
         <ProfileUserDetails

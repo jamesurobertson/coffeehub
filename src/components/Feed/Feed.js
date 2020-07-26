@@ -5,6 +5,7 @@ import FollowCard from './FollowCard'
 import {client, makeFeed} from '../../utils/index'
 import {UserContext} from '../../context/UserContext'
 import DiscoverCard from './DiscoverCard'
+import CardLoader from '../Loaders/CardLoader'
 
 const FeedWrapper = styled.div`
     position: relative;
@@ -32,15 +33,15 @@ const Feed = () => {
             const {feed} = await client(`/users/feed`)
             const list = makeFeed(feed)
             setFeedList(list)
-            setLoading(false)
+            setTimeout(() => {
+                setLoading(false)
+
+            }, 1000)
         })()
     }, [setFeedList, setLoading, user])
 
-    if (loading) {
-        return <div style={{marginLeft: 'calc(33vw + 20px)'}}> Loading...</div>
-    }
-    console.log(user)
     if (user.following.length === 0) return <DiscoverCard/>
+    if (loading) return <CardLoader/>
     return (
 
         <FeedWrapper>

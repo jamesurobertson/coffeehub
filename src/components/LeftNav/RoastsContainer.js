@@ -6,6 +6,7 @@ import { FiCoffee } from "react-icons/fi";
 import { client } from "../../utils/index";
 import NoRoasts from './NoRoasts'
 import { UserContext } from "../../context/UserContext";
+import Loader from '../Loader'
 
 const RoastsContainerWrapper = styled.div`
   display: flex;
@@ -94,12 +95,14 @@ const RoastsContainer = () => {
   const { user } = useContext(UserContext);
   const [roasts, setRoasts] = useState([]);
   const [displayShowMore, setDisplayShowMore] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     (async () => {
       const { roasts_list } = await client(`/roasts/initial`);
       setRoasts(roasts_list);
       if (roasts_list.length === 6) setDisplayShowMore(true)
+      setLoading(false)
     })();
   }, [user]);
 
@@ -113,6 +116,7 @@ const RoastsContainer = () => {
   };
 
   if (!roasts) return null;
+  if (loading) return <Loader/>
   if (roasts.length === 0) return <NoRoasts/>
   console.log(user)
   return (
