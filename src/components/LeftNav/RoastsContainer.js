@@ -93,11 +93,13 @@ const RoastContainerHeader = styled.div`
 const RoastsContainer = () => {
   const { user } = useContext(UserContext);
   const [roasts, setRoasts] = useState([]);
+  const [displayShowMore, setDisplayShowMore] = useState(false)
 
   useEffect(() => {
     (async () => {
       const { roasts_list } = await client(`/roasts/initial`);
       setRoasts(roasts_list);
+      if (roasts_list.length === 6) setDisplayShowMore(true)
     })();
   }, [user]);
 
@@ -105,11 +107,14 @@ const RoastsContainer = () => {
     (async () => {
         const { roasts_list } = await client(`/roasts`);
         setRoasts(roasts_list);
+
+        if (roasts_list.length >= 6) setDisplayShowMore(false)
       })();
   };
 
   if (!roasts) return null;
   if (roasts.length === 0) return <NoRoasts/>
+  console.log(user)
   return (
     <RoastsContainerWrapper>
       <RoastContainerHeader>
@@ -133,7 +138,7 @@ const RoastsContainer = () => {
             </div>
           );
         })}
-        {roasts.length > 6 ? (
+        {displayShowMore? (
           <div onClick={showMore} className="Roasts__show-more">
             Show more
           </div>

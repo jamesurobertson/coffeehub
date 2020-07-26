@@ -13,6 +13,7 @@ import {UserContext} from '../context/UserContext'
 const RoastWrapper = styled.div`
     display: flex;
     flex-flow: column;
+    margin-bottom: 33px;
 `
 
 const Roast = (props) => {

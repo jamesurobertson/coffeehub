@@ -3,6 +3,7 @@ import styled from "styled-components";
 import RoastCard from "../Profile/RoastCard";
 import { client } from "../../utils/index";
 import UserCard from './UserCard'
+import NoSearchResult from './NoSearchResult'
 
 const MainWrapper = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ const ExploreMain = ({ searchType, searchParam }) => {
   }, [searchParam, searchType]);
 
     if (searchType !== resultsType) return null
+    if (searchList.length === 0) return <NoSearchResult searchType={searchType} searchParam={searchParam}/>
   return (
     <MainWrapper>
       <h1>
@@ -53,8 +55,3 @@ const ExploreMain = ({ searchType, searchParam }) => {
 };
 
 export default ExploreMain;
-
-{
-  /* <div>{user.numRoasts} Roasts</div>
-<div>{user.numFollowers} followers</div> */
-}

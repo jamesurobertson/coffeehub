@@ -40,7 +40,7 @@ const Explore = () => {
         userCount={userCount}
         originCount={originCount}
       />
-      {loading ? 'Loading...' :
+      {loading ? '' :
       <ExploreMain searchType={searchType} searchParam={searchParam} />
   }
     </ExploreWrapper>

@@ -37,7 +37,7 @@ const Feed = () => {
     }, [setFeedList, setLoading, user])
 
     if (loading) {
-        return <div> Loading...</div>
+        return <div style={{marginLeft: 'calc(33vw + 20px)'}}> Loading...</div>
     }
     console.log(user)
     if (user.following.length === 0) return <DiscoverCard/>

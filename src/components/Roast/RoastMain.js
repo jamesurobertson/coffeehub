@@ -7,7 +7,7 @@ import Chart from "./widgets/Chart";
 const RoastMainWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin:0 auto;
 
   .roast-main__header {
     display: flex;

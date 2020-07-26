@@ -7,6 +7,7 @@ import { UserContext } from "../../context/UserContext";
 import { client } from "../../utils/index";
 import { toast } from "react-toastify";
 import EditProfile from "./EditProfile";
+import {useHistory} from 'react-router-dom';
 
 const UserDetailsWrapper = styled.div`
   display: flex;
@@ -57,6 +58,11 @@ const UserDetailsWrapper = styled.div`
       margin-right: 6px;
     }
   }
+
+  .logout-button {
+      width: 50%;
+      margin: -10px 0 20px;
+  }
 `;
 
 const FollowButton = styled(Button)`
@@ -68,6 +74,7 @@ const FollowButton = styled(Button)`
 const ProfileUserDetails = ({ setProfileData, profileData }) => {
   const { user, setUser } = useContext(UserContext);
   const [openModal, setOpenModal] = useState(false);
+  const history = useHistory();
 
   const followUser = async () => {
     const res = await client(`/users/follow/${profileData.username}`, {
@@ -86,14 +93,20 @@ const ProfileUserDetails = ({ setProfileData, profileData }) => {
       (follow) => follow.userFollowedId !== profileData.id
     );
     setUser({ ...user, following: updatedFollowing });
-};
-const editProfile = () => {
+  };
+  const editProfile = () => {
     setOpenModal(true);
-};
+  };
 
-const closeModal = () => {
+  const closeModal = () => {
     setOpenModal(false);
-};
+  };
+
+  const logout = () => {
+    localStorage.removeItem('COFFEEHUB_ACCESS_TOKEN')
+    window.location.reload(false)
+
+  }
 
   return (
     <UserDetailsWrapper>
@@ -120,6 +133,7 @@ const closeModal = () => {
       ) : (
         ""
       )}
+      {profileData.username === user.username ? <Button className='logout-button' onClick={logout}>Log out</Button> : ""}
       <div className="profile-data-numbers">
         <p>
           <BsPeopleFill className="profile-data-icon" />{" "}
@@ -130,8 +144,7 @@ const closeModal = () => {
         <div className="profile-data-seperator">·</div>
         <p>
           {" "}
-          <FiCoffee className="profile-data-icon" />{" "}
-          {profileData.cups.length}
+          <FiCoffee className="profile-data-icon" /> {profileData.cups.length}
         </p>
       </div>
     </UserDetailsWrapper>

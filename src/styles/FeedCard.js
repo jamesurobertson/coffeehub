@@ -54,6 +54,10 @@ const FeedCard = styled.div`
       text-align: center;
       color: ${(props) => props.theme.secondaryColor};
     }
+
+    .roast-detail {
+        padding-right: 6px;
+    }
   }
 
   .feed-card-inner__user-details {

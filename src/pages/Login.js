@@ -7,6 +7,8 @@ import { TiCoffee } from "react-icons/ti";
 import Input from "../styles/Input";
 import Button from "../styles/Button";
 import {toast} from 'react-toastify'
+import Footer from '../components/Footer'
+
 
 const LoginWrapper = styled.div`
   margin-top: 20px;
@@ -109,6 +111,7 @@ const Login = ({ signup }) => {
 
     }
   return (
+      <>
     <LoginWrapper>
       <TiCoffee size="4rem" />
       <h1> Sign in to CoffeeHub</h1>
@@ -144,6 +147,7 @@ const Login = ({ signup }) => {
         <Button onClick={signup}> Create an Account </Button>
       </div>
     </LoginWrapper>
+    </>
   );
 };
 

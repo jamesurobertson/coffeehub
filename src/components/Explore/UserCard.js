@@ -42,6 +42,8 @@ padding: 20px 0;
 `;
 
 const UserCard = ({user}) => {
+
+    console.log(user)
   return (
     <CardWrapper>
       <img

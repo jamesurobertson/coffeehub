@@ -61,7 +61,7 @@ const FollowCard = ({ details }) => {
               </div>
               <p style={{ paddingTop: "5px" }}>{details.bio}</p>
               <div className="feed-card__data-details">
-                <div>{details.numRoasts} Roasts</div>
+                <div className='roast-detail'>{details.numRoasts} Roasts</div>
                 <div>{details.numFollowers} followers</div>
               </div>
             </div>

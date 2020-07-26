@@ -5,15 +5,17 @@ export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        (async() => {
-            const user = await client('/users')
-            setUser(user)
-        })()
+        client('/users')
+            .then(user => {
+                setUser(user)
+                setLoading(false)
+            })
     },[])
 
+    if (loading) return null
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}
