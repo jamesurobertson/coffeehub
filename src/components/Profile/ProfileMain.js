@@ -59,7 +59,7 @@ const ProfileMain = ({ profileData: user }) => {
       <div className="garden-container">
         <Garden roasts = {user.roasts}/>
       </div>
-      {/* <ActivityLog /> */}
+      <ActivityLog roasts={user.roasts} />
     </MainWrapper>
   );
 };
