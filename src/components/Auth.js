@@ -1,26 +1,23 @@
-import React, {useEffect, useState } from "react";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Landing from "../pages/Landing";
 
 const Auth = () => {
-  const [auth, setAuth] = useState("LANDING");
 
-  const login = () => setAuth("LOGIN");
-  const signup = () => setAuth("SIGNUP");
-  const landing = () => setAuth("LANDING");
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/*" component={Landing} />
 
-  if (auth === "LANDING") {
-    return <Landing signup={signup} login={login} />;
-  }
-
-  if (auth === "LOGIN") {
-    return <Login signup={signup} landing={landing} />;
-  }
-
-  if (auth === "SIGNUP") {
-    return <Signup login={login} landing={landing} />;
-  }
+      </Switch>
+    </BrowserRouter>
+  );
 };
 
 export default Auth;

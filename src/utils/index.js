@@ -1,4 +1,5 @@
 import React from "react";
+import {backendURL} from '../config/index'
 
 export const client = (endpoint, { body, ...customConfig } = {}) => {
   const token = localStorage.getItem("COFFEEHUB_ACCESS_TOKEN");
@@ -20,7 +21,7 @@ export const client = (endpoint, { body, ...customConfig } = {}) => {
     config.body = JSON.stringify(body);
   }
   return fetch(
-    `${process.env.REACT_APP_BACKEND_URL}/api${endpoint}`,
+    `${backendURL}/api${endpoint}`,
     config
   ).then(async (res) => {
     const data = await res.json();

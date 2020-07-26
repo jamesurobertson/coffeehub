@@ -8,33 +8,56 @@ const LandingWrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
-  background-color: ${(props) => props.theme.black};
 
-
-  .banner {
-  padding: 64px 0;
-  margin-top: 54px;
-      display: flex;
-      width: 100%;
-      max-width: 1028px;
-      margin: 0 auto;
-      justify-content: center;
-      background-repeat: no-repeat;
-    background-position: center;
+  .background-img {
+    width: 100%;
     position: relative;
+    img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+    }
 
+    .black-overlay{
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        background-color: rgba(0,0,0, .2);
+    }
+  }
+  .banner {
+    padding: 64px 0;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    max-width: 1028px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
 
+  .landing-about {
+      height: 50vh;
+  }
 `;
 
 const Landing = ({ login, signup }) => {
   return (
-      <LandingWrapper>
-      <LandingHeader login={login} signup={signup}/>
-      <div className="banner">
-        <Slogan />
-        <SignupForm />
+    <LandingWrapper>
+      <LandingHeader login={login} signup={signup} />
+      <div className="background-img">
+        <img src="./coffee1.jpg" alt="coffee-roast" />
+        <div className='black-overlay'></div>
+        <div className="banner">
+          <Slogan />
+          <SignupForm />
+        </div>
       </div>
+      {/* <div className='landing-about'>
+          Hello, World
+      </div> */}
     </LandingWrapper>
   );
 };

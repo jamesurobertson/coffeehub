@@ -17,6 +17,7 @@ const RoastSetUpWrapper = styled.div`
   a {
     color: ${(props) => props.theme.blue};
   }
+
 `;
 
 const RoastSetUpHeader = styled.section`
