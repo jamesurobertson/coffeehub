@@ -101,9 +101,10 @@ const EditProfile = ({
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async (body) => {
-    const res = await client(`/users/update`, { body, method: "PUT" });
-    setUser(res);
+    const {user, token} = await client(`/users/update`, { body, method: "PUT" });
+    setUser(user);
     setProfileData({ ...profileData, ...body });
+    localStorage.setItem("COFFEEHUB_ACCESS_TOKEN", token);
     history.push(`/p/${body.username}`);
     closeModal();
   };

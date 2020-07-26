@@ -46,13 +46,13 @@ const FormWrapper = styled.div`
     .password-help {
       font-size: 12px;
       color: ${(props) => props.theme.secondaryColor};
-      margin-top: 0px;
+      margin-top: 16px;
     }
 
     p {
       color: ${(props) => props.theme.red};
       position: absolute;
-      bottom: -10px;
+      top: 77px;
     }
 
     p::before {

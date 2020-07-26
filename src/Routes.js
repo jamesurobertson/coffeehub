@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Roast from "./pages/Roast";
 import NewRoast from "./components/Roast/NewRoast";
@@ -25,7 +25,12 @@ const Routes = () => {
           <Route path="/r/:username/:roastName" component={Roast} />
           <Route path="/p/:username" component={Profile} />
           <Route path="/explore/:searchParam/:searchType" component={Explore} />
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/*" render={() => {
+              return (
+                  <Redirect to='/'/>
+              )
+          }} />
         </Switch>
         <Footer />
       </Main>
