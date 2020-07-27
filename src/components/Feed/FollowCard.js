@@ -42,7 +42,7 @@ const FollowCard = ({ details }) => {
         </div>
 
         <div className="feed-card-inner">
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", maxWidth: '80%' }}>
             <img
               style={{ width: "40px", height: "40px" }}
               className="feed-card-1"

@@ -21,6 +21,7 @@ const UserDetailsWrapper = styled.div`
     width: 90%;
     max-width: 280px;
     height: auto;
+    object-fit: cover;
     border-radius: 50%;
   }
 

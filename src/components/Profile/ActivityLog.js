@@ -123,7 +123,7 @@ const ActivityLog = ({ roasts, activity }) => {
       <div className="activity-main">
         <div className="activity-main__header">
           Roasted {roastList.length} {roastList.length === 1 ? "time" : "times"}{" "}
-          {viewDay ? `on ${getMonthDay(activity)}` : `in the last month`}
+          {viewDay ? `on ${getMonthDay(activity)}` : `in the last year`}
         </div>
         <ul>
           {roastList.map((roast) => {

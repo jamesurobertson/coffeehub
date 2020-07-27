@@ -125,7 +125,7 @@ const Chart = () => {
             </tr>
             <tr>
               <td>Yield</td>
-              <td onClick={editNote}>{roastData.yield} grams</td>
+              <td onClick={editNote}>{roastData.yieldNum} grams</td>
             </tr>
             {roastData.firstCrack ? (
               <tr>

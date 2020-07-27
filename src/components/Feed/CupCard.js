@@ -42,11 +42,11 @@ const CupCard = ({ details }) => {
         </div>
 
         <div className="feed-card-inner">
-          <div styled={{ display: "flex", flexFlow: "column" }}>
+          <div style={{ display: "flex", flexFlow: "column", maxWidth: '80%'}}>
             <Link to={`/r/${details.roastUsername}/${details.name}`}>
               {details.roastUsername}/{details.name}
             </Link>
-            <p style={{ paddingTop: "5px" }}>{details.description}</p>
+            <p style={{ paddingTop: "5px"}}>{details.description}</p>
             <div className="feed-card__data-details">
               <RoastDetails origin={details.beanOrigin} numCups={details.numLikes}/>
 
