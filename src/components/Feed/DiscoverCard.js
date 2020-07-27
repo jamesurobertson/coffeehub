@@ -50,7 +50,7 @@ const DiscoverCard = () => {
           people you follow.
         </p>
         {/* <Button> Explore CoffeeHub</Button> */}
-        <section> Serach for roasts or users in the search bar above!</section>
+        <section> Search for roasts or users in the search bar above!</section>
       </div>
     </DiscoverWrapper>
   );
