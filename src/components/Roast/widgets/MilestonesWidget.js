@@ -54,13 +54,14 @@ const MilestoneWrapper = styled(Widget)`
 
 
 const MilestonesWidget = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm();
 
   const { roastData } = useContext(RoastContext);
 
   const postMilestone = (body) => {
     client(`/milestones/${roastData.id}`, {body})
     toast.success("Milestone recorded")
+    reset({})
   };
   return (
     <MilestoneWrapper>

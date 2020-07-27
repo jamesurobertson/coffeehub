@@ -41,12 +41,13 @@ const AddNoteButton = styled(Button)``;
 
 const NotesWidget = () => {
     const {roastData} = useContext(RoastContext)
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors, reset } = useForm();
 
 
 const addNote = (body) => {
     client(`/notes/${roastData.id}`, {body})
     toast.success('Note recorded')
+    reset({})
 }
   return (
     <NotesWrapper>
