@@ -5,7 +5,6 @@ const Days = ({ values, size, space, padX, padY, roasts, setActivity }) => {
     const [roastDates, setRoastDates] = useState([])
 
   const click = (e, date) => {
-      console.log(date)
       setActivity(date)
   };
 

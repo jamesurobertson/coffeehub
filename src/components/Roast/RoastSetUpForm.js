@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, {useContext } from "react";
 import styled from "styled-components";
 import { client, ErrorMessage } from "../../utils/index";
 import { useForm } from "react-hook-form";

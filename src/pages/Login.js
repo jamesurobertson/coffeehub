@@ -9,7 +9,6 @@ import Button from "../styles/Button";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-import Footer from "../components/Footer";
 
 const LoginWrapper = styled.div`
   margin-top: 20px;

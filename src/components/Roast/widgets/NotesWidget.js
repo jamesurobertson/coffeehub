@@ -62,7 +62,7 @@ const addNote = (body) => {
         <ErrorMessage error={errors.note} />
 
       <label htmlFor="note-input">Timestamp</label>
-      <Input id="note-input" placeholder="ex. 7:30" name='timestampe'
+      <Input id="note-input" placeholder="ex. 7:30" name='timestamp'
       ref={register()}
       />
 

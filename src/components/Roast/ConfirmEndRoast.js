@@ -13,6 +13,7 @@ padding: 20px;
     .confirm-buttons {
         margin-top: 20px;
         display: flex;
+        justify-content: space-between;
     }
 
 

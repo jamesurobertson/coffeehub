@@ -45,7 +45,6 @@ const HeaderWrapper = styled.div`
 const Header = () => {
     const {user} = useContext(UserContext)
 
-    console.log(user)
   return (
     <>
       <div style={{ height: "52px" }} />

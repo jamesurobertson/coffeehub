@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, {useContext } from "react";
 import styled from "styled-components";
 import Widget from "../../../styles/Widget";
 import { RoastContext } from "../../../context/RoastContext";
-import SaveChanges from "./SaveChanges";
+// import SaveChanges from "./SaveChanges";
 
 const ChartWrapper = styled(Widget)`
   flex-flow: row;
@@ -38,9 +38,9 @@ const ChartWrapper = styled(Widget)`
 
 const Chart = () => {
   const { roastData } = useContext(RoastContext);
-  const [editNotes, setEditNotes] = useState(false);
-  const [editMilestones, setEditMilestones] = useState(false);
-  const [editDetails, setEditDetails] = useState(false);
+  //   const [editNotes, setEditNotes] = useState(false);
+  //   const [editMilestones, setEditMilestones] = useState(false);
+  //   const [editDetails, setEditDetails] = useState(false);
 
   const editNote = (e) => {
     //   console.log(e.target)
@@ -51,95 +51,101 @@ const Chart = () => {
   return (
     <ChartWrapper>
       {roastData.notes.length > 0 ? (
-          <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center'}}>
-
-        <div className="notes-section">
-          <h1>Notes</h1>
-          <ul>
-            {roastData.notes.map((note) => {
-              return (
-                <li
-                  onClick={editNote}
-                  className="note-li"
-                  key={`notes-${note.id}`}
-                >
-                  - {note.note}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-          {/* <SaveChanges tableType={'notes'}/> */}
+        <div
+          style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
+        >
+          <div className="notes-section">
+            <h1>Notes</h1>
+            <ul>
+              {roastData.notes.map((note) => {
+                return (
+                  <li
+                    onClick={editNote}
+                    className="note-li"
+                    key={`notes-${note.id}`}
+                  >
+                    - {note.note}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
+          {/* <SaveChanges tableType={'notes'}/> */}
+        </div>
       ) : (
         ""
       )}
       {roastData.milestones.length > 0 ? (
-          <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center'}}>
-        <table className="pure-table pure-table-horizontal">
-          <thead>
-            <tr>
-              <th>{`Roaster Temp`}</th>
-              <th>Energy</th>
-              <th>Fan</th>
-            </tr>
-          </thead>
-          <tbody>
-            {roastData.milestones.map((ms) => {
-              return (
-                <tr onClick={editNote} key={`milestones-${ms.id}`}>
-                  <td>{ms.roastTemp}°F</td>
-                  <td>{(ms.heatLevel / 10) * 100}%</td>
-                  <td>{(ms.fanspeed / 4) * 100}%</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        {/* <SaveChanges tableType={'milestones'}/> */}
+        <div
+          style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
+        >
+          <table className="pure-table pure-table-horizontal">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Roast Temp</th>
+                <th>Energy</th>
+                <th>Fan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {roastData.milestones.map((ms) => {
+                return (
+                  <tr onClick={editNote} key={`milestones-${ms.id}`}>
+                    {ms.timestamp ? <td>{ms.timestamp}</td> : <td></td>}
+                    {ms.roastTemp ? <td>{ms.roastTemp}°F</td> : <td></td>}
+                    <td>{(ms.heatLevel / 10) * 100}%</td>
+                    <td>{(ms.fanspeed / 4) * 100}%</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {/* <SaveChanges tableType={'milestones'}/> */}
         </div>
       ) : (
         ""
       )}
-          <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center'}}>
-
-      <table className="pure-table pure-table-horizontal">
-        <tbody>
-          <tr>
-            <td>{`TotalTime`}</td>
-            <td onClick={editNote}>{roastData.totalTime}</td>
-          </tr>
-          <tr>
-            <td>{`AmbientTemp`}</td>
-            <td onClick={editNote}>{roastData.ambientTemp}</td>
-          </tr>
-          <tr>
-            <td>Load</td>
-            <td onClick={editNote}>{roastData.load} grams</td>
-          </tr>
-          <tr>
-            <td>Yield</td>
-            <td onClick={editNote}>{roastData.yield} grams</td>
-          </tr>
-          {roastData.firstCrack ? (
+      <div
+        style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
+      >
+        <table className="pure-table pure-table-horizontal">
+          <tbody>
             <tr>
-              <td>FC</td>
-              <td onClick={editNote}>{roastData.firstCrack}</td>
+              <td>{`TotalTime`}</td>
+              <td onClick={editNote}>{roastData.totalTime}</td>
             </tr>
-          ) : (
-            ""
-          )}
-          {roastData.secondCrack ? (
             <tr>
-              <td>SC</td>
-              <td onClick={editNote}>{roastData.secondCrack}</td>
+              <td>{`AmbientTemp`}</td>
+              <td onClick={editNote}>{roastData.ambientTemp}</td>
             </tr>
-          ) : (
-            <tr></tr>
-          )}
-        </tbody>
-      </table>
-      {/* <SaveChanges tableType={'details'}/> */}
+            <tr>
+              <td>Load</td>
+              <td onClick={editNote}>{roastData.load} grams</td>
+            </tr>
+            <tr>
+              <td>Yield</td>
+              <td onClick={editNote}>{roastData.yield} grams</td>
+            </tr>
+            {roastData.firstCrack ? (
+              <tr>
+                <td>FC</td>
+                <td onClick={editNote}>{roastData.firstCrack}</td>
+              </tr>
+            ) : (
+              ""
+            )}
+            {roastData.secondCrack ? (
+              <tr>
+                <td>SC</td>
+                <td onClick={editNote}>{roastData.secondCrack}</td>
+              </tr>
+            ) : (
+              <tr></tr>
+            )}
+          </tbody>
+        </table>
+        {/* <SaveChanges tableType={'details'}/> */}
       </div>
     </ChartWrapper>
   );

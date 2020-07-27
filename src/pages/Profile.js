@@ -22,7 +22,7 @@ const ProfileWrapper = styled.div`
 const Profile = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [profileData, setProfileData] = useState("");
-  const { username, roastName } = useParams();
+  const { username } = useParams();
   useEffect(() => {
     (async () => {
       const { user } = await client(`/users/${username}`);

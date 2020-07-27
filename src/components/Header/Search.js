@@ -64,7 +64,7 @@ const Search = () => {
     return () => {
       active = false;
     };
-  }, [loading]);
+  }, [loading, user.username]);
 
   useEffect(() => {
     if (!open) {

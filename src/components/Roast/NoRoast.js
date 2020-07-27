@@ -17,7 +17,6 @@ const NoRoastWrapper = styled.div`
 const NoRoast = () => {
   const { roastData } = useContext(RoastContext);
 
-  console.log(roastData);
   return (
     <NoRoastWrapper>
       <h1>{roastData.user.username} has not finished this roast yet.</h1>

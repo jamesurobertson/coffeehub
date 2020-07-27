@@ -63,7 +63,7 @@ const FormWrapper = styled.div`
 `;
 
 const SignupForm = () => {
-    const {user, setUser} = useContext(UserContext)
+    const {setUser} = useContext(UserContext)
 
   const { register, handleSubmit, errors } = useForm();
 
@@ -87,7 +87,6 @@ const SignupForm = () => {
   };
 
   const validateEmail = async (value) => {
-    console.log(value)
   const res = await client(`/session/validateemail/${value.toLowerCase()}`);
   return res;
   }

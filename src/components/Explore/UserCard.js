@@ -66,7 +66,6 @@ const UserCard = ({ user }) => {
         setUser({...currentUser, following: updatedFollowing})
 
     }
-    console.log(user)
   return (
     <CardWrapper>
       <div style={{ display: "flex" }}>

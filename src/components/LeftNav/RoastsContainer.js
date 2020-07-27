@@ -118,7 +118,6 @@ const RoastsContainer = () => {
   if (!roasts) return null;
   if (loading) return <Loader/>
   if (roasts.length === 0) return <NoRoasts/>
-  console.log(user)
   return (
     <RoastsContainerWrapper>
       <RoastContainerHeader>

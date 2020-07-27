@@ -7,7 +7,6 @@ import { UserContext } from "../../context/UserContext";
 import { client } from "../../utils/index";
 import { toast } from "react-toastify";
 import EditProfile from "./EditProfile";
-import {useHistory} from 'react-router-dom';
 
 const UserDetailsWrapper = styled.div`
   display: flex;
@@ -74,7 +73,6 @@ const FollowButton = styled(Button)`
 const ProfileUserDetails = ({ setProfileData, profileData }) => {
   const { user, setUser } = useContext(UserContext);
   const [openModal, setOpenModal] = useState(false);
-  const history = useHistory();
 
   const followUser = async () => {
     const res = await client(`/users/follow/${profileData.username}`, {
