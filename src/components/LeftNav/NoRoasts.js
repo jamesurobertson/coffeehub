@@ -30,13 +30,13 @@ const NoRoasts = () => {
     return (
         <RoastsWrapper>
         <h1>Start your first roast</h1>
-        <p>Ready to start roasting? Creat a new roast or upload an exisitng one.</p>
+        <p>Ready to start roasting? Create a new roast!</p>
         <div>
         <Link className="roastContainer__page" to="/new">
             <Button className='createRoast-button'>
                 Create Roast</Button>
         </Link>
-            <Button className='importRoast-button'>Import a roast</Button>
+            {/* <Button className='importRoast-button'>Import a roast</Button> */}
         </div>
 
         </RoastsWrapper>

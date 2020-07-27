@@ -37,10 +37,11 @@ const RoastSetUp = () => {
         <h1>Quck setup</h1>
         <p>
           If you haven't started your roast yet, fill out the form below to get
-          started. Otherwise,{" "}
+          started.
+          {/* Otherwise,{" "}
           <Link to="/roast/upload">
             click here to upload data on an exisiting roast.
-          </Link>
+          </Link> */}
         </p>
       </RoastSetUpHeader>
       <RoastSetUpForm />

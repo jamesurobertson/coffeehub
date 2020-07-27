@@ -96,9 +96,9 @@ const RoastHeader = () => {
         <NavLink exact activeclass="active" to={`/r/${roastData.user.username}/${roastData.name}`}>
           Roast
         </NavLink>
-        <NavLink activeclass="active" to={`/r/${roastData.user.username}/${roastData.name}/comments`}>
+        {/* <NavLink activeclass="active" to={`/r/${roastData.user.username}/${roastData.name}/comments`}>
           Comments
-        </NavLink>
+        </NavLink> */}
       </div>
     </RoastHeaderWrapper>
   );

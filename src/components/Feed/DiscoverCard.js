@@ -8,6 +8,12 @@ const DiscoverWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  margin-left: calc(33vw + 20px);
+
+    @media screen and (min-width: 1060px) {
+        margin-left: 370px;
+    }
+
 
   div {
     margin: 20px auto;
@@ -43,7 +49,8 @@ const DiscoverCard = () => {
           Your news feed helps you keep up with new roasts that are made and
           people you follow.
         </p>
-        <Button> Explore CoffeeHub</Button>
+        {/* <Button> Explore CoffeeHub</Button> */}
+        <section> Serach for roasts or users in the search bar above!</section>
       </div>
     </DiscoverWrapper>
   );
