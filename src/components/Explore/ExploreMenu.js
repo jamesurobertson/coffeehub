@@ -11,6 +11,7 @@ const MenuWrapper = styled.div`
   max-width: 230px;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(149,157,165,.15)!important;
 
   .menu-row {
       display: flex;
@@ -19,6 +20,10 @@ const MenuWrapper = styled.div`
     font-size: 14px;
     padding: 12px;
     border-bottom: 1px solid ${(props) => props.theme.border};
+  }
+
+  .menu-row:hover {
+      background-color: rgba(0,0,0,.05)
   }
 
   .menu-last {

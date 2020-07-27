@@ -35,7 +35,6 @@ const SignupWrapper = styled.div`
     font-size: 24px;
     font-weight: normal;
     margin-bottom: 20px;
-    color: white;
   }
 `;
 
