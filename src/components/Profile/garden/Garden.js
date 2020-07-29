@@ -12,6 +12,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding: 10px;
+float: right;
 `
 
 const Graph = (props) => {

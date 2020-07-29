@@ -1,19 +1,13 @@
-import React, {useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Widget from "../../../styles/Widget";
 import { RoastContext } from "../../../context/RoastContext";
 // import SaveChanges from "./SaveChanges";
 
 const ChartWrapper = styled(Widget)`
-  flex-flow: row;
-
-  .pure-table {
-    margin: 0 30px;
-  }
-
   .notes-section {
     display: flex;
-    width: 300px;
+    max-width: 300px;
     flex-flow: column;
     justify-content: space-between;
     border: 1px solid ${(props) => props.theme.borderDarker};
@@ -34,6 +28,24 @@ const ChartWrapper = styled(Widget)`
     background-color: white;
     border: 1px solid black;
   }
+
+  .chart-section {
+    display: "flex";
+    flex-flow: "column";
+    align-items: "center";
+
+    @media screen and (max-width: 830px) {
+      padding-bottom: 20px;
+    }
+  }
+
+  @media screen and (min-width: 830px) {
+    flex-flow: row;
+
+    .pure-table {
+      margin: 0 30px;
+    }
+  }
 `;
 
 const Chart = () => {
@@ -51,9 +63,7 @@ const Chart = () => {
   return (
     <ChartWrapper>
       {roastData.notes.length > 0 ? (
-        <div
-          style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
-        >
+        <div className="chart-section">
           <div className="notes-section">
             <h1>Notes</h1>
             <ul>
@@ -76,9 +86,7 @@ const Chart = () => {
         ""
       )}
       {roastData.milestones.length > 0 ? (
-        <div
-          style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
-        >
+        <div className="chart-section">
           <table className="pure-table pure-table-horizontal">
             <thead>
               <tr>
@@ -106,9 +114,7 @@ const Chart = () => {
       ) : (
         ""
       )}
-      <div
-        style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
-      >
+      <div className="chart-section">
         <table className="pure-table pure-table-horizontal">
           <tbody>
             <tr>

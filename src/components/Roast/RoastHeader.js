@@ -21,6 +21,16 @@ const RoastHeaderWrapper = styled.div`
   .roastheader__header {
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 830px) {
+        flex-flow: column;
+    }
+  }
+
+  .roastheader__actions {
+      @media screen and (max-width: 830px) {
+          padding: 20px 0;
+      }
   }
 
   .roastheader__links * {
@@ -48,6 +58,11 @@ const RoastHeaderWrapper = styled.div`
 
   .active {
     border-bottom: 2px solid ${(props) => props.theme.green};
+  }
+
+
+  @media screen and (max-width: 830px) {
+      height: auto;
   }
 `;
 

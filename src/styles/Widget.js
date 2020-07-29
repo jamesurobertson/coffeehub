@@ -11,6 +11,11 @@ const Widget = styled.div`
 
   background-color: ${(props) => props.theme.bgSecondary};
   border: 1px solid ${(props) => props.theme.borderDarker};
+
+  @media screen and (max-width: 830px) {
+      margin: 10px 0;
+      padding: 10px 0;
+  }
 `;
 
 export default Widget;

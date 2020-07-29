@@ -52,6 +52,10 @@ const ActivityLogWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 830px) {
+      padding-left: 10px;
+  }
 `;
 
 const Months = [

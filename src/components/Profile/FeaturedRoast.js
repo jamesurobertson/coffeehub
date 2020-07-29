@@ -35,6 +35,10 @@ const FeaturedWrapper = styled.div`
         font-size: 12px;
     }
 
+    @media screen and (max-width: 830px) {
+        width: 100%;
+        margin: 10px 10px;
+    }
 `
 
 const FeaturedRoast = ({roast}) => {

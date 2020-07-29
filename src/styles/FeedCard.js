@@ -18,8 +18,6 @@ const FeedCard = styled.div`
     width: 100%;
     max-width: 950px;
     padding-left: 15px;
-    display: flex;
-    flex-flow: column;
 
     a {
       font-weight: bold;
@@ -27,9 +25,9 @@ const FeedCard = styled.div`
   }
 
   .feed-card-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
     width: 100%;
     margin-top: 10px;
     padding: 20px;
@@ -64,6 +62,36 @@ const FeedCard = styled.div`
     margin-left: 15px;
     display: flex;
     flex-flow: column;
+  }
+
+  .feed-card-inner-right {
+    display: "flex";
+     max-width: '80%';
+  }
+
+  button {
+      width: 87px;
+  }
+
+  @media screen and (max-width: 830px) {
+      padding: 20px 10px;
+      position: relative;
+
+      button {
+          display: flex;
+          width: 60px;
+          flex-flow: column;
+          align-items: center;
+          right: 17px;
+          bottom: 30px;
+          font-size: 14px;
+          position: absolute;
+
+      }
+
+      .feed-card-inner-right {
+          max-width: 100%;
+      }
   }
 `
 export default FeedCard

@@ -13,6 +13,15 @@ const RoastMainWrapper = styled.div`
   .roast-main__header {
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 830px) {
+        flex-flow: column;
+        padding-left: 10px;
+
+        .roast-main__date {
+            padding-top: 5px;
+        }
+    }
   }
 
   .roast-main__bean {
@@ -37,7 +46,7 @@ const RoastMain = () => {
           <h1 className="roast-main__bean">{roastData.bean}</h1>
           <p className="roast-main__description">{roastData.description}</p>
         </div>
-        <div>{new Date(roastData.createdAt).toDateString()}</div>
+        <div className='roast-main__date'>{new Date(roastData.createdAt).toDateString()}</div>
       </div>
       <Graph />
       <Chart />

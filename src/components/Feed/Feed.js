@@ -9,10 +9,12 @@ import CardLoader from "../Loaders/CardLoader";
 
 const FeedWrapper = styled.div`
   position: relative;
-  margin: 0 20px;
   width: 100%;
-  margin-left: calc(33vw + 20px);
-  padding-top: 20px;
+
+  @media screen and (min-width: 830px) {
+    margin-left: calc(33vw + 20px);
+    padding-top: 20px;
+  }
 
   @media screen and (min-width: 1060px) {
     margin-left: 370px;

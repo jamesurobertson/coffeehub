@@ -36,6 +36,11 @@ const LandingWrapper = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
+
+    @media screen and (max-width: 690px) {
+        flex-flow: column;
+        padding: 20px;
+    }
   }
 
   .landing-about {
@@ -55,9 +60,6 @@ const Landing = ({ login, signup }) => {
           <SignupForm />
         </div>
       </div>
-      {/* <div className='landing-about'>
-          Hello, World
-      </div> */}
     </LandingWrapper>
   );
 };

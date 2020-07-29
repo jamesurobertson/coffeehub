@@ -10,12 +10,17 @@ import Loader from '../components/Loader'
 
 const ProfileWrapper = styled.div`
   display: flex;
+  flex-flow: column;
   width: 100%;
   max-width: 1250px;
   margin: 0 auto 33px;
 
   .profile-main {
     width: 100%;
+  }
+
+  @media screen and (min-width: 830px) {
+      flex-flow: row;
   }
 `;
 

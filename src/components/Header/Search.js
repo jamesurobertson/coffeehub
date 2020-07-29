@@ -8,12 +8,11 @@ import { client } from "../../utils/index";
 import { UserContext } from "../../context/UserContext";
 
 const SearchWrapper = styled.div`
-
+    width: 100%;
 .MuiAutocomplete-root {
     margin-left: 10px;
     border-radius: 5px;
     background-color: ${(props) => props.theme.bgDark};
-
     .Mui-focused {
         background-color: white;
 
@@ -34,6 +33,11 @@ const SearchWrapper = styled.div`
 
   .MuiFormLabel-root {
       color: white;
+  }
+
+  #roasts-search {
+      width: 100%;
+      max-width: 350px;
   }
 }
 `
@@ -89,7 +93,6 @@ const Search = () => {
       <Autocomplete
         freeSolo
         id="roasts-search"
-        style={{ width: 300 }}
         open={open}
         inputValue={searchValue}
         onOpen={() => {

@@ -18,6 +18,11 @@ const GraphWrapper = styled(Widget)`
     background-color: ${(props) => props.theme.bg};
     border: 1px solid ${(props) => props.theme.border}
   }
+
+  @media screen and (max-width: 830px) {
+      /* padding: 20px */
+  }
+
 `;
 
 

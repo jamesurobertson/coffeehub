@@ -36,13 +36,23 @@ const MainWrapper = styled.div`
     font-weight: bold;
     padding: 50px 0;
   }
+
+  @media screen and (max-width: 830px) {
+      .section-title {
+          padding-left: 10px;
+      }
+
+      .garden-container {
+          margin: 20px 0;
+      }
+  }
 `;
 
 const ProfileMain = ({ profileData: user }) => {
     const [activity, setActivity] = useState(null)
   return (
     <MainWrapper>
-      <div> Featured Roasts</div>
+      <div className='section-title'> Featured Roasts</div>
       <div className="featured-roasts">
         {user.roasts.length === 0 ? (
           <div className="profile--noroasts">
@@ -55,7 +65,7 @@ const ProfileMain = ({ profileData: user }) => {
           return <FeaturedRoast roast={roast} key={i} />;
         })}
       </div>
-      <div>{user.roasts.length} Roasts in the last year</div>
+      <div className='section-title'>{user.roasts.length} Roasts in the last year</div>
 
       <div className="garden-container">
         <Garden roasts = {user.roasts} setActivity={setActivity}/>

@@ -18,15 +18,20 @@ const HeaderWrapper = styled.div`
   color: ${(props) => props.theme.white};
   z-index: 100;
 
+  @media screen and (max-width: 690px) {
+      padding: 0;
+      justify-content: space-around;
+  }
+
   .header__search {
     margin-left: 10px;
     padding: 5px 10px;
-    width: 325px;
     border: none;
     border-radius: 5px;
     outline: 0;
     color: ${(props) => props.theme.white};
     background-color: ${(props) => props.theme.bgDark};
+
   }
   .header__search::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */

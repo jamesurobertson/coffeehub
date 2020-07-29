@@ -36,6 +36,10 @@ const RoastCardWrapper = styled.div`
     margin-right: 10px;
     font-size: 12px;
   }
+
+  @media screen and (min-width: 830px) {
+      /* margin: 0; */
+  }
 `;
 
 const RoastCard = ({ roast }) => {
