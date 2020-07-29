@@ -11,6 +11,11 @@ const ExploreWrapper = styled.div`
   padding-top: 20px;
   max-width: 1000px;
   margin: 0 auto;
+
+  @media screen and (max-width: 830px) {
+      flex-flow: column;
+      align-items: center;
+  }
 `;
 
 const Explore = () => {

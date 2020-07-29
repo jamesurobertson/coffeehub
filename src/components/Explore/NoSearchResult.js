@@ -15,6 +15,13 @@ const NoResultWrapper = styled.div`
         font-size: 20px;
     }
 
+    @media screen and (max-width: 830px) {
+        padding: 40px 20px;
+        align-items: center;
+        justify-content: center;
+
+    }
+
 `
 
 
@@ -23,7 +30,8 @@ const NoSearchResult = ({searchParam, searchType}) => {
     return (
         <NoResultWrapper>
             <GoSearch size='2rem'/>
-            <h1>We couldn't find any {searchType}s matching '{searchParam}'</h1>
+            <h1>We couldn't find any {searchType}s</h1>
+            <h1>matching '{searchParam}'</h1>
         </NoResultWrapper>
     )
 }

@@ -18,6 +18,17 @@ const MainWrapper = styled.div`
     width: 100%;
     padding-bottom: 20px;
   }
+
+  @media screen and (max-width: 830px) {
+      margin: 0;
+      h1 {
+          padding: 20px 10px;
+      }
+  }
+
+  button {
+      width: 90px;
+  }
 `;
 
 const rotate = keyframes`
