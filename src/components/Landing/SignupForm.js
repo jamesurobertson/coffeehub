@@ -18,9 +18,6 @@ const FormWrapper = styled.div`
   margin: 0 24px;
   background-color: white;
 
-  @media screen and (max-width: 690px) {
-      display: none;
-  }
 
   form {
     display: flex;

@@ -64,6 +64,11 @@ const ModalWrapper = styled.div`
     background-color: ${(props) => props.theme.green};
     margin-top: 5px;
   }
+
+  @media screen and (max-width: 830px) {
+      width: 100%;
+
+  }
 `;
 
 const EditProfileForm = styled.form`
@@ -178,7 +183,7 @@ const EditProfile = ({
         <h1 style={{ fontSize: "24px" }}> Edit Profile</h1>
         <div style={{ display: "flex" }}>
           <EditProfileForm onSubmit={handleSubmit(onSubmit)}>
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex"}}>
               <div
                 style={{
                   display: "flex",

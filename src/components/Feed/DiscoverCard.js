@@ -14,6 +14,10 @@ const DiscoverWrapper = styled.div`
         margin-left: 370px;
     }
 
+    @media screen and (max-width: 830px) {
+        margin: 20px 0;
+    }
+
 
   div {
     margin: 20px auto;
@@ -35,12 +39,13 @@ const DiscoverWrapper = styled.div`
     color: ${(props) => props.theme.blue};
     border: 1px solid ${(props) => props.theme.border};
   }
+
 `;
 
 const DiscoverCard = () => {
   return (
     <DiscoverWrapper>
-      <div>
+      <div className='explore-banner'>
         <h1>
           Dicover interesting roasts and people to populate your personal news
           feed.

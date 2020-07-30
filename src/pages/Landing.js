@@ -46,6 +46,14 @@ const LandingWrapper = styled.div`
   .landing-about {
       height: 50vh;
   }
+
+  .landing-form {
+      width: 100%;
+
+      @media screen and (max-width: 830px) {
+          display: none;
+      }
+  }
 `;
 
 const Landing = ({ login, signup }) => {
@@ -57,7 +65,9 @@ const Landing = ({ login, signup }) => {
         <div className='black-overlay'></div>
         <div className="banner">
           <Slogan />
+          <div className='landing-form'>
           <SignupForm />
+          </div>
         </div>
       </div>
     </LandingWrapper>
