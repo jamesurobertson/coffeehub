@@ -31,13 +31,30 @@ const NewRoastWrapper = styled.div`
 
     .newRoastForm__nameDetails {
       display: flex;
+
+      label {
+        font-weight: bold;
+      }
     }
-    .newRoastForm__roastName {
+    .newRoastForm__roastUser {
       font-weight: bold;
+      height: 60px;
+      display: flex;
+      position: relative;
+
+      .roastUser-details {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+      }
+    }
+
+    .newRoastForm__roastName {
+      display: flex;
+      flex-flow: column;
       justify-content: space-between;
       height: 60px;
       display: flex;
-      flex-flow: column;
       position: relative;
 
       p {
@@ -47,46 +64,74 @@ const NewRoastWrapper = styled.div`
         bottom: 0;
         width: 100%;
       }
+
+      @media screen and (max-width: 830px) {
+        p {
+          left: 0;
+          top: 51px;
+        }
+      }
+    }
+  }
+
+  #form-username,
+  #form-roastname,
+  #newRoastForm__description {
+    background-color: ${(props) => props.theme.bgSecondary};
+    padding: 8px 12px;
+    border: 1px solid ${(props) => props.theme.border};
+    border-radius: 5px;
+    height: 35px;
+  }
+
+  h1 {
+    font-weight: normal;
+    padding-top: 24px;
+    margin: 4px 8px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-asterisk {
+    color: ${(props) => props.theme.red};
+  }
+
+  p {
+    padding: 10px 0;
+  }
+
+  #newRoastForm__description {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  button {
+    color: ${(props) => props.theme.white};
+    background-color: ${(props) => props.theme.green};
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+  }
+
+  @media screen and (max-width: 830px) {
+    padding: 15px;
+    margin: 0 auto;
+
+    .roastname-helper {
+        margin: 30px 0 0;
     }
 
-    #form-username,
-    #form-roastname,
-    #newRoastForm__description {
-      background-color: ${(props) => props.theme.bgSecondary};
-      padding: 8px 12px;
-      border: 1px solid ${(props) => props.theme.border};
-      border-radius: 5px;
-      height: 35px;
+    .newRoastForm {
+      margin: 0;
     }
 
-    h1 {
-      font-weight: normal;
-      padding-top: 24px;
-      margin: 4px 8px;
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-    }
-
-    .form-asterisk {
-      color: ${(props) => props.theme.red};
-    }
-
-    p {
-      padding: 10px 0;
-    }
-
-    #newRoastForm__description {
+    .newRoastForm__roastUser {
       margin: 10px 0;
-      width: 100%;
     }
 
-    button {
-      color: ${(props) => props.theme.white};
-      background-color: ${(props) => props.theme.green};
-      padding: 8px 12px;
-      border: none;
-      border-radius: 3px;
+    .newRoastForm__nameDetails {
+      flex-flow: column;
     }
   }
 `;
@@ -102,8 +147,8 @@ const NewRoast = (props) => {
 
   const validateRoastName = async (value) => {
     const res = await client(`/roasts/validate/${value.toLowerCase()}`);
-    return res
-  }
+    return res;
+  };
 
   return (
     <NewRoastWrapper>
@@ -113,11 +158,13 @@ const NewRoast = (props) => {
 
         <form className="newRoastForm" onSubmit={handleSubmit(createRoast)}>
           <div className="newRoastForm__nameDetails">
-            <div className="newRoastForm__roastName">
-              <label htmlFor="form-username">Owner</label>
-              <div id="form-username">{user.username}</div>
+            <div className="newRoastForm__roastUser">
+              <div className="roastUser-details">
+                <label htmlFor="form-username">Owner</label>
+                <div id="form-username">{user.username}</div>
+              </div>
+              <h1>/</h1>
             </div>
-            <h1>/</h1>
             <div className="newRoastForm__roastName">
               <label htmlFor="form-roastname">
                 Roast name
@@ -127,12 +174,16 @@ const NewRoast = (props) => {
                 id="form-roastname"
                 autoComplete="off"
                 name="name"
-                ref={register({ required: true, pattern: /^[a-zA-Z0-9_.-]*$/, validate: validateRoastName })}
+                ref={register({
+                  required: true,
+                  pattern: /^[a-zA-Z0-9_.-]*$/,
+                  validate: validateRoastName,
+                })}
               />
               <ErrorMessage error={errors.name} />
             </div>
           </div>
-          <p>
+          <p className='roastname-helper'>
             {" "}
             Roast names have no spaces and good ones are short and memorable.
           </p>

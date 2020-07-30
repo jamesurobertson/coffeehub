@@ -43,6 +43,9 @@ const TimestampWrapper = styled(Widget)`
       background-color: ${(props) => props.theme.red};
     }
   }
+
+  @media screen and (max-width: 830px) {
+  }
 `;
 
 const TimestampsWidget = () => {

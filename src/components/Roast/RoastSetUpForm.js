@@ -69,6 +69,10 @@ const RoastFormWrapper = styled.div`
       display: inline;
       content: "⚠ ";
     }
+
+    @media screen and (max-width: 830px) {
+        width: 90%;
+    }
 `;
 
 const RoastSetUpForm = () => {

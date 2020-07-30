@@ -19,6 +19,12 @@ const GraphSetUpWrapper = styled.div`
     justify-content: center;
     margin: 0 20px;
   }
+
+  @media screen and (max-width: 830px) {
+      .graph-widget-section {
+          flex-flow: column;
+      }
+  }
 `;
 
 const GraphSetUp = () => {

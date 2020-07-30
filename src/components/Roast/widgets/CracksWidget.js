@@ -13,6 +13,10 @@ const CracksWrapper = styled(Widget)`
   align-items: flex-start;
   .cracks-section {
   }
+
+  @media screen and (max-width: 830px) {
+      flex-flow: column;
+  }
 `;
 
 const CracksWidget = () => {
