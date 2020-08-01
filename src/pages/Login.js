@@ -6,7 +6,6 @@ import { client, ErrorMessage } from "../utils/index";
 import { TiCoffee } from "react-icons/ti";
 import Input from "../styles/Input";
 import Button from "../styles/Button";
-import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 const LoginWrapper = styled.div`
@@ -106,7 +105,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      body = { email: "demo@coffee-hub.com", password: "password123" };
+      const body = { email: "demo@coffee-hub.com", password: "password123" };
       const { token, user } = await client("/session/login", { body });
       localStorage.setItem("COFFEEHUB_ACCESS_TOKEN", token);
       setUser(user);
