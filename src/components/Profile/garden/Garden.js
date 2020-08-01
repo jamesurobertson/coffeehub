@@ -1,69 +1,59 @@
-import {
-  diffDays, formatDate, today, oneYearAgo
-} from '../../../utils/garden';
-import Days from './Days';
-import Months from './Months';
-import React from 'react'
-import styled from 'styled-components'
+import { diffDays, formatDate, today, oneYearAgo } from "../../../utils/garden";
+import Days from "./Days";
+import Months from "./Months";
+import React from "react";
+import styled from "styled-components";
 
 const GardenWrapper = styled.div`
-background-color: transparent;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 10px;
-float: right;
-`
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  float: right;
+`;
 
 const Graph = (props) => {
-   const {
-        data = [],
-        startDate = oneYearAgo(),
-        endDate = today(),
-        size = 12,
-        space = 2,
-        padX = 0,
-        padY = 30,
-        roasts,
-        setActivity
-    } = props
+  const { roasts, setActivity } = props;
 
+  const startDate = oneYearAgo();
+  const endDate = today();
   const values = [];
   const days = diffDays(startDate, endDate);
-  const dataTmp = data.reduce((memo, v) => {
-    memo[v.date] = v.count;
-    return memo;
-  }, {});
 
-  let group = 0;
+  let week = 0;
   for (let i = 0; i <= days; i += 1) {
     const date = new Date(startDate);
     date.setDate(date.getDate() + i);
 
     const day = date.getDay();
-    const count = dataTmp[formatDate(date)] || 0;
+    const count = 0;
 
     if ((day === 0 && i !== 0) || i === 0) {
       values.push([]);
-      group += 1;
+      week += 1;
     }
 
-    values[group - 1].push({ count, date, day });
+    values[week - 1].push({ count, date, day });
   }
-
 
   const attrs = {
-     values, size, space, padX, padY, roasts, setActivity
-  }
+    size: 12,
+    space: 2,
+    padX: 0,
+    padY: 30,
+    values,
+    roasts,
+    setActivity,
+  };
   return (
-      <GardenWrapper>
+    <GardenWrapper>
       <svg width={860} height={150}>
-      <Days {...attrs} />
-      <Months {...attrs}/>
-    </svg>
-
-      </GardenWrapper>
+        <Days {...attrs} />
+        <Months {...attrs} />
+      </svg>
+    </GardenWrapper>
   );
-}
+};
 
-export default Graph
+export default Graph;

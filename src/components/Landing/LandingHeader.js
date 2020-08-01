@@ -46,12 +46,12 @@ const LandingHeader = () => {
           <TiCoffee color="white" size="3em" />
         </div>
         <div>
-          <Button className="signin-button">
-            <Link to="/login">Sign in</Link>
-          </Button>
-          <Button className="signup-button">
-            <Link to="/signup">Sign up</Link>
-          </Button>
+          <Link to="/login">
+            <Button className="signin-button">Sign in</Button>
+          </Link>
+          <Link to="/signup">
+            <Button className="signup-button">Sign up</Button>
+          </Link>
         </div>
       </HeaderInner>
     </HeaderWrapper>

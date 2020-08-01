@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CoffeeHub
+*By [James Robertson](http://jamesurobertson.com/) - [Live site](https://coffee-hub.herokuapp.com/)*
 
-## Available Scripts
+A Platform built for coffee roasting.
 
-In the project directory, you can run:
+**Table of Contents**
+  * [CoffeeHub at a Glance](#CoffeeHub-at-a-glance)
+  * [Technologies Used](#technologies-used)
+  * [Application Architecture](#application-architecture)
+  * [Frontend Overview](#frontend-overview)
+  * [Backend Overview](#backend-overview)
+  * [Conclusion](#conclusion)
 
-### `npm start`
+## CoffeeHub at a Glance
+CoffeeHub is a full stack coffee roasting platform for home roasting enthusiasts to create, store, and share their different roasts.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The application is made with a React frontend utilizing styled-components.
+The backend is a Python Flask server with a PostgreSQL database.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**Key Features**
+* User sign in / sign up with JWT authentication and encrypted password with werkzeug
+* Tools to aid you during the roasting process
+* Follow other users / cup (star) other roasts
+* Dynamic searching based off username, roast name, or bean origin
+* Dynamic and clickable roast 'garden' modeled after GitHub's repository 'garden'
+<!--
+![CoffeeHub mini-demo](/readme-assets/star-trader-demo-full.gif) -->
 
-### `npm test`
+## Technologies Used
+* Frontend
+  * React
+  * Javascript
+  * Styled-Components
+  * Rechart / D3
+  * react-hook-form
+  * react-toastify
+* Backend
+  * Flask
+  * Python
+  * Postgres
+  * SQLAlchemy
+  * Alembic
+  * AWS S3
+  * Heroku deployment via Docker
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Application Architecture
+The frontend is a `create-react-app` using functional components with hooks. The backend is a Flask server with various RESTful endpoints. They are deployed via Docker to a Heroku server.
 
-### `npm run build`
+##### CoffeeHub Postgres database schema
+![Database schema](readme-assets/backend-schema.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Frontend Overview
+The front end is fully mobile response and styling is modeled after GitHub and uses styled-components. I implemented a custom component library for all of my buttons, inputs, widgets, and feedcards to keep styling the same and DRY up my code base.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For the roast garden I manipulated the JavaScript Date class to dynamically create the clickable garden based off the current date. Here is an exmaple of how it looks and some of the code to create the chart. The functions to manipulate the date class can be found in src > utils > garden
 
-### `npm run eject`
+![Roast Garden](readme-assets/roast-garden.png)
+![Roast Garden Code](readme-assets/roast-garden-js.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Backend Overview
+The Flask backend is a collection of RESTful routes serving data to the frontend and an interface with the Postgres database.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The database is queried using the SQLAlchemy ORM, and seed data was added using the Alembic library.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Images were hosted in an Amazon S3 bucket and implemented using awscli library.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Conclusion
+CoffeeHub was a passion project of mine that was created to solve a problem. One of my hobbies is coffee roasting and when I first started roasting I didn't have a great system in place to keep track of all my different roasts, I was recording them all on pen and paper! I also couldn't find a platform online to aid me in my roasting or to easily find different roast profiles whenever I bought new green beans. To solve this problem, I built coffeeHub.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Future features would include a fully operation explore page that is scoped beyond my current search page, and adding user comments and multimedia to different roasts.
