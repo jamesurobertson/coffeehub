@@ -64,13 +64,6 @@ const NewRoastWrapper = styled.div`
         bottom: 0;
         width: 100%;
       }
-
-      @media screen and (max-width: 830px) {
-        p {
-          left: 0;
-          top: 51px;
-        }
-      }
     }
   }
 
@@ -119,7 +112,7 @@ const NewRoastWrapper = styled.div`
     margin: 0 auto;
 
     .roastname-helper {
-        margin: 30px 0 0;
+      margin: 30px 0 0;
     }
 
     .newRoastForm {
@@ -132,6 +125,13 @@ const NewRoastWrapper = styled.div`
 
     .newRoastForm__nameDetails {
       flex-flow: column;
+    }
+
+    .newRoastForm-.newRoastForm__roastName {
+      p {
+        left: 0;
+        top: 51px;
+      }
     }
   }
 `;
@@ -183,7 +183,7 @@ const NewRoast = (props) => {
               <ErrorMessage error={errors.name} />
             </div>
           </div>
-          <p className='roastname-helper'>
+          <p className="roastname-helper">
             {" "}
             Roast names have no spaces and good ones are short and memorable.
           </p>

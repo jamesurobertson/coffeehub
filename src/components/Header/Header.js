@@ -18,11 +18,6 @@ const HeaderWrapper = styled.div`
   color: ${(props) => props.theme.white};
   z-index: 100;
 
-  @media screen and (max-width: 690px) {
-      padding: 0;
-      justify-content: space-around;
-  }
-
   .header__search {
     margin-left: 10px;
     padding: 5px 10px;
@@ -45,6 +40,12 @@ const HeaderWrapper = styled.div`
       border-radius: 50%;
 
   }
+
+  @media screen and (max-width: 690px) {
+      padding: 0;
+      justify-content: space-around;
+  }
+
 `;
 
 const Header = () => {

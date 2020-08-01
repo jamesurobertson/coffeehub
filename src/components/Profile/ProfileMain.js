@@ -4,7 +4,7 @@ import Garden from "./garden/Garden";
 import FeaturedRoast from "./FeaturedRoast";
 import ActivityLog from "./ActivityLog";
 
-const MainWrapper = styled.div`
+const ProfileMainWrapper = styled.div`
   display: flex;
   flex-flow: column;
   margin-top: 20px;
@@ -51,7 +51,7 @@ const MainWrapper = styled.div`
 const ProfileMain = ({ profileData: user }) => {
     const [activity, setActivity] = useState(null)
   return (
-    <MainWrapper>
+    <ProfileMainWrapper>
       <div className='section-title'> Featured Roasts</div>
       <div className="featured-roasts">
         {user.roasts.length === 0 ? (
@@ -71,7 +71,7 @@ const ProfileMain = ({ profileData: user }) => {
         <Garden roasts = {user.roasts} setActivity={setActivity}/>
       </div>
       <ActivityLog roasts={user.roasts} activity={activity} />
-    </MainWrapper>
+    </ProfileMainWrapper>
   );
 };
 

@@ -14,14 +14,6 @@ const RoastMainWrapper = styled.div`
     display: flex;
     justify-content: space-between;
 
-    @media screen and (max-width: 830px) {
-        flex-flow: column;
-        padding-left: 10px;
-
-        .roast-main__date {
-            padding-top: 5px;
-        }
-    }
   }
 
   .roast-main__bean {
@@ -31,6 +23,17 @@ const RoastMainWrapper = styled.div`
   .roast-main__description {
     font-size: 18px;
     padding-top: 5px;
+  }
+
+  @media screen and (max-width:830px) {
+      .roast-main__header {
+          display: flex;
+          justify-content: center;
+      }
+
+      .roast-main__date {
+            padding-top: 5px;
+        }
   }
 `;
 

@@ -34,9 +34,6 @@ const ChartWrapper = styled(Widget)`
     flex-flow: "column";
     align-items: "center";
 
-    @media screen and (max-width: 830px) {
-      padding-bottom: 20px;
-    }
   }
 
   @media screen and (min-width: 830px) {
@@ -46,6 +43,14 @@ const ChartWrapper = styled(Widget)`
       margin: 0 30px;
     }
   }
+
+  @media screen and (max-width: 830px) {
+
+      .chart-section {
+        padding-bottom: 20px;
+
+      }
+    }
 `;
 
 const Chart = () => {

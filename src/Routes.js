@@ -12,8 +12,8 @@ import Footer from "./components/Footer";
 const Main = styled.div`
   display: flex;
   flex-flow: column;
-  height: calc(100vh - 52px);
   justify-content: space-between;
+  min-height: calc(100vh - 54px);
 `;
 const Routes = () => {
   return (

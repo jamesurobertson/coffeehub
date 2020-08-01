@@ -1,4 +1,4 @@
-import React, {useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { client, ErrorMessage } from "../../utils/index";
 import { useForm } from "react-hook-form";
@@ -26,7 +26,6 @@ const RoastFormWrapper = styled.div`
     min-width: 250px;
     padding: 5px 0;
     height: 90px;
-
   }
   textarea:focus,
   input:focus,
@@ -61,18 +60,18 @@ const RoastFormWrapper = styled.div`
   }
 
   p {
-      color: ${(props) => props.theme.red};
-      bottom: -20px;
-    }
+    color: ${(props) => props.theme.red};
+    bottom: -20px;
+  }
 
-    p::before {
-      display: inline;
-      content: "⚠ ";
-    }
+  p::before {
+    display: inline;
+    content: "⚠ ";
+  }
 
-    @media screen and (max-width: 830px) {
-        width: 90%;
-    }
+  @media screen and (max-width: 830px) {
+    width: 90%;
+  }
 `;
 
 const RoastSetUpForm = () => {
@@ -81,9 +80,8 @@ const RoastSetUpForm = () => {
 
   const startRoast = (body) => {
     client(`/roasts/${roastData.id}`, { body, method: "PUT" });
-    setRoastData({...roastData, ...body})
+    setRoastData({ ...roastData, ...body });
   };
-
 
   return (
     <RoastFormWrapper>
@@ -102,7 +100,7 @@ const RoastSetUpForm = () => {
         <div className="formField">
           <label>Origin:</label>
           <select name="origin" ref={register({ required: true })}>
-            <option value=''>Please choose a bean</option>
+            <option value="">Please choose a bean</option>
             <option value="1">Brazil</option>
             <option value="2">Burundi</option>
             <option value="3">Colombia</option>

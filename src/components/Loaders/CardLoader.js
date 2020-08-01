@@ -25,6 +25,9 @@ const LoaderWrapper = styled.div`
     max-width: 950px;
     margin-top: 20px;
 
+    .coffeespinning {
+        animation: ${rotate} 2.5s linear infinite;
+    }
 
     @media screen and (min-width: 830px) {
     margin-left: calc(33vw + 20px);
@@ -35,9 +38,6 @@ const LoaderWrapper = styled.div`
         margin-left: 370px;
     }
 
-    .coffeespinning {
-        animation: ${rotate} 2.5s linear infinite;
-    }
 `
 
 

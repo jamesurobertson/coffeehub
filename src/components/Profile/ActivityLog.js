@@ -6,11 +6,14 @@ const ActivityLogWrapper = styled.div`
   display: flex;
   flex-flow: column;
   margin-top: 20px;
+
+
   .activity-header {
     display: flex;
     align-items: center;
     width: 100%;
     margin-top: 10px;
+
     h1 {
       font-size: 12px;
     }

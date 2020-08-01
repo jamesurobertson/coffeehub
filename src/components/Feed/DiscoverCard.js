@@ -10,15 +10,6 @@ const DiscoverWrapper = styled.div`
   width: 100%;
   margin-left: calc(33vw + 20px);
 
-    @media screen and (min-width: 1060px) {
-        margin-left: 370px;
-    }
-
-    @media screen and (max-width: 830px) {
-        margin: 20px 0;
-    }
-
-
   div {
     margin: 20px auto;
     padding: 20px;
@@ -40,12 +31,19 @@ const DiscoverWrapper = styled.div`
     border: 1px solid ${(props) => props.theme.border};
   }
 
+  @media screen and (min-width: 1060px) {
+    margin-left: 370px;
+  }
+
+  @media screen and (max-width: 830px) {
+    margin: 20px 0;
+  }
 `;
 
 const DiscoverCard = () => {
   return (
     <DiscoverWrapper>
-      <div className='explore-banner'>
+      <div className="explore-banner">
         <h1>
           Dicover interesting roasts and people to populate your personal news
           feed.

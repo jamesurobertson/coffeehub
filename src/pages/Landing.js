@@ -12,6 +12,7 @@ const LandingWrapper = styled.div`
   .background-img {
     width: 100%;
     position: relative;
+
     img {
       width: 100%;
       height: 100vh;
@@ -19,13 +20,14 @@ const LandingWrapper = styled.div`
       position: absolute;
     }
 
-    .black-overlay{
-        width: 100%;
-        height: 100vh;
-        position: absolute;
-        background-color: rgba(0,0,0, .2);
+    .black-overlay {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
+
   .banner {
     padding: 64px 0;
     display: flex;
@@ -36,23 +38,27 @@ const LandingWrapper = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
-
-    @media screen and (max-width: 690px) {
-        flex-flow: column;
-        padding: 20px;
-    }
   }
 
   .landing-about {
-      height: 50vh;
+    height: 50vh;
   }
 
   .landing-form {
-      width: 100%;
+    width: 100%;
+  }
 
-      @media screen and (max-width: 830px) {
-          display: none;
-      }
+  @media screen and (max-width: 690px) {
+    .banner {
+      flex-flow: column;
+      padding: 20px;
+    }
+  }
+
+  @media screen and (max-width: 690px) {
+    .landing-form {
+      display: none;
+    }
   }
 `;
 
@@ -62,11 +68,11 @@ const Landing = ({ login, signup }) => {
       <LandingHeader login={login} signup={signup} />
       <div className="background-img">
         <img src="./coffee1.jpg" alt="coffee-roast" />
-        <div className='black-overlay'></div>
+        <div className="black-overlay"></div>
         <div className="banner">
           <Slogan />
-          <div className='landing-form'>
-          <SignupForm />
+          <div className="landing-form">
+            <SignupForm />
           </div>
         </div>
       </div>

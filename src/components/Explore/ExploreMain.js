@@ -6,7 +6,7 @@ import UserCard from "./UserCard";
 import NoSearchResult from "./NoSearchResult";
 import { TiCoffee } from "react-icons/ti";
 
-const MainWrapper = styled.div`
+const ExploreMainWrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -19,15 +19,15 @@ const MainWrapper = styled.div`
     padding-bottom: 20px;
   }
 
+
+  button {
+      width: 90px;
+  }
   @media screen and (max-width: 830px) {
       margin: 0;
       h1 {
           padding: 20px 10px;
       }
-  }
-
-  button {
-      width: 90px;
   }
 `;
 
@@ -81,7 +81,7 @@ const ExploreMain = ({ searchType, searchParam }) => {
   if (searchList.length === 0)
     return <NoSearchResult searchType={searchType} searchParam={searchParam} />;
   return (
-    <MainWrapper>
+    <ExploreMainWrapper>
       <h1>
         {" "}
         {searchList.length} {searchType} results
@@ -93,7 +93,7 @@ const ExploreMain = ({ searchType, searchParam }) => {
         : searchList.map((user) => {
             return <UserCard user={user} key={user.id} />;
           })}
-    </MainWrapper>
+    </ExploreMainWrapper>
   );
 };
 
