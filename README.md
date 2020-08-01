@@ -59,6 +59,8 @@ For the roast garden I manipulated the JavaScript Date class to dynamically crea
 ![Roast Garden Code](readme-assets/roast-garden-js.png)
 
 ## Backend Overview
+The backend repository can be found here: [Backend](https://github.com/jamesurobertson/coffeehub-backend)
+
 The Flask backend is a collection of RESTful routes serving data to the frontend and an interface with the Postgres database.
 
 The database is queried using the SQLAlchemy ORM, and seed data was added using the Alembic library.
