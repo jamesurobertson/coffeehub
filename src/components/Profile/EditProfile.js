@@ -7,6 +7,7 @@ import Input from "../../styles/Input";
 import Button from "../../styles/Button";
 import { client, ErrorMessage } from "../../utils/index";
 import { UserContext } from "../../context/UserContext";
+import {backendURL} from '../../config/index';
 
 Modal.setAppElement("#root");
 
@@ -153,7 +154,7 @@ const EditProfile = ({
       const token = localStorage.getItem("COFFEEHUB_ACCESS_TOKEN");
 
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/aws/upload`,
+        `${backendURL}/api/aws/upload`,
         {
           method: "POST",
           body: formData,

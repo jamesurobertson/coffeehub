@@ -9,7 +9,6 @@ import Button from "../styles/Button";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
-
 const LoginWrapper = styled.div`
   margin-top: 20px;
   display: flex;
@@ -96,12 +95,23 @@ const Login = () => {
     try {
       const { token, user } = await client("/session/login", { body });
 
-      setTimeout(() => {
-        localStorage.setItem("COFFEEHUB_ACCESS_TOKEN", token);
-        setUser(user);
-      }, 500);
+      localStorage.setItem("COFFEEHUB_ACCESS_TOKEN", token);
+      setUser(user);
     } catch (err) {
-      toast.error(err.message);
+      console.error(err)
+    }
+  };
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      body = { email: "demo@coffee-hub.com", password: "password123" };
+      const { token, user } = await client("/session/login", { body });
+      localStorage.setItem("COFFEEHUB_ACCESS_TOKEN", token);
+      setUser(user);
+    } catch (e) {
+      console.error(e);
     }
   };
   return (
@@ -132,7 +142,7 @@ const Login = () => {
           </div>
           <div className="buttons-container">
             <Button type="submit"> Sign in</Button>
-            <Button className="demologin">
+            <Button onClick={demoLogin} className="demologin">
               {" "}
               Sign in with Demo Account
             </Button>
