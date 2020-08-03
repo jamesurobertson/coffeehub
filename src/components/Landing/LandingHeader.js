@@ -42,7 +42,9 @@ const LandingHeader = () => (
   <HeaderWrapper>
     <HeaderInner>
       <div>
-        <TiCoffee color="white" size="3em" />
+        <Link to="/">
+          <TiCoffee color="white" size="3em" />
+        </Link>
       </div>
       <div>
         <Link to="/login">

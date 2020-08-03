@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SignupForm from "../components/Landing/SignupForm";
 import LandingHeader from "../components/Landing/LandingHeader";
 import Slogan from "../components/Landing/Slogan";
+import LandingFooter from "../components/Landing/LandingFooter";
 
 const LandingWrapper = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ const Landing = ({ login, signup }) => (
         </div>
       </div>
     </div>
+    <LandingFooter/>
   </LandingWrapper>
 );
 
