@@ -20,6 +20,7 @@ const UserDetailsWrapper = styled.div`
   img {
     width: 90%;
     max-width: 280px;
+    max-height: 280px;
     height: auto;
     object-fit: cover;
     border-radius: 50%;

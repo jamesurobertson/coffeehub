@@ -138,6 +138,7 @@ const RoastSetUpForm = () => {
             type="number"
             autoComplete={"off"}
             name="load"
+            min='0'
             ref={register({ required: true })}
           />
           <ErrorMessage error={errors.load} />
@@ -149,6 +150,7 @@ const RoastSetUpForm = () => {
             placeholder="In Fahrenheit"
             autoComplete={"off"}
             name="ambientTemp"
+            min='0'
             ref={register({ required: true })}
           />
           <ErrorMessage error={errors.ambientTemp} />
