@@ -91,7 +91,6 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm();
 
   const login = async (body) => {
-      console.log(body)
     try {
       const { token, user } = await client("/session/login", { body });
 
@@ -107,7 +106,6 @@ const Login = () => {
 
     try {
       const body = { usernameEmail: "demo@coffee-hub.com", password: "password123" };
-      console.log(body)
       const { token, user } = await client("/session/login", { body });
       localStorage.setItem("COFFEEHUB_ACCESS_TOKEN", token);
       setUser(user);

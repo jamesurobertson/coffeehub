@@ -1,4 +1,4 @@
-import { diffDays, formatDate, today, oneYearAgo } from "../../../utils/garden";
+import { diffDays, today, oneYearAgo } from "../../../utils/garden";
 import Days from "./Days";
 import Months from "./Months";
 import React from "react";
