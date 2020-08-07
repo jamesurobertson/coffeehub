@@ -21,26 +21,24 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const ProfileHeader = ({profileData: user}) => {
-  return (
-    <HeaderWrapper>
-      <NavLink
-        exact
-        activeclass="active"
-        to={`/p/${user.username}`}
-        className="profile-tab"
-      >
-        Overview
-      </NavLink>
-      <NavLink
-        activeclass="active"
-        to={`/p/${user.username}/roasts`}
-        className="profile-tab"
-      >
-        Roasts
-      </NavLink>
-    </HeaderWrapper>
-  );
-};
+const ProfileHeader = ({ profileData: user }) => (
+  <HeaderWrapper>
+    <NavLink
+      exact
+      activeclass="active"
+      to={`/p/${user.username}`}
+      className="profile-tab"
+    >
+      Overview
+    </NavLink>
+    <NavLink
+      activeclass="active"
+      to={`/p/${user.username}/roasts`}
+      className="profile-tab"
+    >
+      Roasts
+    </NavLink>
+  </HeaderWrapper>
+);
 
 export default ProfileHeader;

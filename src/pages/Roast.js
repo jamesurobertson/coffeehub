@@ -8,7 +8,7 @@ import RoastMain from "../components/Roast/RoastMain";
 import { client } from "../utils/index";
 import { RoastContext } from "../context/RoastContext";
 import { UserContext } from "../context/UserContext";
-import Loader from '../components/Loader'
+import Loader from "../components/Loader";
 
 const RoastWrapper = styled.div`
   display: flex;
@@ -28,13 +28,13 @@ const Roast = (props) => {
     })();
   }, [roastName, username, setRoastData]);
 
-
   if (
     !roastData ||
     roastData.name !== roastName ||
     roastData.roastUser.username !== username
-  )
-    return <Loader/>;
+  ) {
+    return <Loader />;
+  }
   return (
     <RoastWrapper>
       <RoastHeader />

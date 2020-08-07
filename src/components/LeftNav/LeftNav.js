@@ -17,12 +17,10 @@ const LeftNavWrapper = styled.div`
   }
 `;
 
-const LeftNav = () => {
-  return (
+const LeftNav = () => (
     <LeftNavWrapper>
       <RoastsContainer />
     </LeftNavWrapper>
   );
-};
 
 export default LeftNav;

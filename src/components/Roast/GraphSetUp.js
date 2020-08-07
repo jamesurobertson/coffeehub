@@ -21,28 +21,26 @@ const GraphSetUpWrapper = styled.div`
   }
 
   @media screen and (max-width: 830px) {
-      .graph-widget-section {
-          flex-flow: column;
-      }
+    .graph-widget-section {
+      flex-flow: column;
+    }
   }
 `;
 
-const GraphSetUp = () => {
-  return (
-    <GraphSetUpWrapper>
-      <div className="graph-widget-section">
-        <Graph />
-      </div>
-      <div className="graph-widget-section">
-        <section style={{display: 'flex', flexFlow: 'column'}}>
-          <TimestampsWidget />
-          <CracksWidget />
-        </section>
-        <MilestonesWidget />
-        <NotesWidget />
-      </div>
-    </GraphSetUpWrapper>
-  );
-};
+const GraphSetUp = () => (
+  <GraphSetUpWrapper>
+    <div className="graph-widget-section">
+      <Graph />
+    </div>
+    <div className="graph-widget-section">
+      <section style={{ display: "flex", flexFlow: "column" }}>
+        <TimestampsWidget />
+        <CracksWidget />
+      </section>
+      <MilestonesWidget />
+      <NotesWidget />
+    </div>
+  </GraphSetUpWrapper>
+);
 
 export default GraphSetUp;

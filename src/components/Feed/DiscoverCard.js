@@ -39,23 +39,21 @@ const DiscoverWrapper = styled.div`
   }
 `;
 
-const DiscoverCard = () => {
-  return (
-    <DiscoverWrapper>
-      <div className="explore-banner">
-        <h1>
-          Dicover interesting roasts and people to populate your personal news
-          feed.
-        </h1>
-        <p>
-          Your news feed helps you keep up with new roasts that are made and
-          people you follow.
-        </p>
-        {/* <Button> Explore CoffeeHub</Button> */}
-        <section> Search for roasts or users in the search bar above!</section>
-      </div>
-    </DiscoverWrapper>
-  );
-};
+const DiscoverCard = () => (
+  <DiscoverWrapper>
+    <div className="explore-banner">
+      <h1>
+        Dicover interesting roasts and people to populate your personal news
+        feed.
+      </h1>
+      <p>
+        Your news feed helps you keep up with new roasts that are made and
+        people you follow.
+      </p>
+      {/* <Button> Explore CoffeeHub</Button> */}
+      <section> Search for roasts or users in the search bar above!</section>
+    </div>
+  </DiscoverWrapper>
+);
 
 export default DiscoverCard;

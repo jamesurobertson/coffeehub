@@ -22,8 +22,7 @@ const RoastHeaderWrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
-
-  .roastheader__links * {
+  > * {
     font-size: 20px;
     margin: 0 5px;
   }

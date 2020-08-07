@@ -21,28 +21,26 @@ const SloganWrapper = styled.div`
   }
 
   p {
-      padding-top: 20px;
-      font-size: 20px;
-      font-weight: bold;
-      color: white;
-      /* text-shadow: -1px 1px 0 #2f2f2f,
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    /* text-shadow: -1px 1px 0 #2f2f2f,
                   1px 1px 0 #2f2f2f,
                  1px -1px 0 #2f2f2f,
                 -1px -1px 0 #2f2f2f; */
-
   }
 `;
 
-const Landing = ({ login, signup }) => {
-  return (
-    <SloganWrapper>
-      <h1> Built for coffee roasting</h1>
-      <p>
-        CoffeeHub is a platform for aiding you in all of your roasting
-        needs. From finding different roast profiles, to tools to help you during the roast, CoffeeHub is built for you.
-      </p>
-    </SloganWrapper>
-  );
-};
+const Landing = () => (
+  <SloganWrapper>
+    <h1> Built for coffee roasting</h1>
+    <p>
+      CoffeeHub is a platform for aiding you in all of your roasting needs. From
+      finding different roast profiles, to tools to help you during the roast,
+      CoffeeHub is built for you.
+    </p>
+  </SloganWrapper>
+);
 
 export default Landing;

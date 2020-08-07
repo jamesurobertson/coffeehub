@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TiCoffee } from "react-icons/ti";
 import Button from "../styles/Button";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import SignupForm from "../components/Landing/SignupForm";
 
@@ -38,21 +38,18 @@ const SignupWrapper = styled.div`
   }
 `;
 
-const Signup = () => {
-  return (
-    <SignupWrapper>
-
-      <TiCoffee size="4rem" />
-      <h1> Sign up for CoffeeHub</h1>
-      <SignupForm />
-      <div className="login-container">
-        Already have an account?
-        <Button>
-            <Link to='/login'>Sign in</Link>
-        </Button>
-      </div>
-    </SignupWrapper>
-  );
-};
+const Signup = () => (
+  <SignupWrapper>
+    <TiCoffee size="4rem" />
+    <h1> Sign up for CoffeeHub</h1>
+    <SignupForm />
+    <div className="login-container">
+      Already have an account?
+      <Button>
+        <Link to="/login">Sign in</Link>
+      </Button>
+    </div>
+  </SignupWrapper>
+);
 
 export default Signup;

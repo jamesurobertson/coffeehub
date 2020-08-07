@@ -16,7 +16,6 @@ const RoastSetUpWrapper = styled.div`
   a {
     color: ${(props) => props.theme.blue};
   }
-
 `;
 
 const RoastSetUpHeader = styled.section`
@@ -29,23 +28,21 @@ const RoastSetUpHeader = styled.section`
   background-color: ${(props) => props.theme.bg};
 `;
 
-const RoastSetUp = () => {
-  return (
-    <RoastSetUpWrapper>
-      <RoastSetUpHeader>
-        <h1>Quck setup</h1>
-        <p>
-          If you haven't started your roast yet, fill out the form below to get
-          started.
-          {/* Otherwise,{" "}
+const RoastSetUp = () => (
+  <RoastSetUpWrapper>
+    <RoastSetUpHeader>
+      <h1>Quck setup</h1>
+      <p>
+        If you haven't started your roast yet, fill out the form below to get
+        started.
+        {/* Otherwise,{" "}
           <Link to="/roast/upload">
             click here to upload data on an exisiting roast.
           </Link> */}
-        </p>
-      </RoastSetUpHeader>
-      <RoastSetUpForm />
-    </RoastSetUpWrapper>
-  );
-};
+      </p>
+    </RoastSetUpHeader>
+    <RoastSetUpForm />
+  </RoastSetUpWrapper>
+);
 
 export default RoastSetUp;

@@ -38,24 +38,22 @@ const HeaderInner = styled.div`
   }
 `;
 
-const LandingHeader = () => {
-  return (
-    <HeaderWrapper>
-      <HeaderInner>
-        <div>
-          <TiCoffee color="white" size="3em" />
-        </div>
-        <div>
-          <Link to="/login">
-            <Button className="signin-button">Sign in</Button>
-          </Link>
-          <Link to="/signup">
-            <Button className="signup-button">Sign up</Button>
-          </Link>
-        </div>
-      </HeaderInner>
-    </HeaderWrapper>
-  );
-};
+const LandingHeader = () => (
+  <HeaderWrapper>
+    <HeaderInner>
+      <div>
+        <TiCoffee color="white" size="3em" />
+      </div>
+      <div>
+        <Link to="/login">
+          <Button className="signin-button">Sign in</Button>
+        </Link>
+        <Link to="/signup">
+          <Button className="signup-button">Sign up</Button>
+        </Link>
+      </div>
+    </HeaderInner>
+  </HeaderWrapper>
+);
 
 export default LandingHeader;

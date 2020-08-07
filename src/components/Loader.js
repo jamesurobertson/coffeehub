@@ -1,20 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const LoaderWrapper = styled.div`
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+`;
 
-`
+const Loader = () => <LoaderWrapper />;
 
-
-const Loader = () => {
-
-    return (
-
-        <LoaderWrapper/>
-
-    )
-}
-
-export default Loader
+export default Loader;

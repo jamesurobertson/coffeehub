@@ -41,6 +41,7 @@ const Feed = () => {
 
   if (user.following.length === 0) return <DiscoverCard />;
   if (loading) return <CardLoader />;
+
   return (
     <FeedWrapper>
       {feedList.map((details, i) => {

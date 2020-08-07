@@ -1,0 +1,10 @@
+slack
+
+favicon
+about me footer.
+home page bottom left about me
+sockets?
+
+coffeehub
+fix image on profile
+block negative values
