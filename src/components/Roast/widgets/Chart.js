@@ -35,6 +35,36 @@ const ChartWrapper = styled(Widget)`
     align-items: "center";
   }
 
+  .pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+  }
+
+  .pure-table td,
+  .pure-table th {
+    border-left: 1px solid #cbcbcb;
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 0.5em 1em;
+  }
+  .pure-table thead {
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: left;
+    vertical-align: bottom;
+  }
+
+  }
+  .pure-table-horizontal td,
+  .pure-table-horizontal th {
+    border-width: 0 0 1px 0;
+    border-bottom: 1px solid #cbcbcb;
+  }
+
   @media screen and (min-width: 830px) {
     flex-flow: row;
 

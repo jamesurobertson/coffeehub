@@ -67,7 +67,7 @@ const Landing = ({ login, signup }) => (
   <LandingWrapper>
     <LandingHeader login={login} signup={signup} />
     <div className="background-img">
-      <img src="./coffee1.jpg" alt="coffee-roast" />
+      <img src="./coffee1.webp" alt="coffee-roast" />
       <div className="black-overlay"></div>
       <div className="banner">
         <Slogan />
