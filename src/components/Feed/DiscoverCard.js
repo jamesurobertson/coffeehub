@@ -43,7 +43,7 @@ const DiscoverCard = () => (
   <DiscoverWrapper>
     <div className="explore-banner">
       <h1>
-        Dicover interesting roasts and people to populate your personal news
+        Discover interesting roasts and people to populate your personal news
         feed.
       </h1>
       <p>
